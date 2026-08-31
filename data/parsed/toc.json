@@ -1,0 +1,23 @@
+[
+  ["Components", 3],
+  ["Setup", 4],
+  ["Your Area", 6, "Your Play Area"],
+  ["Your Deck", 7],
+  ["Rewards", 8],
+  ["Remove, Upgrade, Transform", 8],
+  ["The Map", 9],
+  ["Combat Setup", 10],
+  ["Combat Round", 12, "Combat Round - Player Turn"],
+  ["Enemy Actions", 13, "Enemy Action Types"],
+  ["Actions & Effects", 14],
+  ["Targeting & Modes", 15, "Targeting for Players"],
+  ["Characters", 16, "The Ironclad"],
+  ["FAQ", 18, "FAQs & Random Rules"],
+  ["Triggered Abilities", 19],
+  ["Unlocks & Ascension", 20, "Unlocks"],
+  ["Achievements & Daily Climb", 21, "Achievements"],
+  ["Act IV & Quick Start Rules", 22, "Act IV"],
+  ["Game End - Reset", 23],
+  ["Optional Rules & Credits", 23, "Optional Rules"],
+  ["Abilities & Keywords", 24]
+]
