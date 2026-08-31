@@ -229,8 +229,28 @@
     "mergedTitles": null
   },
   {
-    "id": "rulebook:433af7cb76b8",
+    "id": "rulebook:684d0173797e",
     "ordinal": 11,
+    "docId": "rulebook",
+    "docType": "rulebook",
+    "authority": 10,
+    "sectionPath": [
+      "Setup for Acts II & III"
+    ],
+    "title": "Setup for Acts II & III",
+    "part": null,
+    "partsTotal": null,
+    "pageStart": 4,
+    "pageEnd": 6,
+    "content": "*[Diagram: full table setup, keyed to the numbered setup steps on page 4. The Act I main board (5) has map tokens (6) placed on dark and light spaces, the Boss card (8) above it, the character mini (7) placed at the lowest open space, and the boot meeple (9) marked \"Start here\" at the bottom of the map. The token tray (2) sits beside the board. The Player Aid/Merchant board (10) and Neow's Blessing card (11) are at the top right, with the Loaded Die solo relic and gold (12) beside them. The 1st Encounter deck (13) is near the board. The reward decks are laid out to the right: Relic, Treasure/Boss Relic and Potion decks above four Act I decks (Encounter, Elite, Summon, Event), plus the Curse Deck, Status Deck, and Daze Deck (4). Below, the player's Rare Rewards (yellow border) and Card Rewards (black border) decks sit to the left of the character mini (1), and the Starter Deck (gray border) to the right. The player board (3) shows cubes placed on the Energy, Block, and HP tracks.]*\n\nDon't use this token until instructed to do so.\n\nPlace cubes here",
+    "tokenCount": 266,
+    "srcStart": 4739,
+    "srcEnd": 6460,
+    "mergedTitles": null
+  },
+  {
+    "id": "rulebook:433af7cb76b8",
+    "ordinal": 12,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -254,7 +274,7 @@
   },
   {
     "id": "rulebook:3554c2c2f56b",
-    "ordinal": 12,
+    "ordinal": 13,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -274,7 +294,7 @@
   },
   {
     "id": "rulebook:803eb7bc8aed",
-    "ordinal": 13,
+    "ordinal": 14,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -295,7 +315,7 @@
   },
   {
     "id": "rulebook:753b6709174b",
-    "ordinal": 14,
+    "ordinal": 15,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -316,7 +336,7 @@
   },
   {
     "id": "rulebook:9f22b4f2ee07",
-    "ordinal": 15,
+    "ordinal": 16,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -336,7 +356,7 @@
   },
   {
     "id": "rulebook:aa0fc1193941",
-    "ordinal": 16,
+    "ordinal": 17,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -356,7 +376,7 @@
   },
   {
     "id": "rulebook:fdd0c706ec6e",
-    "ordinal": 17,
+    "ordinal": 18,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -376,7 +396,7 @@
   },
   {
     "id": "rulebook:ab08bb4fa49c",
-    "ordinal": 18,
+    "ordinal": 19,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -396,7 +416,7 @@
   },
   {
     "id": "rulebook:e03457ac5dbd",
-    "ordinal": 19,
+    "ordinal": 20,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -422,7 +442,7 @@
   },
   {
     "id": "rulebook:1e98ff45e811",
-    "ordinal": 20,
+    "ordinal": 21,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -443,7 +463,7 @@
   },
   {
     "id": "rulebook:8ce3e1739445",
-    "ordinal": 21,
+    "ordinal": 22,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -464,7 +484,7 @@
   },
   {
     "id": "rulebook:e1a3a4dc9a03",
-    "ordinal": 22,
+    "ordinal": 23,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -484,7 +504,7 @@
   },
   {
     "id": "rulebook:6478d19f64ab",
-    "ordinal": 23,
+    "ordinal": 24,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -505,7 +525,7 @@
   },
   {
     "id": "rulebook:c8054a3e4db9",
-    "ordinal": 24,
+    "ordinal": 25,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -525,7 +545,7 @@
   },
   {
     "id": "rulebook:ff7e29fc8f8d",
-    "ordinal": 25,
+    "ordinal": 26,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -546,7 +566,7 @@
   },
   {
     "id": "rulebook:7b501bdbfed6",
-    "ordinal": 26,
+    "ordinal": 27,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -566,7 +586,7 @@
   },
   {
     "id": "rulebook:3e2fb1b9443d",
-    "ordinal": 27,
+    "ordinal": 28,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -586,7 +606,7 @@
   },
   {
     "id": "rulebook:5c6fdf83e7f6",
-    "ordinal": 28,
+    "ordinal": 29,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -606,7 +626,7 @@
   },
   {
     "id": "rulebook:428e1e5576da",
-    "ordinal": 29,
+    "ordinal": 30,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -627,7 +647,7 @@
   },
   {
     "id": "rulebook:b22d090fbd4c",
-    "ordinal": 30,
+    "ordinal": 31,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -648,7 +668,7 @@
   },
   {
     "id": "rulebook:048bcb189014",
-    "ordinal": 31,
+    "ordinal": 32,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -669,7 +689,7 @@
   },
   {
     "id": "rulebook:cea69096b63f",
-    "ordinal": 32,
+    "ordinal": 33,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -692,7 +712,7 @@
   },
   {
     "id": "rulebook:f8f25b174cb3",
-    "ordinal": 33,
+    "ordinal": 34,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -713,7 +733,7 @@
   },
   {
     "id": "rulebook:040a1317c015",
-    "ordinal": 34,
+    "ordinal": 35,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -735,7 +755,7 @@
   },
   {
     "id": "rulebook:2d95a72d113b",
-    "ordinal": 35,
+    "ordinal": 36,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -756,7 +776,7 @@
   },
   {
     "id": "rulebook:56fc76ddae09",
-    "ordinal": 36,
+    "ordinal": 37,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -777,7 +797,7 @@
   },
   {
     "id": "rulebook:fc4690fde75b",
-    "ordinal": 37,
+    "ordinal": 38,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -798,7 +818,7 @@
   },
   {
     "id": "rulebook:020d3730ee06",
-    "ordinal": 38,
+    "ordinal": 39,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -818,7 +838,7 @@
   },
   {
     "id": "rulebook:cace8c19cc2a",
-    "ordinal": 39,
+    "ordinal": 40,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -838,7 +858,7 @@
   },
   {
     "id": "rulebook:f0000c4199bd",
-    "ordinal": 40,
+    "ordinal": 41,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -858,7 +878,7 @@
   },
   {
     "id": "rulebook:54cd22457ec1",
-    "ordinal": 41,
+    "ordinal": 42,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -882,7 +902,7 @@
   },
   {
     "id": "rulebook:e7c5f2d1b380",
-    "ordinal": 42,
+    "ordinal": 43,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -906,7 +926,7 @@
   },
   {
     "id": "rulebook:441f8459146e",
-    "ordinal": 43,
+    "ordinal": 44,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -927,7 +947,7 @@
   },
   {
     "id": "rulebook:7edac6a8bc6a",
-    "ordinal": 44,
+    "ordinal": 45,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -949,7 +969,7 @@
   },
   {
     "id": "rulebook:c4c66dcb4601",
-    "ordinal": 45,
+    "ordinal": 46,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -970,7 +990,7 @@
   },
   {
     "id": "rulebook:20093f360259",
-    "ordinal": 46,
+    "ordinal": 47,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -993,7 +1013,7 @@
   },
   {
     "id": "rulebook:f12292b4f186",
-    "ordinal": 47,
+    "ordinal": 48,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1014,7 +1034,7 @@
   },
   {
     "id": "rulebook:e12c278b6e2d",
-    "ordinal": 48,
+    "ordinal": 49,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1034,7 +1054,7 @@
   },
   {
     "id": "rulebook:f07b6510292a",
-    "ordinal": 49,
+    "ordinal": 50,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1054,7 +1074,7 @@
   },
   {
     "id": "rulebook:01b0b87017ce",
-    "ordinal": 50,
+    "ordinal": 51,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1074,7 +1094,7 @@
   },
   {
     "id": "rulebook:517b88f0da38",
-    "ordinal": 51,
+    "ordinal": 52,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1094,7 +1114,7 @@
   },
   {
     "id": "rulebook:f08374518ffc",
-    "ordinal": 52,
+    "ordinal": 53,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1115,7 +1135,7 @@
   },
   {
     "id": "rulebook:93254238ffe2",
-    "ordinal": 53,
+    "ordinal": 54,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1136,7 +1156,7 @@
   },
   {
     "id": "rulebook:4f3eea36504b",
-    "ordinal": 54,
+    "ordinal": 55,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1157,7 +1177,7 @@
   },
   {
     "id": "rulebook:5110574cd20c",
-    "ordinal": 55,
+    "ordinal": 56,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1178,7 +1198,7 @@
   },
   {
     "id": "rulebook:c95ddf0c64d3",
-    "ordinal": 56,
+    "ordinal": 57,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1199,7 +1219,7 @@
   },
   {
     "id": "rulebook:82fdcd0d67b5",
-    "ordinal": 57,
+    "ordinal": 58,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1220,7 +1240,7 @@
   },
   {
     "id": "rulebook:f3e74f9a8c64",
-    "ordinal": 58,
+    "ordinal": 59,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1241,7 +1261,7 @@
   },
   {
     "id": "rulebook:4a76719badcd",
-    "ordinal": 59,
+    "ordinal": 60,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1262,7 +1282,7 @@
   },
   {
     "id": "rulebook:106346aaf25e",
-    "ordinal": 60,
+    "ordinal": 61,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1282,8 +1302,28 @@
     "mergedTitles": null
   },
   {
+    "id": "rulebook:be0536283781",
+    "ordinal": 62,
+    "docId": "rulebook",
+    "docType": "rulebook",
+    "authority": 10,
+    "sectionPath": [
+      "Triggered Abilities"
+    ],
+    "title": "Triggered Abilities",
+    "part": null,
+    "partsTotal": null,
+    "pageStart": 19,
+    "pageEnd": 20,
+    "content": "Some abilities don't have an effect until the conditions of their trigger are met. Examples are:\n\n*[Illustration: two relic cards shown as examples — Gambling Chip (\"Once per room: Reroll the die.\") and Red Mask (\"[die 2][die 5] ... [Weak]\").]*",
+    "tokenCount": 61,
+    "srcStart": 42832,
+    "srcEnd": 44585,
+    "mergedTitles": null
+  },
+  {
     "id": "rulebook:bf8e5c49196f",
-    "ordinal": 61,
+    "ordinal": 63,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1306,7 +1346,7 @@
   },
   {
     "id": "rulebook:54d1f3c73156",
-    "ordinal": 62,
+    "ordinal": 64,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1326,7 +1366,7 @@
   },
   {
     "id": "rulebook:4eff420e7b10",
-    "ordinal": 63,
+    "ordinal": 65,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1346,7 +1386,7 @@
   },
   {
     "id": "rulebook:efc0041c6c08",
-    "ordinal": 64,
+    "ordinal": 66,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1366,7 +1406,7 @@
   },
   {
     "id": "rulebook:42a9268f5cfd",
-    "ordinal": 65,
+    "ordinal": 67,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1386,7 +1426,7 @@
   },
   {
     "id": "rulebook:994952025c56",
-    "ordinal": 66,
+    "ordinal": 68,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1406,7 +1446,7 @@
   },
   {
     "id": "rulebook:bbd19f89f256",
-    "ordinal": 67,
+    "ordinal": 69,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1426,7 +1466,7 @@
   },
   {
     "id": "rulebook:857b5fd0a874",
-    "ordinal": 68,
+    "ordinal": 70,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1446,7 +1486,7 @@
   },
   {
     "id": "rulebook:5a4b55ff3a07",
-    "ordinal": 69,
+    "ordinal": 71,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1467,7 +1507,7 @@
   },
   {
     "id": "rulebook:9e110bcf9062",
-    "ordinal": 70,
+    "ordinal": 72,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1488,7 +1528,7 @@
   },
   {
     "id": "rulebook:cc59568007ed",
-    "ordinal": 71,
+    "ordinal": 73,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1508,7 +1548,7 @@
   },
   {
     "id": "rulebook:e88863ebe3d5",
-    "ordinal": 72,
+    "ordinal": 74,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1529,7 +1569,7 @@
   },
   {
     "id": "rulebook:9abe76b8ba86",
-    "ordinal": 73,
+    "ordinal": 75,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1550,7 +1590,7 @@
   },
   {
     "id": "rulebook:89c1a3c60e91",
-    "ordinal": 74,
+    "ordinal": 76,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1571,7 +1611,7 @@
   },
   {
     "id": "rulebook:84d02a2d9796",
-    "ordinal": 75,
+    "ordinal": 77,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1591,8 +1631,29 @@
     "mergedTitles": null
   },
   {
+    "id": "rulebook:a095be0a210d",
+    "ordinal": 78,
+    "docId": "rulebook",
+    "docType": "rulebook",
+    "authority": 10,
+    "sectionPath": [
+      "Abilities & Keywords",
+      "Energy [Energy Red][Energy Green][Energy Blue][Energy Purple] (Max 6)"
+    ],
+    "title": "Energy [Energy Red][Energy Green][Energy Blue][Energy Purple] (Max 6)",
+    "part": null,
+    "partsTotal": null,
+    "pageStart": 24,
+    "pageEnd": 24,
+    "content": "**Energy [Energy Red][Energy Green][Energy Blue][Energy Purple] (Max 6)** – Energy is used to play cards. Each character has their own Energy symbol, although all are equivalent and usable by any character. The [Energy] symbol is used on items and in the rules to mean \"Energy\".",
+    "tokenCount": 70,
+    "srcStart": 56530,
+    "srcEnd": 56808,
+    "mergedTitles": null
+  },
+  {
     "id": "rulebook:f26e3ae9fe7d",
-    "ordinal": 76,
+    "ordinal": 79,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1613,7 +1674,7 @@
   },
   {
     "id": "rulebook:feebac1c95bd",
-    "ordinal": 77,
+    "ordinal": 80,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1634,7 +1695,7 @@
   },
   {
     "id": "rulebook:1f456358672f",
-    "ordinal": 78,
+    "ordinal": 81,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1655,7 +1716,7 @@
   },
   {
     "id": "rulebook:c9e01a52d74f",
-    "ordinal": 79,
+    "ordinal": 82,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1676,7 +1737,7 @@
   },
   {
     "id": "rulebook:56bdde74b373",
-    "ordinal": 80,
+    "ordinal": 83,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1697,7 +1758,7 @@
   },
   {
     "id": "rulebook:093c07d8e0a4",
-    "ordinal": 81,
+    "ordinal": 84,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1718,7 +1779,7 @@
   },
   {
     "id": "rulebook:057b5c627068",
-    "ordinal": 82,
+    "ordinal": 85,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1739,7 +1800,7 @@
   },
   {
     "id": "rulebook:e2e920fff3e1",
-    "ordinal": 83,
+    "ordinal": 86,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1760,7 +1821,7 @@
   },
   {
     "id": "rulebook:5ce07418478d",
-    "ordinal": 84,
+    "ordinal": 87,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1781,7 +1842,7 @@
   },
   {
     "id": "rulebook:01ba0d9e26b4",
-    "ordinal": 85,
+    "ordinal": 88,
     "docId": "rulebook",
     "docType": "rulebook",
     "authority": 10,
@@ -1801,8 +1862,29 @@
     "mergedTitles": null
   },
   {
+    "id": "rulebook:978972e23c65",
+    "ordinal": 89,
+    "docId": "rulebook",
+    "docType": "rulebook",
+    "authority": 10,
+    "sectionPath": [
+      "Abilities & Keywords",
+      "Weak vs Vulnerable"
+    ],
+    "title": "Weak vs Vulnerable",
+    "part": null,
+    "partsTotal": null,
+    "pageStart": 24,
+    "pageEnd": 24,
+    "content": "> **Weak vs Vulnerable** - If a Weak [Weak] target attacks a Vulnerable [Vulnerable] target, the attack is unaffected by both Weak [Weak] and Vulnerable [Vulnerable]. After the attack, remove a [Weak] token from the attacker, and remove a [Vulnerable] token from all affected targets.",
+    "tokenCount": 71,
+    "srcStart": 59322,
+    "srcEnd": 59606,
+    "mergedTitles": null
+  },
+  {
     "id": "cards:9c02bb044160",
-    "ordinal": 86,
+    "ordinal": 90,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -1827,7 +1909,7 @@
   },
   {
     "id": "cards:b0c924d36de2",
-    "ordinal": 87,
+    "ordinal": 91,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -1852,7 +1934,7 @@
   },
   {
     "id": "cards:7c26c70e6935",
-    "ordinal": 88,
+    "ordinal": 92,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -1877,7 +1959,7 @@
   },
   {
     "id": "cards:2f42baa722ed",
-    "ordinal": 89,
+    "ordinal": 93,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -1902,7 +1984,7 @@
   },
   {
     "id": "cards:7e9032d5685c",
-    "ordinal": 90,
+    "ordinal": 94,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -1927,7 +2009,7 @@
   },
   {
     "id": "cards:d2661e5ac599",
-    "ordinal": 91,
+    "ordinal": 95,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -1952,7 +2034,7 @@
   },
   {
     "id": "cards:7d60f6cd091f",
-    "ordinal": 92,
+    "ordinal": 96,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -1977,7 +2059,7 @@
   },
   {
     "id": "cards:f0975c88d072",
-    "ordinal": 93,
+    "ordinal": 97,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2002,7 +2084,7 @@
   },
   {
     "id": "cards:91530e1f4c9e",
-    "ordinal": 94,
+    "ordinal": 98,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2027,7 +2109,7 @@
   },
   {
     "id": "cards:a33cc1423624",
-    "ordinal": 95,
+    "ordinal": 99,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2052,7 +2134,7 @@
   },
   {
     "id": "cards:8a0fc8834c00",
-    "ordinal": 96,
+    "ordinal": 100,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2077,7 +2159,7 @@
   },
   {
     "id": "cards:266129271bd5",
-    "ordinal": 97,
+    "ordinal": 101,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2102,7 +2184,7 @@
   },
   {
     "id": "cards:a077bfd22645",
-    "ordinal": 98,
+    "ordinal": 102,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2127,7 +2209,7 @@
   },
   {
     "id": "cards:f73bf21f7e54",
-    "ordinal": 99,
+    "ordinal": 103,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2152,7 +2234,7 @@
   },
   {
     "id": "cards:e6b559d3820c",
-    "ordinal": 100,
+    "ordinal": 104,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2177,7 +2259,7 @@
   },
   {
     "id": "cards:efa7ff5ed0bb",
-    "ordinal": 101,
+    "ordinal": 105,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2202,7 +2284,7 @@
   },
   {
     "id": "cards:72419d9f79d4",
-    "ordinal": 102,
+    "ordinal": 106,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2227,7 +2309,7 @@
   },
   {
     "id": "cards:a4fa6e020b7b",
-    "ordinal": 103,
+    "ordinal": 107,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2252,7 +2334,7 @@
   },
   {
     "id": "cards:608d70a21c91",
-    "ordinal": 104,
+    "ordinal": 108,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2277,7 +2359,7 @@
   },
   {
     "id": "cards:e58053a653ed",
-    "ordinal": 105,
+    "ordinal": 109,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2302,7 +2384,7 @@
   },
   {
     "id": "cards:93863facdf65",
-    "ordinal": 106,
+    "ordinal": 110,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2327,7 +2409,7 @@
   },
   {
     "id": "cards:32646059cf09",
-    "ordinal": 107,
+    "ordinal": 111,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2352,7 +2434,7 @@
   },
   {
     "id": "cards:4368716176c8",
-    "ordinal": 108,
+    "ordinal": 112,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2377,7 +2459,7 @@
   },
   {
     "id": "cards:ae9b105da66f",
-    "ordinal": 109,
+    "ordinal": 113,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2402,7 +2484,7 @@
   },
   {
     "id": "cards:2b380cb4f33a",
-    "ordinal": 110,
+    "ordinal": 114,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2427,7 +2509,7 @@
   },
   {
     "id": "cards:af1b7752c0ad",
-    "ordinal": 111,
+    "ordinal": 115,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2452,7 +2534,7 @@
   },
   {
     "id": "cards:dd60d91d04ac",
-    "ordinal": 112,
+    "ordinal": 116,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2477,7 +2559,7 @@
   },
   {
     "id": "cards:59a1c389b4a6",
-    "ordinal": 113,
+    "ordinal": 117,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2502,7 +2584,7 @@
   },
   {
     "id": "cards:bba88bbd7cfd",
-    "ordinal": 114,
+    "ordinal": 118,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2527,7 +2609,7 @@
   },
   {
     "id": "cards:5d2d7b4e93f8",
-    "ordinal": 115,
+    "ordinal": 119,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2552,7 +2634,7 @@
   },
   {
     "id": "cards:9b82d1b23191",
-    "ordinal": 116,
+    "ordinal": 120,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2577,7 +2659,7 @@
   },
   {
     "id": "cards:7730e2ae0ff5",
-    "ordinal": 117,
+    "ordinal": 121,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2602,7 +2684,7 @@
   },
   {
     "id": "cards:59c2507d2fc0",
-    "ordinal": 118,
+    "ordinal": 122,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2627,7 +2709,7 @@
   },
   {
     "id": "cards:a6b87d685a52",
-    "ordinal": 119,
+    "ordinal": 123,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2652,7 +2734,7 @@
   },
   {
     "id": "cards:178f9cd35c6e",
-    "ordinal": 120,
+    "ordinal": 124,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2677,7 +2759,7 @@
   },
   {
     "id": "cards:88093d815363",
-    "ordinal": 121,
+    "ordinal": 125,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2702,7 +2784,7 @@
   },
   {
     "id": "cards:5b547696e9b8",
-    "ordinal": 122,
+    "ordinal": 126,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2727,7 +2809,7 @@
   },
   {
     "id": "cards:4b14321c4174",
-    "ordinal": 123,
+    "ordinal": 127,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2752,7 +2834,7 @@
   },
   {
     "id": "cards:7b93397b68a1",
-    "ordinal": 124,
+    "ordinal": 128,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2777,7 +2859,7 @@
   },
   {
     "id": "cards:629004009358",
-    "ordinal": 125,
+    "ordinal": 129,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2802,7 +2884,7 @@
   },
   {
     "id": "cards:495a0e3fc614",
-    "ordinal": 126,
+    "ordinal": 130,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2827,7 +2909,7 @@
   },
   {
     "id": "cards:9cb700c20d0b",
-    "ordinal": 127,
+    "ordinal": 131,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2852,7 +2934,7 @@
   },
   {
     "id": "cards:e57e8e0655d7",
-    "ordinal": 128,
+    "ordinal": 132,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2877,7 +2959,7 @@
   },
   {
     "id": "cards:a16ca1d9ce1a",
-    "ordinal": 129,
+    "ordinal": 133,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2902,7 +2984,7 @@
   },
   {
     "id": "cards:ffa7732f14b4",
-    "ordinal": 130,
+    "ordinal": 134,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2927,7 +3009,7 @@
   },
   {
     "id": "cards:145397ad6f10",
-    "ordinal": 131,
+    "ordinal": 135,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2952,7 +3034,7 @@
   },
   {
     "id": "cards:dfc699507f81",
-    "ordinal": 132,
+    "ordinal": 136,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -2977,7 +3059,7 @@
   },
   {
     "id": "cards:b7f6584c206d",
-    "ordinal": 133,
+    "ordinal": 137,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3002,7 +3084,7 @@
   },
   {
     "id": "cards:27ebd50895da",
-    "ordinal": 134,
+    "ordinal": 138,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3027,7 +3109,7 @@
   },
   {
     "id": "cards:0b066fa7e284",
-    "ordinal": 135,
+    "ordinal": 139,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3052,7 +3134,7 @@
   },
   {
     "id": "cards:17aa78e254f7",
-    "ordinal": 136,
+    "ordinal": 140,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3077,7 +3159,7 @@
   },
   {
     "id": "cards:485c52ff5d9c",
-    "ordinal": 137,
+    "ordinal": 141,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3102,7 +3184,7 @@
   },
   {
     "id": "cards:a65048962778",
-    "ordinal": 138,
+    "ordinal": 142,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3127,7 +3209,7 @@
   },
   {
     "id": "cards:04aad445b63e",
-    "ordinal": 139,
+    "ordinal": 143,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3152,7 +3234,7 @@
   },
   {
     "id": "cards:69c627396427",
-    "ordinal": 140,
+    "ordinal": 144,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3177,7 +3259,7 @@
   },
   {
     "id": "cards:43e4fbaf2024",
-    "ordinal": 141,
+    "ordinal": 145,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3202,7 +3284,7 @@
   },
   {
     "id": "cards:f37112c86470",
-    "ordinal": 142,
+    "ordinal": 146,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3227,7 +3309,7 @@
   },
   {
     "id": "cards:c3a8bfbba83a",
-    "ordinal": 143,
+    "ordinal": 147,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3252,7 +3334,7 @@
   },
   {
     "id": "cards:1b381a494bc7",
-    "ordinal": 144,
+    "ordinal": 148,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3277,7 +3359,7 @@
   },
   {
     "id": "cards:6d82677365bb",
-    "ordinal": 145,
+    "ordinal": 149,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3302,7 +3384,7 @@
   },
   {
     "id": "cards:27a8346a542d",
-    "ordinal": 146,
+    "ordinal": 150,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3327,7 +3409,7 @@
   },
   {
     "id": "cards:b1967e30adad",
-    "ordinal": 147,
+    "ordinal": 151,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3352,7 +3434,7 @@
   },
   {
     "id": "cards:bab586b50d3f",
-    "ordinal": 148,
+    "ordinal": 152,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3377,7 +3459,7 @@
   },
   {
     "id": "cards:7a7f479b3581",
-    "ordinal": 149,
+    "ordinal": 153,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3402,7 +3484,7 @@
   },
   {
     "id": "cards:31319d662311",
-    "ordinal": 150,
+    "ordinal": 154,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3427,7 +3509,7 @@
   },
   {
     "id": "cards:5518965fd221",
-    "ordinal": 151,
+    "ordinal": 155,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3452,7 +3534,7 @@
   },
   {
     "id": "cards:edb467de3c94",
-    "ordinal": 152,
+    "ordinal": 156,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3477,7 +3559,7 @@
   },
   {
     "id": "cards:43f9d06fc223",
-    "ordinal": 153,
+    "ordinal": 157,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3502,7 +3584,7 @@
   },
   {
     "id": "cards:1cedcf321ee4",
-    "ordinal": 154,
+    "ordinal": 158,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3527,7 +3609,7 @@
   },
   {
     "id": "cards:ec8ec9c68264",
-    "ordinal": 155,
+    "ordinal": 159,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3552,7 +3634,7 @@
   },
   {
     "id": "cards:786f27610700",
-    "ordinal": 156,
+    "ordinal": 160,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3577,7 +3659,7 @@
   },
   {
     "id": "cards:bc6c1fd6a75e",
-    "ordinal": 157,
+    "ordinal": 161,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3602,7 +3684,7 @@
   },
   {
     "id": "cards:15cbaa246225",
-    "ordinal": 158,
+    "ordinal": 162,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3627,7 +3709,7 @@
   },
   {
     "id": "cards:842356808313",
-    "ordinal": 159,
+    "ordinal": 163,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3652,7 +3734,7 @@
   },
   {
     "id": "cards:768cc6188ccd",
-    "ordinal": 160,
+    "ordinal": 164,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3677,7 +3759,7 @@
   },
   {
     "id": "cards:be50e23effd8",
-    "ordinal": 161,
+    "ordinal": 165,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3702,7 +3784,7 @@
   },
   {
     "id": "cards:7003ba19f385",
-    "ordinal": 162,
+    "ordinal": 166,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3727,7 +3809,7 @@
   },
   {
     "id": "cards:e88c37fefb7e",
-    "ordinal": 163,
+    "ordinal": 167,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3752,7 +3834,7 @@
   },
   {
     "id": "cards:ef253c64211e",
-    "ordinal": 164,
+    "ordinal": 168,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3777,7 +3859,7 @@
   },
   {
     "id": "cards:7d0f1d33cdc7",
-    "ordinal": 165,
+    "ordinal": 169,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3802,7 +3884,7 @@
   },
   {
     "id": "cards:fadc8d6dc3b3",
-    "ordinal": 166,
+    "ordinal": 170,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3827,7 +3909,7 @@
   },
   {
     "id": "cards:db57d9928d1c",
-    "ordinal": 167,
+    "ordinal": 171,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3852,7 +3934,7 @@
   },
   {
     "id": "cards:bf8d4bc9effa",
-    "ordinal": 168,
+    "ordinal": 172,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3877,7 +3959,7 @@
   },
   {
     "id": "cards:e5064dbfbeb3",
-    "ordinal": 169,
+    "ordinal": 173,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3902,7 +3984,7 @@
   },
   {
     "id": "cards:48f89120f01d",
-    "ordinal": 170,
+    "ordinal": 174,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3927,7 +4009,7 @@
   },
   {
     "id": "cards:52cfa2ade435",
-    "ordinal": 171,
+    "ordinal": 175,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3952,7 +4034,7 @@
   },
   {
     "id": "cards:ab5f981495c3",
-    "ordinal": 172,
+    "ordinal": 176,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -3977,7 +4059,7 @@
   },
   {
     "id": "cards:e2eb91ea64a7",
-    "ordinal": 173,
+    "ordinal": 177,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4002,7 +4084,7 @@
   },
   {
     "id": "cards:41b64c0e7cab",
-    "ordinal": 174,
+    "ordinal": 178,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4027,7 +4109,7 @@
   },
   {
     "id": "cards:1bb66cae0fb0",
-    "ordinal": 175,
+    "ordinal": 179,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4052,7 +4134,7 @@
   },
   {
     "id": "cards:b71bb05085ed",
-    "ordinal": 176,
+    "ordinal": 180,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4077,7 +4159,7 @@
   },
   {
     "id": "cards:f35567f551de",
-    "ordinal": 177,
+    "ordinal": 181,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4102,7 +4184,7 @@
   },
   {
     "id": "cards:5be1d99d187f",
-    "ordinal": 178,
+    "ordinal": 182,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4127,7 +4209,7 @@
   },
   {
     "id": "cards:14880a206d27",
-    "ordinal": 179,
+    "ordinal": 183,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4152,7 +4234,7 @@
   },
   {
     "id": "cards:04f2ca94fe94",
-    "ordinal": 180,
+    "ordinal": 184,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4177,7 +4259,7 @@
   },
   {
     "id": "cards:aef3450bdfa8",
-    "ordinal": 181,
+    "ordinal": 185,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4202,7 +4284,7 @@
   },
   {
     "id": "cards:97d7c3a5f043",
-    "ordinal": 182,
+    "ordinal": 186,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4227,7 +4309,7 @@
   },
   {
     "id": "cards:69e21affb454",
-    "ordinal": 183,
+    "ordinal": 187,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4252,7 +4334,7 @@
   },
   {
     "id": "cards:466d0a62baf3",
-    "ordinal": 184,
+    "ordinal": 188,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4277,7 +4359,7 @@
   },
   {
     "id": "cards:306ddf6dd0af",
-    "ordinal": 185,
+    "ordinal": 189,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4302,7 +4384,7 @@
   },
   {
     "id": "cards:216c47fa366c",
-    "ordinal": 186,
+    "ordinal": 190,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4327,7 +4409,7 @@
   },
   {
     "id": "cards:6d189508b56a",
-    "ordinal": 187,
+    "ordinal": 191,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4352,7 +4434,7 @@
   },
   {
     "id": "cards:8154b33c9e82",
-    "ordinal": 188,
+    "ordinal": 192,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4377,7 +4459,7 @@
   },
   {
     "id": "cards:888688920b37",
-    "ordinal": 189,
+    "ordinal": 193,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4402,7 +4484,7 @@
   },
   {
     "id": "cards:19f893d87596",
-    "ordinal": 190,
+    "ordinal": 194,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4427,7 +4509,7 @@
   },
   {
     "id": "cards:b1836db52282",
-    "ordinal": 191,
+    "ordinal": 195,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4452,7 +4534,7 @@
   },
   {
     "id": "cards:bf20c8d68528",
-    "ordinal": 192,
+    "ordinal": 196,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4477,7 +4559,7 @@
   },
   {
     "id": "cards:8541494231c2",
-    "ordinal": 193,
+    "ordinal": 197,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4502,7 +4584,7 @@
   },
   {
     "id": "cards:623a5ffd69b5",
-    "ordinal": 194,
+    "ordinal": 198,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4527,7 +4609,7 @@
   },
   {
     "id": "cards:41664154fe2c",
-    "ordinal": 195,
+    "ordinal": 199,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4552,7 +4634,7 @@
   },
   {
     "id": "cards:8e82857ce7fd",
-    "ordinal": 196,
+    "ordinal": 200,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4577,7 +4659,7 @@
   },
   {
     "id": "cards:9ec33578e839",
-    "ordinal": 197,
+    "ordinal": 201,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4602,7 +4684,7 @@
   },
   {
     "id": "cards:2438a4ff45a8",
-    "ordinal": 198,
+    "ordinal": 202,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4627,7 +4709,7 @@
   },
   {
     "id": "cards:b1a92b0ea0ba",
-    "ordinal": 199,
+    "ordinal": 203,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4652,7 +4734,7 @@
   },
   {
     "id": "cards:a30e7d6afedc",
-    "ordinal": 200,
+    "ordinal": 204,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4677,7 +4759,7 @@
   },
   {
     "id": "cards:d2bfacaaacdb",
-    "ordinal": 201,
+    "ordinal": 205,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4702,7 +4784,7 @@
   },
   {
     "id": "cards:f59da72f35d7",
-    "ordinal": 202,
+    "ordinal": 206,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4727,7 +4809,7 @@
   },
   {
     "id": "cards:28e1ad8169bc",
-    "ordinal": 203,
+    "ordinal": 207,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4752,7 +4834,7 @@
   },
   {
     "id": "cards:a94f9bb2bfd6",
-    "ordinal": 204,
+    "ordinal": 208,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4777,7 +4859,7 @@
   },
   {
     "id": "cards:f5f656a9a584",
-    "ordinal": 205,
+    "ordinal": 209,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4802,7 +4884,7 @@
   },
   {
     "id": "cards:83915b277117",
-    "ordinal": 206,
+    "ordinal": 210,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4827,7 +4909,7 @@
   },
   {
     "id": "cards:a42cd1756da8",
-    "ordinal": 207,
+    "ordinal": 211,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4852,7 +4934,7 @@
   },
   {
     "id": "cards:237ae9b1b9dd",
-    "ordinal": 208,
+    "ordinal": 212,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4877,7 +4959,7 @@
   },
   {
     "id": "cards:24cca83cbf92",
-    "ordinal": 209,
+    "ordinal": 213,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4902,7 +4984,7 @@
   },
   {
     "id": "cards:178f687f03a7",
-    "ordinal": 210,
+    "ordinal": 214,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4927,7 +5009,7 @@
   },
   {
     "id": "cards:fd7bf7977805",
-    "ordinal": 211,
+    "ordinal": 215,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4952,7 +5034,7 @@
   },
   {
     "id": "cards:7409261623ac",
-    "ordinal": 212,
+    "ordinal": 216,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -4977,7 +5059,7 @@
   },
   {
     "id": "cards:500182b5f996",
-    "ordinal": 213,
+    "ordinal": 217,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5002,7 +5084,7 @@
   },
   {
     "id": "cards:f71f645d2605",
-    "ordinal": 214,
+    "ordinal": 218,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5027,7 +5109,7 @@
   },
   {
     "id": "cards:8654cbc1ac16",
-    "ordinal": 215,
+    "ordinal": 219,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5052,7 +5134,7 @@
   },
   {
     "id": "cards:a01987a6bbf8",
-    "ordinal": 216,
+    "ordinal": 220,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5077,7 +5159,7 @@
   },
   {
     "id": "cards:5c85b9c90471",
-    "ordinal": 217,
+    "ordinal": 221,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5102,7 +5184,7 @@
   },
   {
     "id": "cards:eabdb72ca909",
-    "ordinal": 218,
+    "ordinal": 222,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5127,7 +5209,7 @@
   },
   {
     "id": "cards:e9c9bd806518",
-    "ordinal": 219,
+    "ordinal": 223,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5152,7 +5234,7 @@
   },
   {
     "id": "cards:2b3eced87ce9",
-    "ordinal": 220,
+    "ordinal": 224,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5177,7 +5259,7 @@
   },
   {
     "id": "cards:5f474032d042",
-    "ordinal": 221,
+    "ordinal": 225,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5202,7 +5284,7 @@
   },
   {
     "id": "cards:35e7ca957e0f",
-    "ordinal": 222,
+    "ordinal": 226,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5227,7 +5309,7 @@
   },
   {
     "id": "cards:df6cb2e2f4ba",
-    "ordinal": 223,
+    "ordinal": 227,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5252,7 +5334,7 @@
   },
   {
     "id": "cards:6a8173127567",
-    "ordinal": 224,
+    "ordinal": 228,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5277,7 +5359,7 @@
   },
   {
     "id": "cards:b237b87f5770",
-    "ordinal": 225,
+    "ordinal": 229,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5302,7 +5384,7 @@
   },
   {
     "id": "cards:79765f36a1a2",
-    "ordinal": 226,
+    "ordinal": 230,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5327,7 +5409,7 @@
   },
   {
     "id": "cards:298e41ec7cc2",
-    "ordinal": 227,
+    "ordinal": 231,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5352,7 +5434,7 @@
   },
   {
     "id": "cards:70d2bca45b43",
-    "ordinal": 228,
+    "ordinal": 232,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5377,7 +5459,7 @@
   },
   {
     "id": "cards:dc4cd6a34eac",
-    "ordinal": 229,
+    "ordinal": 233,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5402,7 +5484,7 @@
   },
   {
     "id": "cards:f25693068e46",
-    "ordinal": 230,
+    "ordinal": 234,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5427,7 +5509,7 @@
   },
   {
     "id": "cards:0b337818cf17",
-    "ordinal": 231,
+    "ordinal": 235,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5452,7 +5534,7 @@
   },
   {
     "id": "cards:506a22ff2af5",
-    "ordinal": 232,
+    "ordinal": 236,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5477,7 +5559,7 @@
   },
   {
     "id": "cards:bdd966c743d4",
-    "ordinal": 233,
+    "ordinal": 237,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5502,7 +5584,7 @@
   },
   {
     "id": "cards:5f236ca294de",
-    "ordinal": 234,
+    "ordinal": 238,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5527,7 +5609,7 @@
   },
   {
     "id": "cards:85a9ac1dda1a",
-    "ordinal": 235,
+    "ordinal": 239,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5552,7 +5634,7 @@
   },
   {
     "id": "cards:d53526a57b99",
-    "ordinal": 236,
+    "ordinal": 240,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5577,7 +5659,7 @@
   },
   {
     "id": "cards:70a7a587bb1f",
-    "ordinal": 237,
+    "ordinal": 241,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5602,7 +5684,7 @@
   },
   {
     "id": "cards:d4a1d65bd80e",
-    "ordinal": 238,
+    "ordinal": 242,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5627,7 +5709,7 @@
   },
   {
     "id": "cards:aad06a105212",
-    "ordinal": 239,
+    "ordinal": 243,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5652,7 +5734,7 @@
   },
   {
     "id": "cards:55090e4f8fe1",
-    "ordinal": 240,
+    "ordinal": 244,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5677,7 +5759,7 @@
   },
   {
     "id": "cards:f544e00c9d49",
-    "ordinal": 241,
+    "ordinal": 245,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5702,7 +5784,7 @@
   },
   {
     "id": "cards:8721769afb6e",
-    "ordinal": 242,
+    "ordinal": 246,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5727,7 +5809,7 @@
   },
   {
     "id": "cards:ede81b02617e",
-    "ordinal": 243,
+    "ordinal": 247,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5752,7 +5834,7 @@
   },
   {
     "id": "cards:bf41ce81ebb7",
-    "ordinal": 244,
+    "ordinal": 248,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5777,7 +5859,7 @@
   },
   {
     "id": "cards:d4df21905642",
-    "ordinal": 245,
+    "ordinal": 249,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5802,7 +5884,7 @@
   },
   {
     "id": "cards:3abdecc9222c",
-    "ordinal": 246,
+    "ordinal": 250,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5827,7 +5909,7 @@
   },
   {
     "id": "cards:966be5e2c400",
-    "ordinal": 247,
+    "ordinal": 251,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5852,7 +5934,7 @@
   },
   {
     "id": "cards:2134944a6bb4",
-    "ordinal": 248,
+    "ordinal": 252,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5877,7 +5959,7 @@
   },
   {
     "id": "cards:d5328fb66c5e",
-    "ordinal": 249,
+    "ordinal": 253,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5902,7 +5984,7 @@
   },
   {
     "id": "cards:61156161153c",
-    "ordinal": 250,
+    "ordinal": 254,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5927,7 +6009,7 @@
   },
   {
     "id": "cards:db4a3327ee04",
-    "ordinal": 251,
+    "ordinal": 255,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5952,7 +6034,7 @@
   },
   {
     "id": "cards:687850b35bf2",
-    "ordinal": 252,
+    "ordinal": 256,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -5977,7 +6059,7 @@
   },
   {
     "id": "cards:a1dc73ba240b",
-    "ordinal": 253,
+    "ordinal": 257,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6002,7 +6084,7 @@
   },
   {
     "id": "cards:d58de3cb670e",
-    "ordinal": 254,
+    "ordinal": 258,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6027,7 +6109,7 @@
   },
   {
     "id": "cards:e58c5e570ae6",
-    "ordinal": 255,
+    "ordinal": 259,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6052,7 +6134,7 @@
   },
   {
     "id": "cards:e8214548d1ec",
-    "ordinal": 256,
+    "ordinal": 260,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6077,7 +6159,7 @@
   },
   {
     "id": "cards:015b71edbd35",
-    "ordinal": 257,
+    "ordinal": 261,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6102,7 +6184,7 @@
   },
   {
     "id": "cards:d1af846cd0f5",
-    "ordinal": 258,
+    "ordinal": 262,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6127,7 +6209,7 @@
   },
   {
     "id": "cards:7eafd84e0822",
-    "ordinal": 259,
+    "ordinal": 263,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6152,7 +6234,7 @@
   },
   {
     "id": "cards:433e6944c132",
-    "ordinal": 260,
+    "ordinal": 264,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6177,7 +6259,7 @@
   },
   {
     "id": "cards:2fb8b616184a",
-    "ordinal": 261,
+    "ordinal": 265,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6202,7 +6284,7 @@
   },
   {
     "id": "cards:f127900f8fc0",
-    "ordinal": 262,
+    "ordinal": 266,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6227,7 +6309,7 @@
   },
   {
     "id": "cards:8090851e76d2",
-    "ordinal": 263,
+    "ordinal": 267,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6252,7 +6334,7 @@
   },
   {
     "id": "cards:017477075967",
-    "ordinal": 264,
+    "ordinal": 268,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6277,7 +6359,7 @@
   },
   {
     "id": "cards:07e86df2e12b",
-    "ordinal": 265,
+    "ordinal": 269,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6302,7 +6384,7 @@
   },
   {
     "id": "cards:88d37b2a9c39",
-    "ordinal": 266,
+    "ordinal": 270,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6327,7 +6409,7 @@
   },
   {
     "id": "cards:9bcc3e425bfe",
-    "ordinal": 267,
+    "ordinal": 271,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6352,7 +6434,7 @@
   },
   {
     "id": "cards:ff0e7faf0653",
-    "ordinal": 268,
+    "ordinal": 272,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6377,7 +6459,7 @@
   },
   {
     "id": "cards:88e7ed6166bc",
-    "ordinal": 269,
+    "ordinal": 273,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6402,7 +6484,7 @@
   },
   {
     "id": "cards:f481dea1a74b",
-    "ordinal": 270,
+    "ordinal": 274,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6427,7 +6509,7 @@
   },
   {
     "id": "cards:0ab1b2bac8f3",
-    "ordinal": 271,
+    "ordinal": 275,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6452,7 +6534,7 @@
   },
   {
     "id": "cards:689a057430f0",
-    "ordinal": 272,
+    "ordinal": 276,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6477,7 +6559,7 @@
   },
   {
     "id": "cards:2f7ff0c6edae",
-    "ordinal": 273,
+    "ordinal": 277,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6502,7 +6584,7 @@
   },
   {
     "id": "cards:f86508880e3f",
-    "ordinal": 274,
+    "ordinal": 278,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6527,7 +6609,7 @@
   },
   {
     "id": "cards:69e5f579de68",
-    "ordinal": 275,
+    "ordinal": 279,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6552,7 +6634,7 @@
   },
   {
     "id": "cards:50f41bb998b3",
-    "ordinal": 276,
+    "ordinal": 280,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6577,7 +6659,7 @@
   },
   {
     "id": "cards:852b0e623c4d",
-    "ordinal": 277,
+    "ordinal": 281,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6602,7 +6684,7 @@
   },
   {
     "id": "cards:b72af1317942",
-    "ordinal": 278,
+    "ordinal": 282,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6627,7 +6709,7 @@
   },
   {
     "id": "cards:201ea914f209",
-    "ordinal": 279,
+    "ordinal": 283,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6652,7 +6734,7 @@
   },
   {
     "id": "cards:e679eb503a25",
-    "ordinal": 280,
+    "ordinal": 284,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6677,7 +6759,7 @@
   },
   {
     "id": "cards:7b8dff55f54e",
-    "ordinal": 281,
+    "ordinal": 285,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6702,7 +6784,7 @@
   },
   {
     "id": "cards:319b32be060d",
-    "ordinal": 282,
+    "ordinal": 286,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6727,7 +6809,7 @@
   },
   {
     "id": "cards:ee3335cd8c0b",
-    "ordinal": 283,
+    "ordinal": 287,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6752,7 +6834,7 @@
   },
   {
     "id": "cards:b1ed8bb1d5ce",
-    "ordinal": 284,
+    "ordinal": 288,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6777,7 +6859,7 @@
   },
   {
     "id": "cards:63341f1ac29e",
-    "ordinal": 285,
+    "ordinal": 289,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6802,7 +6884,7 @@
   },
   {
     "id": "cards:ffa506564230",
-    "ordinal": 286,
+    "ordinal": 290,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6827,7 +6909,7 @@
   },
   {
     "id": "cards:cfb103067581",
-    "ordinal": 287,
+    "ordinal": 291,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6852,7 +6934,7 @@
   },
   {
     "id": "cards:ddc57900fdc0",
-    "ordinal": 288,
+    "ordinal": 292,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6877,7 +6959,7 @@
   },
   {
     "id": "cards:c15d7ea06f6e",
-    "ordinal": 289,
+    "ordinal": 293,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6902,7 +6984,7 @@
   },
   {
     "id": "cards:a1ab0696e6d2",
-    "ordinal": 290,
+    "ordinal": 294,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6927,7 +7009,7 @@
   },
   {
     "id": "cards:c6ef2e1e6633",
-    "ordinal": 291,
+    "ordinal": 295,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6952,7 +7034,7 @@
   },
   {
     "id": "cards:07c761089c2d",
-    "ordinal": 292,
+    "ordinal": 296,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -6977,7 +7059,7 @@
   },
   {
     "id": "cards:3734e79dfa4c",
-    "ordinal": 293,
+    "ordinal": 297,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7002,7 +7084,7 @@
   },
   {
     "id": "cards:f3c69a0a3253",
-    "ordinal": 294,
+    "ordinal": 298,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7027,7 +7109,7 @@
   },
   {
     "id": "cards:7e264cc1d462",
-    "ordinal": 295,
+    "ordinal": 299,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7052,7 +7134,7 @@
   },
   {
     "id": "cards:1b6eb368b2ed",
-    "ordinal": 296,
+    "ordinal": 300,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7077,7 +7159,7 @@
   },
   {
     "id": "cards:611af4b9649d",
-    "ordinal": 297,
+    "ordinal": 301,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7102,7 +7184,7 @@
   },
   {
     "id": "cards:5d66589484eb",
-    "ordinal": 298,
+    "ordinal": 302,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7127,7 +7209,7 @@
   },
   {
     "id": "cards:2281b8a79923",
-    "ordinal": 299,
+    "ordinal": 303,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7152,7 +7234,7 @@
   },
   {
     "id": "cards:574e7770b450",
-    "ordinal": 300,
+    "ordinal": 304,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7177,7 +7259,7 @@
   },
   {
     "id": "cards:6426cda38d0f",
-    "ordinal": 301,
+    "ordinal": 305,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7202,7 +7284,7 @@
   },
   {
     "id": "cards:4a46140acb84",
-    "ordinal": 302,
+    "ordinal": 306,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7227,7 +7309,7 @@
   },
   {
     "id": "cards:d14e6c332ffa",
-    "ordinal": 303,
+    "ordinal": 307,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7252,7 +7334,7 @@
   },
   {
     "id": "cards:14b89fa399db",
-    "ordinal": 304,
+    "ordinal": 308,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7277,7 +7359,7 @@
   },
   {
     "id": "cards:4a14cb29c2a9",
-    "ordinal": 305,
+    "ordinal": 309,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7302,7 +7384,7 @@
   },
   {
     "id": "cards:d220e5bd55f0",
-    "ordinal": 306,
+    "ordinal": 310,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7327,7 +7409,7 @@
   },
   {
     "id": "cards:6ba4c01be0f9",
-    "ordinal": 307,
+    "ordinal": 311,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7352,7 +7434,7 @@
   },
   {
     "id": "cards:c0f61502bc14",
-    "ordinal": 308,
+    "ordinal": 312,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7377,7 +7459,7 @@
   },
   {
     "id": "cards:7ea559b08c27",
-    "ordinal": 309,
+    "ordinal": 313,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7402,7 +7484,7 @@
   },
   {
     "id": "cards:f8bd0be580d7",
-    "ordinal": 310,
+    "ordinal": 314,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7427,7 +7509,7 @@
   },
   {
     "id": "cards:c51e960f5c41",
-    "ordinal": 311,
+    "ordinal": 315,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7452,7 +7534,7 @@
   },
   {
     "id": "cards:ae2c8e703b93",
-    "ordinal": 312,
+    "ordinal": 316,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7477,7 +7559,7 @@
   },
   {
     "id": "cards:7b90397383c3",
-    "ordinal": 313,
+    "ordinal": 317,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7502,7 +7584,7 @@
   },
   {
     "id": "cards:ec251d824ba8",
-    "ordinal": 314,
+    "ordinal": 318,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7527,7 +7609,7 @@
   },
   {
     "id": "cards:b30ebe29e238",
-    "ordinal": 315,
+    "ordinal": 319,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7552,7 +7634,7 @@
   },
   {
     "id": "cards:83336cca210d",
-    "ordinal": 316,
+    "ordinal": 320,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7577,7 +7659,7 @@
   },
   {
     "id": "cards:92e850af519e",
-    "ordinal": 317,
+    "ordinal": 321,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7602,7 +7684,7 @@
   },
   {
     "id": "cards:ff4b81986e13",
-    "ordinal": 318,
+    "ordinal": 322,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7627,7 +7709,7 @@
   },
   {
     "id": "cards:e99da45b98a6",
-    "ordinal": 319,
+    "ordinal": 323,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7652,7 +7734,7 @@
   },
   {
     "id": "cards:a4f5580331d4",
-    "ordinal": 320,
+    "ordinal": 324,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7677,7 +7759,7 @@
   },
   {
     "id": "cards:39a527b68d02",
-    "ordinal": 321,
+    "ordinal": 325,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7702,7 +7784,7 @@
   },
   {
     "id": "cards:aee6895e5ae8",
-    "ordinal": 322,
+    "ordinal": 326,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7727,7 +7809,7 @@
   },
   {
     "id": "cards:216e37b1c1ff",
-    "ordinal": 323,
+    "ordinal": 327,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7752,7 +7834,7 @@
   },
   {
     "id": "cards:f140e41b2c5b",
-    "ordinal": 324,
+    "ordinal": 328,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7777,7 +7859,7 @@
   },
   {
     "id": "cards:8274afd8a6bd",
-    "ordinal": 325,
+    "ordinal": 329,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7802,7 +7884,7 @@
   },
   {
     "id": "cards:f76ebfeedafc",
-    "ordinal": 326,
+    "ordinal": 330,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7827,7 +7909,7 @@
   },
   {
     "id": "cards:262d7f4de83d",
-    "ordinal": 327,
+    "ordinal": 331,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7852,7 +7934,7 @@
   },
   {
     "id": "cards:16739bc361fd",
-    "ordinal": 328,
+    "ordinal": 332,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7877,7 +7959,7 @@
   },
   {
     "id": "cards:82df3f9e061a",
-    "ordinal": 329,
+    "ordinal": 333,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7902,7 +7984,7 @@
   },
   {
     "id": "cards:39b7443bbe15",
-    "ordinal": 330,
+    "ordinal": 334,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7927,7 +8009,7 @@
   },
   {
     "id": "cards:92d18f74381a",
-    "ordinal": 331,
+    "ordinal": 335,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7952,7 +8034,7 @@
   },
   {
     "id": "cards:4111dc979bd7",
-    "ordinal": 332,
+    "ordinal": 336,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -7977,7 +8059,7 @@
   },
   {
     "id": "cards:bd4e40f76e00",
-    "ordinal": 333,
+    "ordinal": 337,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8002,7 +8084,7 @@
   },
   {
     "id": "cards:db0048913f3b",
-    "ordinal": 334,
+    "ordinal": 338,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8027,7 +8109,7 @@
   },
   {
     "id": "cards:8e28045f853b",
-    "ordinal": 335,
+    "ordinal": 339,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8052,7 +8134,7 @@
   },
   {
     "id": "cards:80bd41c6afeb",
-    "ordinal": 336,
+    "ordinal": 340,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8077,7 +8159,7 @@
   },
   {
     "id": "cards:0910b794146b",
-    "ordinal": 337,
+    "ordinal": 341,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8101,7 +8183,7 @@
   },
   {
     "id": "cards:f911ab571ddc",
-    "ordinal": 338,
+    "ordinal": 342,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8125,7 +8207,7 @@
   },
   {
     "id": "cards:6e88f2fb3b06",
-    "ordinal": 339,
+    "ordinal": 343,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8149,7 +8231,7 @@
   },
   {
     "id": "cards:aad1adbc7a36",
-    "ordinal": 340,
+    "ordinal": 344,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8173,7 +8255,7 @@
   },
   {
     "id": "cards:933683eabbf6",
-    "ordinal": 341,
+    "ordinal": 345,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8197,7 +8279,7 @@
   },
   {
     "id": "cards:890b5759331d",
-    "ordinal": 342,
+    "ordinal": 346,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8221,7 +8303,7 @@
   },
   {
     "id": "cards:a0e4e1ec4132",
-    "ordinal": 343,
+    "ordinal": 347,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8245,7 +8327,7 @@
   },
   {
     "id": "cards:c38167b67eaf",
-    "ordinal": 344,
+    "ordinal": 348,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8269,7 +8351,7 @@
   },
   {
     "id": "cards:6d449bce7353",
-    "ordinal": 345,
+    "ordinal": 349,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8293,7 +8375,7 @@
   },
   {
     "id": "cards:e0728d1294ef",
-    "ordinal": 346,
+    "ordinal": 350,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8317,7 +8399,7 @@
   },
   {
     "id": "cards:8a54f858cc65",
-    "ordinal": 347,
+    "ordinal": 351,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8341,7 +8423,7 @@
   },
   {
     "id": "cards:d72c2bbb3f89",
-    "ordinal": 348,
+    "ordinal": 352,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8365,7 +8447,7 @@
   },
   {
     "id": "cards:f41a0d422cf2",
-    "ordinal": 349,
+    "ordinal": 353,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8389,7 +8471,7 @@
   },
   {
     "id": "cards:8a9951f7b74e",
-    "ordinal": 350,
+    "ordinal": 354,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8413,7 +8495,7 @@
   },
   {
     "id": "cards:48bf18b42817",
-    "ordinal": 351,
+    "ordinal": 355,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8437,7 +8519,7 @@
   },
   {
     "id": "cards:76a17e678137",
-    "ordinal": 352,
+    "ordinal": 356,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8461,7 +8543,7 @@
   },
   {
     "id": "cards:c9681cb1cf46",
-    "ordinal": 353,
+    "ordinal": 357,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8485,7 +8567,7 @@
   },
   {
     "id": "cards:ce9dbb318d04",
-    "ordinal": 354,
+    "ordinal": 358,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8509,7 +8591,7 @@
   },
   {
     "id": "cards:0f88de0b5fa3",
-    "ordinal": 355,
+    "ordinal": 359,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8533,7 +8615,7 @@
   },
   {
     "id": "cards:5dc16cb1c535",
-    "ordinal": 356,
+    "ordinal": 360,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8557,7 +8639,7 @@
   },
   {
     "id": "cards:2ddc30388181",
-    "ordinal": 357,
+    "ordinal": 361,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8581,7 +8663,7 @@
   },
   {
     "id": "cards:d791677b3697",
-    "ordinal": 358,
+    "ordinal": 362,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8605,7 +8687,7 @@
   },
   {
     "id": "cards:d1531b67bebc",
-    "ordinal": 359,
+    "ordinal": 363,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8629,7 +8711,7 @@
   },
   {
     "id": "cards:16b313b01bea",
-    "ordinal": 360,
+    "ordinal": 364,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8653,7 +8735,7 @@
   },
   {
     "id": "cards:6ce4b89a7864",
-    "ordinal": 361,
+    "ordinal": 365,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8677,7 +8759,7 @@
   },
   {
     "id": "cards:83100193f0cd",
-    "ordinal": 362,
+    "ordinal": 366,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8701,7 +8783,7 @@
   },
   {
     "id": "cards:9f5725600cf2",
-    "ordinal": 363,
+    "ordinal": 367,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8725,7 +8807,7 @@
   },
   {
     "id": "cards:e6b5084ee95f",
-    "ordinal": 364,
+    "ordinal": 368,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8749,7 +8831,7 @@
   },
   {
     "id": "cards:e7abd3601f01",
-    "ordinal": 365,
+    "ordinal": 369,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8773,7 +8855,7 @@
   },
   {
     "id": "cards:97375ab0e0b7",
-    "ordinal": 366,
+    "ordinal": 370,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8797,7 +8879,7 @@
   },
   {
     "id": "cards:3d50ba6e1fef",
-    "ordinal": 367,
+    "ordinal": 371,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8821,7 +8903,7 @@
   },
   {
     "id": "cards:b1db7687f307",
-    "ordinal": 368,
+    "ordinal": 372,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8845,7 +8927,7 @@
   },
   {
     "id": "cards:3457b08fa80f",
-    "ordinal": 369,
+    "ordinal": 373,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8869,7 +8951,7 @@
   },
   {
     "id": "cards:23d8381744eb",
-    "ordinal": 370,
+    "ordinal": 374,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8893,7 +8975,7 @@
   },
   {
     "id": "cards:92bece784d50",
-    "ordinal": 371,
+    "ordinal": 375,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8917,7 +8999,7 @@
   },
   {
     "id": "cards:d4fc12ddde5a",
-    "ordinal": 372,
+    "ordinal": 376,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8941,7 +9023,7 @@
   },
   {
     "id": "cards:4790f017f4f5",
-    "ordinal": 373,
+    "ordinal": 377,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8965,7 +9047,7 @@
   },
   {
     "id": "cards:ff9414fc4554",
-    "ordinal": 374,
+    "ordinal": 378,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -8989,7 +9071,7 @@
   },
   {
     "id": "cards:34c3e11094b1",
-    "ordinal": 375,
+    "ordinal": 379,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9013,7 +9095,7 @@
   },
   {
     "id": "cards:986ff43d24a1",
-    "ordinal": 376,
+    "ordinal": 380,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9037,7 +9119,7 @@
   },
   {
     "id": "cards:ec896add6353",
-    "ordinal": 377,
+    "ordinal": 381,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9061,7 +9143,7 @@
   },
   {
     "id": "cards:6dc3252a3ea2",
-    "ordinal": 378,
+    "ordinal": 382,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9085,7 +9167,7 @@
   },
   {
     "id": "cards:075fcca1430b",
-    "ordinal": 379,
+    "ordinal": 383,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9109,7 +9191,7 @@
   },
   {
     "id": "cards:dcf82da52a7a",
-    "ordinal": 380,
+    "ordinal": 384,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9133,7 +9215,7 @@
   },
   {
     "id": "cards:a2eb3256800f",
-    "ordinal": 381,
+    "ordinal": 385,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9157,7 +9239,7 @@
   },
   {
     "id": "cards:dbc381a3b9b0",
-    "ordinal": 382,
+    "ordinal": 386,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9181,7 +9263,7 @@
   },
   {
     "id": "cards:9ff7c472fecb",
-    "ordinal": 383,
+    "ordinal": 387,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9205,7 +9287,7 @@
   },
   {
     "id": "cards:419859188f46",
-    "ordinal": 384,
+    "ordinal": 388,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9229,7 +9311,7 @@
   },
   {
     "id": "cards:7cb6ead959d2",
-    "ordinal": 385,
+    "ordinal": 389,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9253,7 +9335,7 @@
   },
   {
     "id": "cards:cb1717b3cf04",
-    "ordinal": 386,
+    "ordinal": 390,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9277,7 +9359,7 @@
   },
   {
     "id": "cards:8b446b196fa2",
-    "ordinal": 387,
+    "ordinal": 391,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9301,7 +9383,7 @@
   },
   {
     "id": "cards:f91493ed5d0f",
-    "ordinal": 388,
+    "ordinal": 392,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9325,7 +9407,7 @@
   },
   {
     "id": "cards:ad67365f865a",
-    "ordinal": 389,
+    "ordinal": 393,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9349,7 +9431,7 @@
   },
   {
     "id": "cards:5f261b1796d8",
-    "ordinal": 390,
+    "ordinal": 394,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9373,7 +9455,7 @@
   },
   {
     "id": "cards:5ad7ec206650",
-    "ordinal": 391,
+    "ordinal": 395,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9397,7 +9479,7 @@
   },
   {
     "id": "cards:e64b640f556f",
-    "ordinal": 392,
+    "ordinal": 396,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9421,7 +9503,7 @@
   },
   {
     "id": "cards:db953454a9cb",
-    "ordinal": 393,
+    "ordinal": 397,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9445,7 +9527,7 @@
   },
   {
     "id": "cards:954039f9317c",
-    "ordinal": 394,
+    "ordinal": 398,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9469,7 +9551,7 @@
   },
   {
     "id": "cards:e02c5260a930",
-    "ordinal": 395,
+    "ordinal": 399,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9493,7 +9575,7 @@
   },
   {
     "id": "cards:befd2ecc67cf",
-    "ordinal": 396,
+    "ordinal": 400,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9517,7 +9599,7 @@
   },
   {
     "id": "cards:ad36a58a3408",
-    "ordinal": 397,
+    "ordinal": 401,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9541,7 +9623,7 @@
   },
   {
     "id": "cards:ee5df3428815",
-    "ordinal": 398,
+    "ordinal": 402,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9565,7 +9647,7 @@
   },
   {
     "id": "cards:553f31e00601",
-    "ordinal": 399,
+    "ordinal": 403,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9589,7 +9671,7 @@
   },
   {
     "id": "cards:4d9e71203f6a",
-    "ordinal": 400,
+    "ordinal": 404,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9613,7 +9695,7 @@
   },
   {
     "id": "cards:214f82566cb4",
-    "ordinal": 401,
+    "ordinal": 405,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9637,7 +9719,7 @@
   },
   {
     "id": "cards:347a7a57d96d",
-    "ordinal": 402,
+    "ordinal": 406,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9661,7 +9743,7 @@
   },
   {
     "id": "cards:d7c0f543128d",
-    "ordinal": 403,
+    "ordinal": 407,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9685,7 +9767,7 @@
   },
   {
     "id": "cards:f40a41f60d2a",
-    "ordinal": 404,
+    "ordinal": 408,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9709,7 +9791,7 @@
   },
   {
     "id": "cards:4ea5802c163e",
-    "ordinal": 405,
+    "ordinal": 409,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9733,7 +9815,7 @@
   },
   {
     "id": "cards:3303b528e7bc",
-    "ordinal": 406,
+    "ordinal": 410,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9757,7 +9839,7 @@
   },
   {
     "id": "cards:d3c3a0d7e735",
-    "ordinal": 407,
+    "ordinal": 411,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9781,7 +9863,7 @@
   },
   {
     "id": "cards:df039aaa8f4c",
-    "ordinal": 408,
+    "ordinal": 412,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9805,7 +9887,7 @@
   },
   {
     "id": "cards:3129d61701b1",
-    "ordinal": 409,
+    "ordinal": 413,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9829,7 +9911,7 @@
   },
   {
     "id": "cards:37e466dfde61",
-    "ordinal": 410,
+    "ordinal": 414,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9853,7 +9935,7 @@
   },
   {
     "id": "cards:16629d108124",
-    "ordinal": 411,
+    "ordinal": 415,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9877,7 +9959,7 @@
   },
   {
     "id": "cards:ac6ee8ff89ef",
-    "ordinal": 412,
+    "ordinal": 416,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9901,7 +9983,7 @@
   },
   {
     "id": "cards:d22e0878c131",
-    "ordinal": 413,
+    "ordinal": 417,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9925,7 +10007,7 @@
   },
   {
     "id": "cards:31632228c1b7",
-    "ordinal": 414,
+    "ordinal": 418,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9949,7 +10031,7 @@
   },
   {
     "id": "cards:2238be871851",
-    "ordinal": 415,
+    "ordinal": 419,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9973,7 +10055,7 @@
   },
   {
     "id": "cards:bfa2c6137ddf",
-    "ordinal": 416,
+    "ordinal": 420,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -9997,7 +10079,7 @@
   },
   {
     "id": "cards:e102115ec557",
-    "ordinal": 417,
+    "ordinal": 421,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10021,7 +10103,7 @@
   },
   {
     "id": "cards:c893c14cd166",
-    "ordinal": 418,
+    "ordinal": 422,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10045,7 +10127,7 @@
   },
   {
     "id": "cards:63f212813b9d",
-    "ordinal": 419,
+    "ordinal": 423,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10069,7 +10151,7 @@
   },
   {
     "id": "cards:ef3070c623ae",
-    "ordinal": 420,
+    "ordinal": 424,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10093,7 +10175,7 @@
   },
   {
     "id": "cards:006a20a37ff3",
-    "ordinal": 421,
+    "ordinal": 425,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10117,7 +10199,7 @@
   },
   {
     "id": "cards:18f5be2b1e2a",
-    "ordinal": 422,
+    "ordinal": 426,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10141,7 +10223,7 @@
   },
   {
     "id": "cards:2ed26892c87e",
-    "ordinal": 423,
+    "ordinal": 427,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10165,7 +10247,7 @@
   },
   {
     "id": "cards:c8c0404a6774",
-    "ordinal": 424,
+    "ordinal": 428,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10189,7 +10271,7 @@
   },
   {
     "id": "cards:af2fab408b41",
-    "ordinal": 425,
+    "ordinal": 429,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10213,7 +10295,7 @@
   },
   {
     "id": "cards:1a13cdf8534f",
-    "ordinal": 426,
+    "ordinal": 430,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10237,7 +10319,7 @@
   },
   {
     "id": "cards:09396b7483c8",
-    "ordinal": 427,
+    "ordinal": 431,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10261,7 +10343,7 @@
   },
   {
     "id": "cards:7e5752d7639a",
-    "ordinal": 428,
+    "ordinal": 432,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10285,7 +10367,7 @@
   },
   {
     "id": "cards:aaceb4155a2a",
-    "ordinal": 429,
+    "ordinal": 433,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10309,7 +10391,7 @@
   },
   {
     "id": "cards:f1f138f28431",
-    "ordinal": 430,
+    "ordinal": 434,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10333,7 +10415,7 @@
   },
   {
     "id": "cards:d0cdc6aedfe8",
-    "ordinal": 431,
+    "ordinal": 435,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10357,7 +10439,7 @@
   },
   {
     "id": "cards:91d1c2818c02",
-    "ordinal": 432,
+    "ordinal": 436,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10381,7 +10463,7 @@
   },
   {
     "id": "cards:40a557d03df7",
-    "ordinal": 433,
+    "ordinal": 437,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10405,7 +10487,7 @@
   },
   {
     "id": "cards:ce5a02c86ce1",
-    "ordinal": 434,
+    "ordinal": 438,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10429,7 +10511,7 @@
   },
   {
     "id": "cards:11517c1d3766",
-    "ordinal": 435,
+    "ordinal": 439,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10453,7 +10535,7 @@
   },
   {
     "id": "cards:f12cfd688cde",
-    "ordinal": 436,
+    "ordinal": 440,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10477,7 +10559,7 @@
   },
   {
     "id": "cards:65d445812e3e",
-    "ordinal": 437,
+    "ordinal": 441,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10501,7 +10583,7 @@
   },
   {
     "id": "cards:a3c8476502eb",
-    "ordinal": 438,
+    "ordinal": 442,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10525,7 +10607,7 @@
   },
   {
     "id": "cards:52f4a15ed749",
-    "ordinal": 439,
+    "ordinal": 443,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10549,7 +10631,7 @@
   },
   {
     "id": "cards:41b6ba582204",
-    "ordinal": 440,
+    "ordinal": 444,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10573,7 +10655,7 @@
   },
   {
     "id": "cards:5b3e55b6277c",
-    "ordinal": 441,
+    "ordinal": 445,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10597,7 +10679,7 @@
   },
   {
     "id": "cards:a1b41676da18",
-    "ordinal": 442,
+    "ordinal": 446,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10621,7 +10703,7 @@
   },
   {
     "id": "cards:78bec4378da9",
-    "ordinal": 443,
+    "ordinal": 447,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10645,7 +10727,7 @@
   },
   {
     "id": "cards:e7e3fb0d9070",
-    "ordinal": 444,
+    "ordinal": 448,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10669,7 +10751,7 @@
   },
   {
     "id": "cards:1c8360289b71",
-    "ordinal": 445,
+    "ordinal": 449,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10693,7 +10775,7 @@
   },
   {
     "id": "cards:34aa103edb07",
-    "ordinal": 446,
+    "ordinal": 450,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10717,7 +10799,7 @@
   },
   {
     "id": "cards:7489fe2c6313",
-    "ordinal": 447,
+    "ordinal": 451,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10741,7 +10823,7 @@
   },
   {
     "id": "cards:7179df5bd654",
-    "ordinal": 448,
+    "ordinal": 452,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10765,7 +10847,7 @@
   },
   {
     "id": "cards:ff5711047dc5",
-    "ordinal": 449,
+    "ordinal": 453,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10789,7 +10871,7 @@
   },
   {
     "id": "cards:b789e47098a4",
-    "ordinal": 450,
+    "ordinal": 454,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10813,7 +10895,7 @@
   },
   {
     "id": "cards:b55addad3822",
-    "ordinal": 451,
+    "ordinal": 455,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10837,7 +10919,7 @@
   },
   {
     "id": "cards:6d6f32895ec0",
-    "ordinal": 452,
+    "ordinal": 456,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10861,7 +10943,7 @@
   },
   {
     "id": "cards:c4785b09f531",
-    "ordinal": 453,
+    "ordinal": 457,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10885,7 +10967,7 @@
   },
   {
     "id": "cards:92373e793c18",
-    "ordinal": 454,
+    "ordinal": 458,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10909,7 +10991,7 @@
   },
   {
     "id": "cards:4413f5895a13",
-    "ordinal": 455,
+    "ordinal": 459,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10933,7 +11015,7 @@
   },
   {
     "id": "cards:49dfddf1631a",
-    "ordinal": 456,
+    "ordinal": 460,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10957,7 +11039,7 @@
   },
   {
     "id": "cards:e100de8a1cd4",
-    "ordinal": 457,
+    "ordinal": 461,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -10981,7 +11063,7 @@
   },
   {
     "id": "cards:30a33edf7900",
-    "ordinal": 458,
+    "ordinal": 462,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11005,7 +11087,7 @@
   },
   {
     "id": "cards:aa1411d26f61",
-    "ordinal": 459,
+    "ordinal": 463,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11029,7 +11111,7 @@
   },
   {
     "id": "cards:2ed9a7f5a493",
-    "ordinal": 460,
+    "ordinal": 464,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11053,7 +11135,7 @@
   },
   {
     "id": "cards:1758282e60f7",
-    "ordinal": 461,
+    "ordinal": 465,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11077,7 +11159,7 @@
   },
   {
     "id": "cards:dcc5f2852da3",
-    "ordinal": 462,
+    "ordinal": 466,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11101,7 +11183,7 @@
   },
   {
     "id": "cards:d029670d117b",
-    "ordinal": 463,
+    "ordinal": 467,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11125,7 +11207,7 @@
   },
   {
     "id": "cards:de0ea4a4f9ea",
-    "ordinal": 464,
+    "ordinal": 468,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11149,7 +11231,7 @@
   },
   {
     "id": "cards:2eb5d5337834",
-    "ordinal": 465,
+    "ordinal": 469,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11173,7 +11255,7 @@
   },
   {
     "id": "cards:0c09f72720cd",
-    "ordinal": 466,
+    "ordinal": 470,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,
@@ -11197,7 +11279,7 @@
   },
   {
     "id": "cards:bc20cc0590cc",
-    "ordinal": 467,
+    "ordinal": 471,
     "docId": "cards",
     "docType": "cards",
     "authority": 5,

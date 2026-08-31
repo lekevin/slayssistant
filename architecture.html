@@ -1,0 +1,1108 @@
+<title>Rules Lawyer Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg:        #e7e9ed;
+    --surface:   #f5f6f8;
+    --surface-2: #dce0e7;
+    --ink:       #161a21;
+    --ink-2:     #414a59;
+    --muted:     #67707f;
+    --rule:      #ccd2da;
+    --rule-firm: #aeb6c1;
+    --accent:    #b8431e;
+    --accent-bg: #f2e2dc;
+    --s1:        #eb6834;
+    --s2:        #1baf7a;
+
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body:    "Newsreader", Georgia, "Times New Roman", serif;
+    --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg:        #11141b;
+      --surface:   #191d26;
+      --surface-2: #232936;
+      --ink:       #e2e6ec;
+      --ink-2:     #b4bcc8;
+      --muted:     #838d9c;
+      --rule:      #2b3240;
+      --rule-firm: #3c4555;
+      --accent:    #ee7c55;
+      --accent-bg: #2e1e1a;
+      --s1:        #d95926;
+      --s2:        #199e70;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg:        #11141b;
+    --surface:   #191d26;
+    --surface-2: #232936;
+    --ink:       #e2e6ec;
+    --ink-2:     #b4bcc8;
+    --muted:     #838d9c;
+    --rule:      #2b3240;
+    --rule-firm: #3c4555;
+    --accent:    #ee7c55;
+    --accent-bg: #2e1e1a;
+    --s1:        #d95926;
+    --s2:        #199e70;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .col   { max-width: 66ch; margin-inline: auto; }
+  .wide  { max-width: 1080px; margin-inline: auto; }
+
+  /* ---------------------------------------------------------- masthead */
+
+  header.masthead {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 72px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 20px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 6.4vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    margin: 0 0 22px;
+    max-width: 18ch;
+  }
+  .standfirst {
+    font-size: 1.24rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .standfirst em { color: var(--accent); font-style: normal; }
+
+  .statrow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 44px;
+  }
+  .stat { background: var(--bg); padding: 16px 18px; }
+  .stat .n {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.7rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+  .stat .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ---------------------------------------------------------- sections */
+
+  section { padding-top: 68px; }
+
+  .sectionhead { max-width: 66ch; margin-inline: auto; }
+  .sectionhead .eyebrow { display: flex; align-items: center; gap: 10px; }
+  .sectionhead .eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--accent);
+    flex: none;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 18px;
+  }
+  h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.16rem;
+    letter-spacing: -0.01em;
+    margin: 38px 0 10px;
+  }
+  p { margin: 0 0 18px; }
+  .col > p:last-child { margin-bottom: 0; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.855em;
+    background: var(--surface-2);
+    padding: 0.12em 0.36em;
+    border-radius: 2px;
+    word-break: break-word;
+  }
+
+  strong { font-weight: 600; }
+
+  .lede {
+    font-size: 1.1rem;
+    color: var(--ink-2);
+  }
+
+  /* ------------------------------------------------------------ pullout */
+
+  .note {
+    border-left: 2px solid var(--accent);
+    background: var(--accent-bg);
+    padding: 18px 22px;
+    margin: 30px 0;
+  }
+  .note p { margin: 0; }
+  .note p + p { margin-top: 12px; }
+  .note .tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* ----------------------------------------------------------- figures */
+
+  figure { margin: 40px 0; }
+  figure svg { display: block; width: 100%; height: auto; }
+  .figframe {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 26px 24px 20px;
+    overflow-x: auto;
+  }
+  figcaption {
+    font-size: 0.93rem;
+    color: var(--muted);
+    margin-top: 14px;
+    max-width: 74ch;
+  }
+  figcaption b { color: var(--ink-2); font-weight: 600; }
+
+  /* SVG primitives, themed through tokens */
+  .d-box   { fill: var(--surface-2); stroke: var(--rule-firm); stroke-width: 1; }
+  .d-box-a { fill: var(--accent-bg); stroke: var(--accent); stroke-width: 1.25; }
+  .d-line  { stroke: var(--rule-firm); stroke-width: 1.5; fill: none; }
+  .d-line-a{ stroke: var(--accent); stroke-width: 1.5; fill: none; }
+  .d-t     { fill: var(--ink); font-family: var(--mono); font-size: 12px; }
+  .d-t-b   { fill: var(--ink); font-family: var(--display); font-size: 13px; font-weight: 600; }
+  .d-t-s   { fill: var(--muted); font-family: var(--mono); font-size: 10.5px; }
+  .d-t-a   { fill: var(--accent); font-family: var(--mono); font-size: 11px; }
+  .d-arrow { fill: var(--rule-firm); }
+  .d-arrow-a { fill: var(--accent); }
+
+  /* ------------------------------------------------------------- chart */
+
+  .chartwrap {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 24px;
+  }
+  .legend {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-2);
+    margin-bottom: 18px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .c-grid { stroke: var(--rule); stroke-width: 1; }
+  .c-conn { stroke: var(--rule-firm); stroke-width: 2; }
+  .c-lab  { fill: var(--ink); font-family: var(--mono); font-size: 12px; }
+  .c-lab-s{ fill: var(--muted); font-family: var(--mono); font-size: 10.5px; }
+  .c-val  { fill: var(--ink); font-family: var(--mono); font-size: 12px; font-weight: 700; }
+
+  /* ------------------------------------------------------------- table */
+
+  .tablewrap { overflow-x: auto; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.93rem;
+    font-variant-numeric: tabular-nums;
+    min-width: 620px;
+  }
+  caption {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 12px;
+  }
+  th, td {
+    text-align: right;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule-firm);
+    white-space: nowrap;
+  }
+  tbody td:first-child { font-family: var(--mono); font-size: 0.85rem; }
+  tbody tr.best td { background: var(--accent-bg); }
+  .delta-down { color: var(--accent); }
+
+  /* -------------------------------------------------------- method list */
+
+  .methods { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .method { background: var(--bg); padding: 24px 26px; }
+  .method h3 { margin: 0 0 4px; font-size: 1.14rem; }
+  .method .role {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .method p { margin: 0 0 12px; }
+  .method p:last-child { margin-bottom: 0; }
+  .method .cost {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    border-top: 1px dashed var(--rule-firm);
+    padding-top: 11px;
+    margin-top: 14px;
+  }
+
+  /* ------------------------------------------------------------ footer */
+
+  footer {
+    max-width: 1080px;
+    margin: 80px auto 0;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a { transition: color 120ms ease; }
+  }
+</style>
+
+<header class="masthead">
+  <p class="eyebrow">Rules Lawyer · retrieval over a board game rulebook</p>
+  <h1>How the thing actually works</h1>
+  <p class="standfirst">
+    Every technique in this pipeline is here because something specific went wrong without it.
+    This is the tour: what each method does, why it earned its place, what it costs — and
+    <em>how we know any of it helps</em>, which is the part most RAG write-ups skip.
+  </p>
+
+  <div class="statrow">
+    <div class="stat"><span class="n">23K</span><span class="k">corpus tokens</span></div>
+    <div class="stat"><span class="n">472</span><span class="k">chunks indexed</span></div>
+    <div class="stat"><span class="n">1.84<span style="font-size:0.6em"> MB</span></span><span class="k">vector file</span></div>
+    <div class="stat"><span class="n">114</span><span class="k">graded questions</span></div>
+    <div class="stat"><span class="n">5</span><span class="k">ablation arms</span></div>
+  </div>
+</header>
+
+<!-- ============================================================ 1 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">The constraint</p>
+    <h2>One number drives the whole design</h2>
+  </div>
+  <div class="col">
+    <p class="lede">
+      The entire corpus — rulebook plus a 382-entry card compendium — is about 23,000 tokens.
+      Everything downstream follows from that.
+    </p>
+    <p>
+      At 472 chunks, the vector index is a 1.84&nbsp;MB file of 32-bit floats. Scanning all of it
+      with cosine similarity takes roughly a millisecond, which is about forty times faster than
+      the network round trip to a hosted vector database would be <em>before that database does any
+      work at all</em>. So the index is a file, committed to the repo, loaded once per cold start.
+      There is no vector database because at this size one would make the system slower.
+    </p>
+    <p>
+      That's not a dodge around the hard part. Dense embeddings, BM25, rank fusion, structural
+      chunking, page-accurate citations and a real evaluation harness are all still here. What's
+      absent is the operational surface: migrations, connection pooling, index tuning, and a free
+      tier that sleeps after a week of inactivity.
+    </p>
+    <p>
+      It does mean the honest baseline is brutal. At 23K tokens you can put <strong>the whole
+      corpus in the prompt</strong>, cache it, and get perfect recall for about a penny a question.
+      Any retrieval pipeline has to justify itself against that — not against a strawman. It's
+      row&nbsp;0 of the results table for exactly that reason.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 2 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">Stage one · offline</p>
+    <h2>Ingestion runs once and is then frozen</h2>
+  </div>
+  <div class="col">
+    <p>
+      Ingestion is a separate, offline pipeline whose output is committed to the repo. It runs when
+      the rulebook changes, not when a question arrives.
+    </p>
+  </div>
+
+  <figure class="wide">
+    <div class="figframe">
+      <svg viewBox="0 0 860 196" role="img" aria-label="Ingestion pipeline: the PDF is parsed by a vision model into frozen markdown, split into 472 chunks on the document's own headings, embedded with voyage-4, and committed as a 1.84 megabyte vector file.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="d-arrow"></path>
+          </marker>
+        </defs>
+
+        <rect class="d-box" x="14" y="62" width="132" height="58"></rect>
+        <text class="d-t-b" x="80" y="88" text-anchor="middle">rulebook.pdf</text>
+        <text class="d-t-s" x="80" y="106" text-anchor="middle">two-column, sidebars</text>
+
+        <line class="d-line" x1="152" y1="91" x2="212" y2="91" marker-end="url(#ar)"></line>
+        <text class="d-t-s" x="182" y="80" text-anchor="middle">vision</text>
+
+        <rect class="d-box" x="218" y="62" width="150" height="58"></rect>
+        <text class="d-t-b" x="293" y="88" text-anchor="middle">rulebook.md</text>
+        <text class="d-t-s" x="293" y="106" text-anchor="middle">frozen artifact</text>
+
+        <line class="d-line" x1="374" y1="91" x2="434" y2="91" marker-end="url(#ar)"></line>
+        <text class="d-t-s" x="404" y="80" text-anchor="middle">headings</text>
+
+        <rect class="d-box" x="440" y="62" width="140" height="58"></rect>
+        <text class="d-t-b" x="510" y="88" text-anchor="middle">472 chunks</text>
+        <text class="d-t-s" x="510" y="106" text-anchor="middle">cards stay whole</text>
+
+        <line class="d-line" x1="586" y1="91" x2="646" y2="91" marker-end="url(#ar)"></line>
+        <text class="d-t-s" x="616" y="80" text-anchor="middle">voyage-4</text>
+
+        <rect class="d-box" x="652" y="62" width="194" height="58"></rect>
+        <text class="d-t-b" x="749" y="88" text-anchor="middle">embeddings.bin</text>
+        <text class="d-t-s" x="749" y="106" text-anchor="middle">1.84 MB, committed</text>
+
+        <line class="d-line" x1="14" y1="150" x2="846" y2="150" stroke-dasharray="3 4"></line>
+        <text class="d-t-s" x="14" y="170">runs once · every stage cached by content hash · re-running is opt-in, not automatic</text>
+      </svg>
+    </div>
+    <figcaption>
+      <b>Why a vision model instead of a text extractor.</b> Rulebooks are two-column layouts with
+      sidebars, callout boxes and iconography. <code>pdf-parse</code> flattens those into scrambled
+      reading order — the earlier prototype's corpus opened with a table of contents welded into the
+      first chunk — and that damage is inherited by every answer forever. The model reads the page
+      <em>as a page</em> and emits markdown with the heading hierarchy and printed page numbers intact.
+    </figcaption>
+  </figure>
+
+  <div class="col">
+    <h3>Why the parse output is frozen</h3>
+    <p>
+      Vision parsing is non-deterministic. Re-running it would produce slightly different text,
+      which would invalidate every page reference and every label in the evaluation set. So it runs
+      once, gets hand-checked, and is committed. A verification step gates any rebuild against that
+      frozen copy.
+    </p>
+
+    <h3>Why chunk on headings rather than a fixed window</h3>
+    <p>
+      Rulebooks arrive pre-chunked by their authors — that's what numbered sections <em>are</em>.
+      Splitting on the document's own structure means every chunk carries a truthful breadcrumb
+      (<code>Combat&nbsp;&gt;&nbsp;Enemy&nbsp;Turn</code>) and a real printed page range, which is
+      what makes a citation resolvable. Undersized sections merge <em>upward into their parent</em>,
+      never sideways into a sibling — a sibling's heading is the one that would show up in the
+      citation, and it would be the wrong heading. Cards are never split: half a card is worse than
+      no card.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 3 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">Stage one · the sharp edge</p>
+    <h2>Chunking mattered more than every retrieval trick combined</h2>
+  </div>
+  <div class="col">
+    <p>
+      The keyword glossary originally parsed as one 573-token chunk holding fifteen unrelated
+      definitions. Its embedding was therefore the <em>average of fifteen meanings</em>, which
+      resembles none of them. Asked "what does Exhaust do?", retrieval returned seven cards that
+      merely mention exhausting and never surfaced the definition at all.
+    </p>
+    <p>
+      Splitting definition lists one-per-term — the same rule that already made cards atomic — moved
+      dense-only recall from <strong>79.4% to 97.1%</strong>. No retrieval technique in the ablation
+      moved anything close to that far. Chunking is the highest-leverage decision in the pipeline,
+      and it is the one that gets the least attention in most write-ups.
+    </p>
+    <p>
+      That fix, though, has a sharp edge — and it is exactly the thing you asked about.
+    </p>
+  </div>
+
+  <figure class="wide">
+    <div class="figframe">
+      <svg viewBox="0 0 860 320" role="img" aria-label="The definition-list path: lines matching the bold-term pattern each become an atomic chunk, while every other line in that section is discarded, including the blockquote holding the Weak versus Vulnerable rule.">
+        <defs>
+          <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="d-arrow"></path>
+          </marker>
+          <marker id="ar2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="d-arrow-a"></path>
+          </marker>
+        </defs>
+
+        <rect class="d-box" x="12" y="40" width="430" height="240"></rect>
+        <text class="d-t-b" x="30" y="66">## Abilities &amp; Keywords</text>
+        <text class="d-t-s" x="30" y="84">one section · 16 content lines · page 24</text>
+
+        <line class="d-line" x1="30" y1="96" x2="424" y2="96"></line>
+
+        <text class="d-t" x="30" y="126">**Block (Max 20)** – Prevent the next…</text>
+        <text class="d-t" x="30" y="160">**Weak (Max 3)** – Add a Weak token…</text>
+        <text class="d-t" x="30" y="200">**Energy […4 icons…] (Max 6)** – …</text>
+        <text class="d-t-a" x="30" y="216">term is 63 chars · regex caps at 60</text>
+        <text class="d-t" x="30" y="252">&gt; **Weak vs Vulnerable** - If a Weak…</text>
+        <text class="d-t-a" x="30" y="268">line starts with “&gt;” · pattern needs “**”</text>
+
+        <line class="d-line" x1="448" y1="126" x2="600" y2="96" marker-end="url(#ar2)"></line>
+        <line class="d-line" x1="448" y1="160" x2="600" y2="104" marker-end="url(#ar2)"></line>
+        <line class="d-line-a" x1="448" y1="200" x2="600" y2="228" marker-end="url(#ar2a)"></line>
+        <line class="d-line-a" x1="448" y1="252" x2="600" y2="236" marker-end="url(#ar2a)"></line>
+
+        <rect class="d-box" x="606" y="66" width="242" height="72"></rect>
+        <text class="d-t-b" x="727" y="96" text-anchor="middle">14 atomic chunks</text>
+        <text class="d-t-s" x="727" y="116" text-anchor="middle">embedded · retrievable · cited</text>
+
+        <rect class="d-box-a" x="606" y="198" width="242" height="72"></rect>
+        <text class="d-t-b" x="727" y="228" text-anchor="middle">2 lines discarded</text>
+        <text class="d-t-s" x="727" y="248" text-anchor="middle">never reach the index at all</text>
+
+        <text class="d-t-s" x="606" y="292">the section itself never becomes a chunk — that is the whole bug</text>
+      </svg>
+    </div>
+    <figcaption>
+      <b>Being inside the section is what doomed it.</b> When a section qualifies as a definition
+      list, <code>asDefinitionList()</code> switches modes: it emits one chunk per matching line and
+      then <code>continue</code>s, so the section body never becomes a chunk of its own. Any line
+      that doesn't match the <code>**Term** — text</code> pattern simply falls on the floor. In a
+      normal prose section the blockquote would have been swept up in the section's chunk; here
+      there is no section chunk to sweep it into.
+    </figcaption>
+  </figure>
+
+  <div class="col">
+    <div class="note">
+      <span class="tag">Found and fixed</span>
+      <p>
+        Two real rules passages were missing from the index. <strong>Energy (Max 6)</strong> survived
+        only by luck — the same limit is stated again on page 7, which was indexed. The
+        <strong>Weak vs Vulnerable</strong> interaction is stated nowhere else in the corpus, so the
+        assistant could not answer it at all.
+      </p>
+      <p>
+        The evaluation is what caught it. Question <code>g090</code> missed on <em>every</em> arm,
+        including the stuffed-prompt baseline that has the whole corpus in context. When a baseline
+        with perfect coverage by construction still misses, the fault is upstream of retrieval —
+        that's the tell, and it's why the baseline row is worth carrying.
+      </p>
+      <p>
+        The fix widened the pattern to accept blockquote callouts and longer terms, and made the
+        branch keep whatever it doesn't claim instead of discarding it. Both passages are now atomic
+        glossary chunks; <code>g090</code> is kept in the set as a regression guard.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">Stage two · per question</p>
+    <h2>What happens when someone asks something</h2>
+  </div>
+
+  <figure class="wide">
+    <div class="figframe">
+      <svg viewBox="0 0 860 316" role="img" aria-label="Query path: the question is shape-classified, searched by dense embeddings and BM25 in parallel, fused by reciprocal rank, reranked by a cross-encoder, then answered. Prohibition-shaped questions additionally get whole sections and an unconditional web search.">
+        <defs>
+          <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="d-arrow"></path>
+          </marker>
+          <marker id="ar3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="d-arrow-a"></path>
+          </marker>
+        </defs>
+
+        <rect class="d-box" x="12" y="112" width="112" height="54"></rect>
+        <text class="d-t-b" x="68" y="144" text-anchor="middle">question</text>
+
+        <line class="d-line" x1="130" y1="139" x2="168" y2="139" marker-end="url(#ar3)"></line>
+
+        <rect class="d-box" x="174" y="112" width="112" height="54"></rect>
+        <text class="d-t-b" x="230" y="136" text-anchor="middle">shape gate</text>
+        <text class="d-t-s" x="230" y="153" text-anchor="middle">regex</text>
+
+        <line class="d-line" x1="292" y1="130" x2="330" y2="88" marker-end="url(#ar3)"></line>
+        <line class="d-line" x1="292" y1="150" x2="330" y2="192" marker-end="url(#ar3)"></line>
+
+        <rect class="d-box" x="336" y="60" width="128" height="50"></rect>
+        <text class="d-t-b" x="400" y="82" text-anchor="middle">dense</text>
+        <text class="d-t-s" x="400" y="98" text-anchor="middle">cosine, all 472</text>
+
+        <rect class="d-box" x="336" y="170" width="128" height="50"></rect>
+        <text class="d-t-b" x="400" y="192" text-anchor="middle">BM25</text>
+        <text class="d-t-s" x="400" y="208" text-anchor="middle">lexical + IDF</text>
+
+        <line class="d-line" x1="470" y1="85" x2="508" y2="126" marker-end="url(#ar3)"></line>
+        <line class="d-line" x1="470" y1="195" x2="508" y2="154" marker-end="url(#ar3)"></line>
+
+        <rect class="d-box" x="514" y="112" width="94" height="54"></rect>
+        <text class="d-t-b" x="561" y="136" text-anchor="middle">RRF</text>
+        <text class="d-t-s" x="561" y="153" text-anchor="middle">fuse ranks</text>
+
+        <line class="d-line" x1="614" y1="139" x2="652" y2="139" marker-end="url(#ar3)"></line>
+
+        <rect class="d-box" x="658" y="112" width="100" height="54"></rect>
+        <text class="d-t-b" x="708" y="136" text-anchor="middle">rerank</text>
+        <text class="d-t-s" x="708" y="153" text-anchor="middle">cross-enc.</text>
+
+        <line class="d-line" x1="764" y1="139" x2="800" y2="139" marker-end="url(#ar3)"></line>
+        <text class="d-t-b" x="806" y="134">answer</text>
+        <text class="d-t-s" x="806" y="152">+ page chips</text>
+
+        <line class="d-line-a" x1="230" y1="172" x2="230" y2="256" marker-end="url(#ar3a)"></line>
+        <rect class="d-box-a" x="290" y="238" width="330" height="46"></rect>
+        <text class="d-t-b" x="455" y="258" text-anchor="middle">whole sections + web_search</text>
+        <text class="d-t-s" x="455" y="274" text-anchor="middle">attached unconditionally, whatever the scores say</text>
+        <text class="d-t-a" x="180" y="278">prohibition-shaped</text>
+        <line class="d-line-a" x1="626" y1="261" x2="708" y2="261" marker-end="url(#ar3a)"></line>
+        <line class="d-line-a" x1="708" y1="261" x2="708" y2="172" marker-end="url(#ar3a)"></line>
+      </svg>
+    </div>
+    <figcaption>
+      <b>The fallback is gated on the question's shape, not on retrieval scores.</b> The intuitive
+      design attaches web search when scores look weak — and that fires backwards on the questions
+      that need it most.
+    </figcaption>
+  </figure>
+
+  <div class="col">
+    <h3>Why score-based gating fails</h3>
+    <p>
+      Ask "can I play a Trap during my opponent's turn?" of a rulebook that never discusses off-turn
+      Traps. Retrieval returns the Traps section. A reranker scores it as highly relevant —
+      <em>correctly</em>, it genuinely is about Traps. A score-based gate reads that as healthy
+      evidence and withholds the search, handing the model a passage that is on-topic and silent.
+      At that point the model can only guess.
+    </p>
+    <p>
+      The distinction a similarity score cannot express is relevance versus <strong>sufficiency</strong>.
+      Nothing in a cosine value says "this passage is about your question and does not settle it."
+      So prohibition-shaped questions instead get complete sections rather than fragments — absence
+      is only assertable over a whole unit — plus web search attached unconditionally.
+    </p>
+    <p>
+      The classifier is a regex, deliberately tuned to over-trigger. A false positive costs one extra
+      section of context and an unused tool. A false negative is a confidently fabricated permission
+      that changes how someone plays their game. Those costs are not symmetric, so the threshold sits
+      far toward recall. A router model would classify better, but it would add roughly 2.4 seconds
+      to every question.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 5 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">The methods</p>
+    <h2>Four retrieval techniques, and what each one is for</h2>
+  </div>
+  <div class="col">
+    <p>
+      These stack. Each one exists to cover a specific failure of the one before it, which is also
+      exactly how the ablation tests them — one arm at a time, cumulative.
+    </p>
+  </div>
+
+  <div class="wide methods">
+    <div class="method">
+      <h3>Dense embeddings</h3>
+      <span class="role">Arm 1 · meaning</span>
+      <p>
+        Every chunk is converted into a list of 1,024 numbers positioning it in "meaning space,"
+        where texts about similar concepts land near each other. A question gets converted the same
+        way, and we take whichever chunks sit closest — plain cosine similarity across all 472, no
+        approximation, about a millisecond.
+      </p>
+      <p>
+        <strong>What it's good at:</strong> paraphrase. Someone asks "how do I get rid of a bad card"
+        and it finds the section on Removing cards, despite sharing almost no words with it.
+        <strong>Where it fails:</strong> rare exact tokens. Card names, keyword terms and numbers get
+        smoothed into the general vicinity of their meaning, so "Gremlin Nob" can lose to a chunk
+        that's merely about gremlins.
+      </p>
+      <p class="cost">cost · one API call per question, ~250ms, cached by content hash</p>
+    </div>
+
+    <div class="method">
+      <h3>BM25</h3>
+      <span class="role">Arm 2a · exact words</span>
+      <p>
+        Classic keyword scoring. A chunk scores well when it contains the question's words, with two
+        adjustments that matter: rare words count for more than common ones (that's the IDF part —
+        "Ethereal" is worth far more than "the"), and long chunks are penalized so they can't win
+        just by containing everything.
+      </p>
+      <p>
+        <strong>What it's good at:</strong> precisely what dense retrieval fumbles — proper nouns,
+        keyword terms, exact phrases. <strong>Where it fails:</strong> it cannot match a question to
+        a passage that uses entirely different vocabulary, which is most naturally-phrased questions.
+      </p>
+      <p class="cost">cost · free, runs locally in single-digit milliseconds</p>
+    </div>
+
+    <div class="method">
+      <h3>Reciprocal Rank Fusion</h3>
+      <span class="role">Arm 2b · combining the two</span>
+      <p>
+        Dense and BM25 both produce ranked lists, but their scores are on incomparable scales — a
+        cosine of 0.81 and a BM25 of 14.2 have no common unit. Any normalization you invent to blend
+        them becomes a magic number you re-tune every time the corpus changes.
+      </p>
+      <p>
+        RRF sidesteps this by throwing the scores away and keeping only the <em>positions</em>. Each
+        chunk gets <code>1/(60 + rank)</code> from each list, summed. A chunk both methods like
+        modestly beats a chunk one method loves — which is exactly the behavior you want from two
+        retrievers with complementary blind spots.
+      </p>
+      <p class="cost">cost · free · K=60 from the original paper, not tuned</p>
+    </div>
+
+    <div class="method">
+      <h3>Cross-encoder reranking</h3>
+      <span class="role">Arm 3 · reading properly</span>
+      <p>
+        Everything above compares the question and the chunk <em>separately</em> — each was turned
+        into numbers without ever seeing the other. A cross-encoder reads the question and one
+        candidate passage <em>together</em> and scores how well that passage answers that question.
+        It is substantially more accurate for the same reason it is slower: no shortcuts.
+      </p>
+      <p>
+        That cost is why it runs last, over roughly 20 surviving candidates rather than all 472. Its
+        effect shows up most in <strong>ordering</strong> — in the results below it barely moves
+        recall but lifts MRR from 0.728 to 0.865, meaning the right passage moves toward the top of
+        the list rather than merely being somewhere in it.
+      </p>
+      <p class="cost">cost · one API call, ~16s across the full eval — the slowest stage by far</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">Fusion, concretely</p>
+    <h2>Why ranks and not scores</h2>
+  </div>
+
+  <figure class="wide">
+    <div class="figframe">
+      <svg viewBox="0 0 820 268" role="img" aria-label="Two ranked lists with incomparable score scales are fused by reciprocal rank. Chunk c04 places second in dense and first in BM25, and overtakes c17, which placed first in dense but third in BM25.">
+        <defs>
+          <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="d-arrow"></path>
+          </marker>
+        </defs>
+
+        <text class="d-t-b" x="14" y="30">dense · cosine</text>
+        <text class="d-t-s" x="14" y="46">scale: 0 to 1</text>
+        <rect class="d-box" x="14" y="58" width="200" height="164"></rect>
+        <text class="d-t" x="30" y="86">1 · c17</text><text class="d-t-s" x="190" y="86" text-anchor="end">0.81</text>
+        <text class="d-t" x="30" y="116">2 · c04</text><text class="d-t-s" x="190" y="116" text-anchor="end">0.79</text>
+        <text class="d-t" x="30" y="146">3 · c22</text><text class="d-t-s" x="190" y="146" text-anchor="end">0.74</text>
+        <text class="d-t" x="30" y="176">4 · c09</text><text class="d-t-s" x="190" y="176" text-anchor="end">0.71</text>
+
+        <text class="d-t-b" x="248" y="30">BM25</text>
+        <text class="d-t-s" x="248" y="46">scale: unbounded</text>
+        <rect class="d-box" x="248" y="58" width="200" height="164"></rect>
+        <text class="d-t" x="264" y="86">1 · c04</text><text class="d-t-s" x="424" y="86" text-anchor="end">14.2</text>
+        <text class="d-t" x="264" y="116">2 · c31</text><text class="d-t-s" x="424" y="116" text-anchor="end">11.8</text>
+        <text class="d-t" x="264" y="146">3 · c17</text><text class="d-t-s" x="424" y="146" text-anchor="end">9.6</text>
+        <text class="d-t" x="264" y="176">4 · c08</text><text class="d-t-s" x="424" y="176" text-anchor="end">7.4</text>
+
+        <line class="d-line" x1="458" y1="140" x2="522" y2="140" marker-end="url(#ar4)"></line>
+        <text class="d-t-s" x="490" y="128" text-anchor="middle">1/(60+r)</text>
+
+        <text class="d-t-b" x="530" y="30">fused</text>
+        <text class="d-t-s" x="530" y="46">scale: comparable</text>
+        <rect class="d-box" x="530" y="58" width="276" height="164"></rect>
+        <text class="d-t" x="546" y="86">1 · c04</text><text class="d-t-s" x="790" y="86" text-anchor="end">1/62 + 1/61 = .0325</text>
+        <text class="d-t" x="546" y="116">2 · c17</text><text class="d-t-s" x="790" y="116" text-anchor="end">1/61 + 1/63 = .0323</text>
+        <text class="d-t" x="546" y="146">3 · c31</text><text class="d-t-s" x="790" y="146" text-anchor="end">1/62 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = .0161</text>
+        <text class="d-t" x="546" y="176">4 · c22</text><text class="d-t-s" x="790" y="176" text-anchor="end">1/63 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = .0159</text>
+
+        <text class="d-t-s" x="14" y="248">c17 tops the dense list but places third on BM25; c04 places well on both and takes the top slot.</text>
+      </svg>
+    </div>
+    <figcaption>
+      <b>Agreement beats enthusiasm.</b> Because only positions survive, a chunk that both retrievers
+      rank decently outranks one that a single retriever adores — which is the whole point of running
+      two retrievers with different blind spots.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ============================================================ 7 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">Citations</p>
+    <h2>The page number is computed, not reported</h2>
+  </div>
+  <div class="col">
+    <p>
+      The feature that justifies the whole project is the page chip under each answer. It nearly
+      didn't work.
+    </p>
+    <p>
+      The API returns citations with real <code>start_page_number</code> fields only for
+      <code>document</code> blocks whose source is an actual PDF. This app sends assembled markdown,
+      so every citation comes back as a <code>char_location</code> — character offsets, no page
+      fields. Reading <code>citation.page_location.start_page_number</code> off one yields
+      <code>undefined</code>, and the chip renders "Rulebook p.undefined" on the single feature that
+      matters most.
+    </p>
+    <p>
+      We don't need the API to tell us the page. <em>We assembled the string</em>, so we know which
+      chunk occupies which character range, and every chunk carries its printed page range from
+      ingestion. The document index selects the span map, a binary search on the start offset finds
+      the chunk, and the page comes from our own data. The API supplies the verbatim quoted text,
+      which is the part it's genuinely authoritative about.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 8 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">The evaluation</p>
+    <h2>How we know whether any of it helps</h2>
+  </div>
+  <div class="col">
+    <p class="lede">
+      This is the half that turns "I built a RAG chatbot" into a claim with evidence behind it.
+    </p>
+
+    <h3>Labels are text spans, never chunk IDs</h3>
+    <p>
+      The obvious design is to tag each question with "the chunk that should be retrieved." It cannot
+      work. Chunk IDs are derived from content, so re-chunking regenerates them — and re-chunking is
+      precisely what the ablation varies. Worse, the parse is a vision call, so even re-running an
+      unchanged pipeline would break every label. A golden set that self-destructs on the experiment
+      it exists to measure is not an evaluation, it's a trap.
+    </p>
+    <p>
+      Instead each question is labeled with the <strong>verbatim sentence that answers it</strong>. A
+      retrieved chunk counts as a hit if it contains that sentence, however the chunker happened to
+      draw its boundaries this time. That makes the set survive re-chunking, re-embedding and
+      re-parsing. Matching is normalized and tolerates ~20% drift, so a slightly different
+      transcription of the same page still matches.
+    </p>
+
+    <h3>The two retrieval metrics</h3>
+    <p>
+      <strong>Recall@8</strong> — did the answer-bearing passage appear anywhere in the top 8 results?
+      This is the one that matters most, because the model can read all 8. <strong>MRR</strong> (mean
+      reciprocal rank) — how <em>high</em> did it appear? Rank 1 scores 1.0, rank 2 scores 0.5, rank 4
+      scores 0.25. Recall saturates quickly on a small corpus; MRR keeps measuring after it does,
+      which is why reranking looks unimpressive on one and strong on the other.
+    </p>
+
+    <h3>Four statistics, because the effects are the size of the noise</h3>
+    <p>
+      A bare percentage on a hundred-odd questions is misleading, so the harness reports four things
+      alongside it — each answering a question the percentage can't.
+    </p>
+  </div>
+
+  <div class="wide methods" style="margin-top:30px">
+    <div class="method">
+      <h3>Wilson confidence interval</h3>
+      <span class="role">how firm is this number?</span>
+      <p>
+        87.7% on 114 questions isn't 87.7% — it's "somewhere in 80–93%, probably." The interval says
+        how much the number would wobble if you drew a different sample of questions. Publish the
+        interval or the number means nothing.
+      </p>
+    </div>
+    <div class="method">
+      <h3>McNemar's test</h3>
+      <span class="role">did arm B actually beat arm A?</span>
+      <p>
+        Because both arms answer the <em>same</em> questions, the comparison must be paired. Only the
+        disagreements carry information: questions B got and A missed, versus the reverse. An arm
+        winning 8 and losing 1 and an arm winning 12 and losing 5 can post the identical headline and
+        mean opposite things.
+      </p>
+    </div>
+    <div class="method">
+      <h3>Holm correction</h3>
+      <span class="role">four comparisons, not one</span>
+      <p>
+        Run four tests at the usual 5% threshold and you have roughly a 1-in-5 chance of a false
+        positive somewhere. Holm tightens the bar to compensate. It's the difference between "this
+        ladder shows a real improvement" and "one of my four coin flips came up heads."
+      </p>
+    </div>
+    <div class="method">
+      <h3>Minimum detectable effect</h3>
+      <span class="role">what could this set even prove?</span>
+      <p>
+        The most useful number here, and the reason you're expanding the question set. At n=114 the
+        MDE is <strong>13.1 points</strong>: any gap smaller than that is indistinguishable from luck,
+        no matter what the table says. It states the experiment's resolution up front instead of
+        letting a reader over-read a small difference.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 9 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">Results · 31 Aug 2026</p>
+    <h2>What the harder question set revealed</h2>
+  </div>
+  <div class="col">
+    <p>
+      The set grew from 34 to 114 graded questions in two passes, deliberately moving away from the
+      rulebook's own FAQ wording toward how people actually ask. The effect on the table was
+      dramatic — and it's the clearest possible argument for why sample size and question quality
+      matter more than any tuning.
+    </p>
+  </div>
+
+  <div class="wide chartwrap">
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i> n=64 · FAQ-derived set</span>
+      <span><i style="background:var(--s2)"></i> n=114 · harder set</span>
+    </div>
+    <svg viewBox="0 0 760 254" role="img" aria-label="Dumbbell chart of recall at 8 for five arms on both question sets. On the easier 64-question set the arms cluster between 95 and 100 percent. On the harder 114-question set they spread apart: keyword falls to 87.7, dense to 92.1, hybrid to 93.9, and rerank to 98.2, while the stuffed prompt holds at 100.">
+      <line class="c-grid" x1="195" y1="40" x2="195" y2="228"></line>
+      <line class="c-grid" x1="363" y1="40" x2="363" y2="228"></line>
+      <line class="c-grid" x1="532" y1="40" x2="532" y2="228"></line>
+      <line class="c-grid" x1="700" y1="40" x2="700" y2="228"></line>
+      <text class="c-lab-s" x="195" y="30" text-anchor="middle">85%</text>
+      <text class="c-lab-s" x="363" y="30" text-anchor="middle">90%</text>
+      <text class="c-lab-s" x="532" y="30" text-anchor="middle">95%</text>
+      <text class="c-lab-s" x="700" y="30" text-anchor="middle">100%</text>
+
+      <g>
+        <text class="c-lab" x="14" y="63">0 · stuffed</text>
+        <circle cx="700" cy="58" r="6" fill="var(--s1)"><title>stuffed prompt, n=64: 100.0%</title></circle>
+        <circle cx="700" cy="58" r="6" fill="var(--s2)"><title>stuffed prompt, n=114: 100.0%</title></circle>
+        <text class="c-val" x="686" y="62" text-anchor="end">100</text>
+      </g>
+      <g>
+        <text class="c-lab" x="14" y="101">0.5 · keyword</text>
+        <line class="c-conn" x1="286" y1="96" x2="586" y2="96"></line>
+        <circle cx="586" cy="96" r="6" fill="var(--s1)"><title>keyword + IDF, n=64: 97.1%</title></circle>
+        <circle cx="286" cy="96" r="6" fill="var(--s2)"><title>keyword + IDF, n=114: 87.7%</title></circle>
+        <text class="c-val" x="272" y="100" text-anchor="end">87.7</text>
+      </g>
+      <g>
+        <text class="c-lab" x="14" y="139">1 · dense</text>
+        <line class="c-conn" x1="434" y1="134" x2="586" y2="134"></line>
+        <circle cx="586" cy="134" r="6" fill="var(--s1)"><title>dense only, n=64: 97.1%</title></circle>
+        <circle cx="434" cy="134" r="6" fill="var(--s2)"><title>dense only, n=114: 92.1%</title></circle>
+        <text class="c-val" x="420" y="138" text-anchor="end">92.1</text>
+      </g>
+      <g>
+        <text class="c-lab" x="14" y="177">2 · + BM25/RRF</text>
+        <line class="c-conn" x1="495" y1="172" x2="700" y2="172"></line>
+        <circle cx="700" cy="172" r="6" fill="var(--s1)"><title>hybrid, n=64: 100.0%</title></circle>
+        <circle cx="495" cy="172" r="6" fill="var(--s2)"><title>hybrid, n=114: 93.9%</title></circle>
+        <text class="c-val" x="481" y="176" text-anchor="end">93.9</text>
+      </g>
+      <g>
+        <text class="c-lab" x="14" y="215">3 · + rerank</text>
+        <line class="c-conn" x1="640" y1="210" x2="700" y2="210"></line>
+        <circle cx="700" cy="210" r="6" fill="var(--s1)"><title>rerank, n=64: 100.0%</title></circle>
+        <circle cx="640" cy="210" r="6" fill="var(--s2)"><title>rerank, n=114: 98.2%</title></circle>
+        <text class="c-val" x="626" y="214" text-anchor="end">98.2</text>
+      </g>
+
+      <text class="c-lab-s" x="14" y="248">recall@8 · higher is better</text>
+    </svg>
+  </div>
+
+  <div class="wide tablewrap" style="margin-top:34px">
+    <table>
+      <caption>Current ablation · n = 114 scorable questions, k = 8</caption>
+      <thead>
+        <tr>
+          <th scope="col">Arm</th>
+          <th scope="col">Recall@8</th>
+          <th scope="col">95% CI</th>
+          <th scope="col">MRR</th>
+          <th scope="col">Win / loss</th>
+          <th scope="col">Holm p</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 · stuffed prompt</td><td>100.0%</td><td>—</td><td>—</td><td>—</td><td>—</td>
+        </tr>
+        <tr>
+          <td>0.5 · keyword + IDF</td><td>87.7%</td><td>80–93%</td><td>0.606</td><td>—</td><td>—</td>
+        </tr>
+        <tr>
+          <td>1 · dense only</td><td>92.1%</td><td>86–96%</td><td>0.675</td><td>+12 / −7</td><td>0.719</td>
+        </tr>
+        <tr>
+          <td>2 · + BM25 &amp; RRF</td><td>93.9%</td><td>88–97%</td><td>0.728</td><td>+5 / −3</td><td>0.727</td>
+        </tr>
+        <tr class="best">
+          <td>3 · + rerank</td><td>98.2%</td><td>94–100%</td><td>0.865</td><td>+7 / −2</td><td>0.539</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col" style="margin-top:38px">
+    <h3>Three things this table now says that the old one couldn't</h3>
+    <p>
+      <strong>The arms separated.</strong> On the FAQ-derived set, four of five arms scored between
+      95% and 100% — the test wasn't hard enough to distinguish them, so it flattered everything. The
+      full stack now leads the keyword baseline by <strong>10.5 points</strong> rather than the 0.3
+      it appeared to lead by before. Nothing about the pipeline changed; the measurement got honest.
+    </p>
+    <p>
+      <strong>The naive baseline stopped looking competitive.</strong> The old set was seeded largely
+      from the rulebook's own FAQ, whose distinctive vocabulary is exactly what keyword search is
+      best at — a selection bias that flattered the simplest method. Phrase questions the way players
+      actually phrase them and keyword scoring drops nearly 10 points, while the reranked stack loses 1.8.
+    </p>
+    <p>
+      <strong>Reranking earns its latency in ordering, not coverage.</strong> It adds 4.3 points of
+      recall but lifts MRR from 0.728 to 0.865 — the answer moves to the top of the list rather than
+      merely being somewhere in the top 8. The chunker fix showed this precisely: the recovered
+      passage sat in the fused candidate pool but outside the top 8, and only the reranker pulled it
+      up into view. Hybrid alone did not move at all.
+    </p>
+    <div class="note">
+      <span class="tag">Still not proven</span>
+      <p>
+        The best Holm-adjusted p-value is 0.539. The gaps are visible but <em>not yet statistically
+        established</em>: at n=114 the resolution is 13.1 points and the biggest step is 10.5. About
+        190 questions gets that to 10 points; 470 gets it to 5. The direction is now consistent and
+        plausible — it is not yet evidence, and the table says so rather than hiding it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 10 -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">Open</p>
+    <h2>What's genuinely unfinished</h2>
+  </div>
+  <div class="col">
+    <p>
+      <strong>The freeze guard checks a recorded hash, not the file.</strong> <code>docSha</code> is
+      written into <code>rulebook.meta.json</code> at parse time and copied forward into the index
+      manifest, but it is never recomputed from the parsed markdown. The documented workflow is to
+      hand-fix headings after parsing, and those edits change the bytes without changing the recorded
+      hash — the current file hashes to <code>0e6bad66</code> while everything downstream still says
+      <code>50bfb512</code>. Nothing is broken today, because the golden set and the manifest share
+      the same label, but the guard cannot currently detect the drift it exists to catch.
+    </p>
+    <p>
+      <strong>False-permission rate is defined but not yet measured.</strong> The 71
+      <code>forbidden</code> and <code>unstated</code> questions exist to catch the worst failure —
+      telling a player a move is legal when the rules don't permit it. The strata are in place; the
+      answer-level scorer that reports the rate isn't written yet. It is the metric that actually
+      reflects trustworthiness, and right now the table doesn't carry it.
+    </p>
+    <p>
+      <strong>The set should keep growing.</strong> 114 → 190 is the next meaningful threshold. The
+      highest-value additions are more <code>unstated</code> questions, since those are both the
+      hardest to retrieve for and the ones where a confident wrong answer does real damage.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span>Rules Lawyer · retrieval architecture</span>
+  <span>index 50bfb512dc1ac982 · 114 scorable · MDE 13.1 pts</span>
+</footer>

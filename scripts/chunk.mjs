@@ -141,11 +141,23 @@ function splitOversized(text, maxTokens) {
  * entry, never merged. The same rule that makes a card atomic makes a keyword
  * atomic.
  */
-const DEF_LINE = /^\*\*([^*]{2,60})\*\*\s*(?:[-\u2013\u2014]|\s)\s*(.+)$/;
+/**
+ * A term may be introduced inside a blockquote callout (`> **Weak vs
+ * Vulnerable** - ...`), and a term carrying icon placeholders runs long
+ * ("Energy [Energy Red][Energy Green][Energy Blue][Energy Purple] (Max 6)" is
+ * 63 characters). Both are ordinary glossary entries. When the pattern missed
+ * them they were not merely mis-shaped - they were discarded outright, because
+ * the branch below keeps only what this matches.
+ */
+const DEF_LINE = /^>?\s*\*\*([^*]{2,120})\*\*\s*(?:[-\u2013\u2014]|\s)\s*(.+)$/;
+
+/** Below this, a leftover remainder is layout noise rather than prose. */
+const REMAINDER_MIN_TOKENS = 12;
 
 function asDefinitionList(rawSlice) {
   const lines = rawSlice.split("\n");
   const defs = [];
+  const claimed = new Set();
   let contentLines = 0;
 
   lines.forEach((line, i) => {
@@ -153,7 +165,10 @@ function asDefinitionList(rawSlice) {
     if (!t || t.startsWith("<!-- page:")) return;
     contentLines++;
     const m = DEF_LINE.exec(t);
-    if (m) defs.push({ term: m[1].trim(), body: t, lineIndex: i });
+    if (m) {
+      defs.push({ term: m[1].trim(), body: t, lineIndex: i });
+      claimed.add(i);
+    }
   });
 
   // Require both a real list and that the list IS the section, so prose
@@ -167,7 +182,14 @@ function asDefinitionList(rawSlice) {
     offset += l.length + 1;
     return at;
   });
-  return defs.map((d) => ({ ...d, offset: offsets[d.lineIndex] }));
+
+  return {
+    defs: defs.map((d) => ({ ...d, offset: offsets[d.lineIndex] })),
+    // Everything the pattern did not claim is still real text - intro prose,
+    // callouts, captions. Handing it back is what stops a definition list from
+    // silently swallowing the rest of its own section.
+    remainder: lines.filter((_, i) => !claimed.has(i)).join("\n"),
+  };
 }
 
 // ---------------------------------------------------------------- rulebook
@@ -190,14 +212,15 @@ function chunkRulebook() {
   // (a "## Combat" whose body is entirely subsections) contribute their title
   // to descendants' breadcrumbs and nothing else.
   const raw = [];
+  const droppedRemainders = [];
   for (const n of nodes) {
     const rawSlice = md.slice(n.ownStart, n.ownEnd);
     const body = clean(rawSlice);
     if (!body) continue;
 
-    const defs = asDefinitionList(rawSlice);
-    if (defs) {
-      for (const d of defs) {
+    const list = asDefinitionList(rawSlice);
+    if (list) {
+      for (const d of list.defs) {
         const abs = n.ownStart + d.offset;
         raw.push({
           title: d.term,
@@ -208,6 +231,22 @@ function chunkRulebook() {
           body: d.body,
           atomic: true,
         });
+      }
+
+      // Keep the section's unclaimed prose as its own chunk. Dropping it is how
+      // the Weak vs Vulnerable rule went missing from the index entirely.
+      const rest = clean(list.remainder);
+      if (estTokens(rest) >= REMAINDER_MIN_TOKENS) {
+        raw.push({
+          title: n.title,
+          path: n.path,
+          parentKey: n.path.slice(0, -1).join(" > "),
+          start: n.headingStart,
+          end: n.ownEnd,
+          body: rest,
+        });
+      } else if (rest) {
+        droppedRemainders.push(`${n.path.join(" > ")}: ${rest.replace(/\s+/g, " ").slice(0, 60)}`);
       }
       continue;
     }
@@ -286,7 +325,7 @@ function chunkRulebook() {
       });
     });
   }
-  return { chunks: out, docSha: sha(md), pageMarkers: pages.marks.length };
+  return { chunks: out, docSha: sha(md), pageMarkers: pages.marks.length, droppedRemainders };
 }
 
 // ------------------------------------------------------------------- cards
@@ -351,7 +390,7 @@ function chunkCards() {
 
 // -------------------------------------------------------------------- main
 
-const { chunks: rulebookChunks, docSha, pageMarkers } = chunkRulebook();
+const { chunks: rulebookChunks, docSha, pageMarkers, droppedRemainders } = chunkRulebook();
 const cardChunks = chunkCards();
 const all = [...rulebookChunks, ...cardChunks].map((c, i) => ({
   // Stable, content-derived id. Deliberately NOT a random uuid: golden-set
@@ -379,4 +418,5 @@ console.log(`  cards     ${cardChunks.length} chunks`);
 console.log(`  total     ${all.length} chunks, doc_sha ${docSha.slice(0, 16)}, ${pageMarkers} page markers`);
 if (dupes) console.warn(`  WARNING: ${dupes} duplicate chunk ids (identical content) - dedupe upstream.`);
 if (noPage) console.warn(`  WARNING: ${noPage} rulebook chunks have no page number; their citations cannot resolve.`);
+for (const d of droppedRemainders) console.warn(`  dropped (below ${REMAINDER_MIN_TOKENS} tokens): ${d}`);
 console.log("\nNext: npm run embed");

@@ -1,12 +1,12 @@
 {
   "model": "voyage-4",
   "dims": 1024,
-  "count": 468,
+  "count": 472,
   "byDocType": {
-    "rulebook": 86,
+    "rulebook": 90,
     "cards": 382
   },
   "docSha": "50bfb512dc1ac982a483ea1d2e61bb5ba856d96f73636b47e4372d0fe5d587a9",
-  "embeddedAt": "2026-08-29T18:00:22.349Z",
-  "bytes": 1916928
+  "embeddedAt": "2026-08-31T23:11:17.956Z",
+  "bytes": 1933312
 }
