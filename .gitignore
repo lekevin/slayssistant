@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env.local
+*.tsbuildinfo
+next-env.d.ts
+
+# The source PDF is not ours to redistribute. data/parsed/rulebook.md is the
+# committed artifact; regenerate it with `npm run parse` from your own copy.
+data/source/
+
+# Rebuild accelerators, not artifacts. embeddings.bin is the shipped index;
+# these two just make re-chunking and re-running the eval cheap locally.
+data/index/.embed-cache.json
+data/index/.query-cache.json

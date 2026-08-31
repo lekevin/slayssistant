@@ -1,0 +1,30 @@
+{
+  "name": "rules-lawyer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Board game rules assistant \u2014 retrieval over a game's own rulebook and card data, with page-accurate citations and a web-search fallback.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "parse": "node --env-file=.env.local scripts/parse.mjs",
+    "chunk": "node scripts/chunk.mjs",
+    "embed": "node --env-file=.env.local scripts/embed.mjs",
+    "ingest": "npm run parse && npm run chunk && npm run embed",
+    "eval": "node --env-file=.env.local --import tsx eval/run.ts",
+    "test": "tsx eval/test-retrieval.ts && tsx eval/test-score.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.122.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "tsx": "^4.23.12",
+    "typescript": "^5.7.0"
+  }
+}
