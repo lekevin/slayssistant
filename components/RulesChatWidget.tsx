@@ -28,6 +28,33 @@ export interface Citation {
   label: string;
 }
 
+/**
+ * One chip per source, not one per citation.
+ *
+ * The model routinely quotes the same section two or three times in an answer,
+ * and each `citations_delta` arrives as its own event — so an answer that
+ * leaned on "Remove, Upgrade, Transform" twice rendered the identical chip
+ * twice. On the one feature this project justifies itself with, that reads as
+ * a bug even though the underlying citations are all real.
+ *
+ * The quoted spans are kept rather than discarded: they differ even when the
+ * label does not, and they are the part the API is actually authoritative
+ * about. They collect into the chip's tooltip so nothing is lost.
+ */
+export function dedupeCitations(cs: Citation[]): Array<Citation & { quotes: string[] }> {
+  const byLabel = new Map<string, Citation & { quotes: string[] }>();
+  for (const c of cs) {
+    const key = `${c.source}|${c.url ?? ""}|${c.label}`;
+    const seen = byLabel.get(key);
+    if (seen) {
+      if (c.citedText && !seen.quotes.includes(c.citedText)) seen.quotes.push(c.citedText);
+    } else {
+      byLabel.set(key, { ...c, quotes: c.citedText ? [c.citedText] : [] });
+    }
+  }
+  return [...byLabel.values()];
+}
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -365,10 +392,10 @@ export default function RulesChatWidget({
 
                 {!!m.citations?.length && (
                   <div style={{ display: "flex", flexWrap: "wrap", gap: ".35rem", marginTop: ".6rem" }}>
-                    {m.citations.map((c, k) => (
+                    {dedupeCitations(m.citations).map((c, k) => (
                       <span
                         key={k}
-                        title={c.citedText}
+                        title={c.quotes.join("\n\n---\n\n")}
                         style={{
                           fontFamily: mono,
                           fontSize: ".68rem",
