@@ -65,6 +65,18 @@ export interface SearchOptions {
    * questions, where absence can only be honestly asserted over a complete unit.
    */
   sectionComplete?: boolean;
+  /**
+   * Guarantee at least this many rulebook chunks in the final selection.
+   *
+   * The corpus is 382 card entries against 90 rulebook sections, so a query
+   * with card-flavored vocabulary ("Curse", "potion", "Exhaust", "Orb") sweeps
+   * the top-k with cards that merely mention the term, and the section that
+   * actually governs it never arrives. Relevance ranking is doing its job
+   * there; what it cannot express is that the rulebook is the authority and
+   * the compendium is not. That is a property of the corpus, not the query,
+   * so it belongs here rather than in the scorer.
+   */
+  rulebookFloor?: number;
 }
 
 /** Everything the pipeline did, surfaced for the trace panel and the eval. */

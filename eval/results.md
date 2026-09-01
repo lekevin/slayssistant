@@ -7,7 +7,7 @@ Golden set: **187 scorable questions** on *Slay the Spire: The Board Game* (192 
 | 0 · stuffed prompt | 100.0% *(by construction)* | — | — | — | — | — |
 | 0.5 · keyword + IDF | 85.0% | 79–89% | 0.560 | — | — | — |
 | 1 · dense only | 89.3% | 84–93% | 0.664 | +23 / −15 | 0.256 | 0.512 |
-| 2 · + BM25 & RRF | 90.4% | 85–94% | 0.724 | +8 / −6 | 0.791 | 0.791 |
+| 2 · + BM25 & RRF | 90.4% | 85–94% | 0.726 | +8 / −6 | 0.791 | 0.791 |
 | 3 · + rerank | 96.3% | 92–98% | 0.836 | +15 / −4 | 0.019 | 0.058 |
 
 **n = 187. Differences below roughly 10 points are not resolvable at this sample size** (paired binary outcome, α = .05, 80% power). Reaching a 10-point resolution needs about 190 questions; 5 points needs about 470. Treat every row here as directional until the set grows.

@@ -188,14 +188,48 @@ export class FileRetriever implements Retriever {
 
     let selected = fused.slice(0, k);
 
+    // --- rulebook floor ---------------------------------------------------
+    // Cards outnumber rulebook sections 382 to 90, so a card-flavored query
+    // ("can I upgrade a Curse?") fills the top-k with cards that mention the
+    // word and never surfaces the rule. Promote the best-ranked rulebook
+    // chunks from below the cutoff, displacing the weakest cards, until the
+    // floor is met. Order within the selection is preserved so the trace still
+    // reads as a ranking.
+    const floor = opts.rulebookFloor ?? 0;
+    if (floor > 0 && selected.length) {
+      const isRule = (id: string) => this.byId.get(id)?.docType !== "cards";
+      const have = selected.filter((f) => isRule(f.id)).length;
+      const need = Math.min(floor, k) - have;
+      if (need > 0) {
+        const inSelection = new Set(selected.map((f) => f.id));
+        const promotable = fused
+          .filter((f) => !inSelection.has(f.id) && isRule(f.id))
+          .slice(0, need);
+        if (promotable.length) {
+          // Drop the lowest-ranked cards to make room, keeping every rulebook
+          // chunk that was already there.
+          const cards = selected.filter((f) => !isRule(f.id));
+          const dropping = new Set(cards.slice(-promotable.length).map((f) => f.id));
+          selected = [...selected.filter((f) => !dropping.has(f.id)), ...promotable];
+        }
+      }
+    }
+
     // --- section-complete expansion --------------------------------------
     // For prohibition-shaped questions ("can I...", "am I allowed..."), a
     // fragment cannot support an honest "no": the qualifying sentence may be the
     // one that was chunked away. Absence is only assertable over a complete
     // unit, so widen to every sibling sharing the top hit's section.
+    //
+    // The seed is the top RULEBOOK hit, not the top hit overall. Seeding from
+    // `selected[0]` silently defeated the whole mechanism whenever a card won
+    // the top slot: the sibling filter excludes cards, so a card seed matched
+    // no siblings and expansion added nothing — on exactly the prohibition
+    // questions this exists to serve.
     let expandedFrom: string[] | undefined;
-    if (opts.sectionComplete && selected.length) {
-      const seedPath = this.byId.get(selected[0].id)?.sectionPath ?? [];
+    const seed = selected.find((f) => this.byId.get(f.id)?.docType !== "cards") ?? selected[0];
+    if (opts.sectionComplete && selected.length && seed) {
+      const seedPath = this.byId.get(seed.id)?.sectionPath ?? [];
       const prefix = seedPath.slice(0, Math.max(1, seedPath.length - 1)).join(" > ");
       const siblings = this.chunks.filter(
         (c) =>

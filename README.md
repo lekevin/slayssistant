@@ -179,6 +179,25 @@ only `/api/chat` to exist on the same origin.
 - Effort is `low` for lookups and `medium` for legality questions. The API default is `high`, which
   measures around 44s to first token on Opus 5 versus roughly 4s at `low` — worth knowing before treating
   the default as free.
+- **The compendium crowds the rulebook, and the fix is only half-measured.** The corpus is 382 card
+  chunks against 90 rulebook sections, so a card-flavored query ("can I upgrade a Curse?") fills the
+  top-k with cards that mention the word and never surfaces the section that governs it. Measured on the
+  production path: questions the pipeline misses averaged **48.8%** card chunks in their top-k against
+  **35.7%** on questions it hits. Worse, it silently disabled the prohibition safeguard — section-complete
+  expansion seeded from the top hit overall and filters cards out of the sibling scan, so whenever a card
+  won the top slot the expansion added *nothing*, on exactly the questions it exists to serve.
+  `rulebookFloor` (`lib/retrieval/types.ts`) now guarantees 4 rulebook chunks for prohibition questions
+  and 2 otherwise, and the expansion seeds from the top *rulebook* hit. That fixed the no-op — three
+  probed prohibition questions went from +0 to +4 expanded chunks — and cut crowding on misses to 37.7%.
+  **It did not change span recall: 15 misses before, 15 after.** Getting rules into the window is not the
+  same as getting the right rule, and whether the extra context improves answers is an answer-level
+  question this repo has not paid to measure. Kept because the no-op was a genuine defect and recall did
+  not regress, not because it is proven to help.
+- **The ablation does not measure the production path.** `eval/run.ts` drives each arm with explicit
+  options (`{ k, arms }`) to isolate what dense, BM25 and reranking are individually worth. Production
+  additionally sets `sectionComplete` and `rulebookFloor`, and no row in `eval/results.md` includes them.
+  A change to either is invisible to `npm run eval` — that is why the numbers above come from a separate
+  production-path sweep. A sixth "as shipped" arm would close this.
 - Serving verbatim rulebook text publicly is a reproduction of copyrighted material. Answers quote short
   spans with attribution back to the publisher, which is a defensible posture; seeding from a scraped
   rulebook archive would not be.

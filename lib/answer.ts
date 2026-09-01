@@ -62,6 +62,15 @@ export function retrievalOptions(shape: QuestionShape) {
     k: shape === "prohibition" ? 10 : 8,
     perArmK: 40,
     sectionComplete: shape === "prohibition",
+    /**
+     * The compendium is 382 chunks against the rulebook's 90, so relevance
+     * ranking alone hands card-flavored questions a top-k made entirely of
+     * cards that mention the word without governing it. The system prompt
+     * ranks the rulebook above the compendium; this makes retrieval agree.
+     * Prohibition questions get a higher floor because they are the ones that
+     * must be answerable from the rules or not at all.
+     */
+    rulebookFloor: shape === "prohibition" ? 4 : 2,
   };
 }
 
