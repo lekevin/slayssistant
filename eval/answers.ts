@@ -27,6 +27,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { getRetriever } from "../lib/retrieval/file-retriever";
 import { assembleDocuments } from "../lib/citations";
@@ -54,6 +55,8 @@ const argOf = (flag: string, dflt: string) => {
 const LIMIT = Number(argOf("--limit", "0"));
 const CONCURRENCY = Number(argOf("--concurrency", "4"));
 const STRATA = argOf("--strata", "permitted,forbidden,unstated").split(",");
+/** Ignore the checkpoint and re-ask every question. */
+const FRESH = argv.includes("--fresh");
 
 /**
  * The judge decides only what stance a player would walk away with — never
@@ -212,19 +215,117 @@ export function falsePermissions<T extends { stance: Stance; gold: GoldRow }>(ro
   return { eligible: eligible.length, bad: bad.length, rows: bad };
 }
 
-async function pool<T, R>(items: T[], n: number, fn: (t: T, i: number) => Promise<R>): Promise<R[]> {
-  const out = new Array<R>(items.length);
+/**
+ * The counterweight to that headline: every `permitted` question the system
+ * failed to settle.
+ *
+ * Deriving these from `stanceMatches` rather than from `stance === "UNSTATED"`
+ * is the whole point of the function existing. The permitted stratum is scored
+ * on settled-vs-unsettled, so a miss is any answer that declined to commit —
+ * and that is two stances, not one. UNSTATED is the polite decline; UNCLEAR is
+ * a hard refusal or an answer that took no position, which is the same failure
+ * wearing a worse face. Filtering on UNSTATED alone drops those on the floor
+ * while the sentence printed beside the number still claims to account for the
+ * entire gap between `ok` and `n` — so the report would silently under-count
+ * exactly the behaviour that buying a clean false-permission rate looks like.
+ */
+export function refusalCounterweight<T extends { stance: Stance; gold: GoldRow }>(rows: T[]) {
+  const eligible = rows.filter((r) => r.gold.answerClass === "permitted");
+  const missed = eligible.filter((r) => !stanceMatches(r.stance, "permitted"));
+  return {
+    eligible: eligible.length,
+    ok: eligible.length - missed.length,
+    /** Declined to commit — "the rulebook doesn't settle this" on a question it does. */
+    declined: missed.filter((r) => r.stance === "UNSTATED"),
+    /** Refused outright or took no position. Same miss, louder. */
+    ungradeable: missed.filter((r) => r.stance === "UNCLEAR"),
+    rows: missed,
+  };
+}
+
+/**
+ * Run `fn` over `items` with `n` workers, isolating failures.
+ *
+ * This deliberately does NOT let one rejection abort the run. A previous
+ * version used a bare `Promise.all`, and a single transient `overloaded_error`
+ * on question 189 of 192 discarded all 188 completed answers and wrote no
+ * report — about forty minutes of paid model calls thrown away by one 529 that
+ * had nothing to do with the system under test. An infrastructure failure on
+ * one question is not a result for that question, but it is also not a reason
+ * to destroy the other 191.
+ */
+async function pool<T, R>(
+  items: T[],
+  n: number,
+  fn: (t: T, i: number) => Promise<R>
+): Promise<Array<R | null>> {
+  const out = new Array<R | null>(items.length).fill(null);
   let next = 0;
   await Promise.all(
     Array.from({ length: Math.min(n, items.length) }, async () => {
       for (;;) {
         const i = next++;
         if (i >= items.length) return;
-        out[i] = await fn(items[i], i);
+        try {
+          out[i] = await fn(items[i], i);
+        } catch (err) {
+          const msg = err instanceof Error ? err.message : String(err);
+          console.log(`  !! ${(items[i] as { id?: string }).id ?? i} failed: ${msg.slice(0, 120)}`);
+          out[i] = null;
+        }
       }
     })
   );
   return out;
+}
+
+/**
+ * Per-question checkpoint.
+ *
+ * The answering path costs real money per question, so a run that dies partway
+ * must not start from zero. Each completed row is appended here as it lands and
+ * replayed on the next run.
+ *
+ * The key is what makes this safe: it covers the model, the judge, the index
+ * the answer was retrieved from, the exact system prompt, and the retrieval
+ * options. Change any of those and the cached answer no longer describes the
+ * system under test, so it misses and gets re-asked. Editing a question's text
+ * invalidates only that question.
+ */
+const CACHE = path.join(ROOT, "eval/.answers-cache.jsonl");
+
+function cacheKey(g: GoldRow, indexSha: string): string {
+  const shape = classifyShape(g.question);
+  return createHash("sha256")
+    .update(
+      JSON.stringify({
+        q: g.question,
+        cls: g.answerClass,
+        model: ANSWER_MODEL,
+        judge: JUDGE_MODEL,
+        index: indexSha,
+        system: systemPrompt(shape, false),
+        retrieval: retrievalOptions(shape),
+      })
+    )
+    .digest("hex")
+    .slice(0, 16);
+}
+
+function loadCache(): Map<string, Row> {
+  const m = new Map<string, Row>();
+  if (!fs.existsSync(CACHE)) return m;
+  for (const line of fs.readFileSync(CACHE, "utf-8").split("\n")) {
+    if (!line.trim()) continue;
+    try {
+      const { key, row } = JSON.parse(line) as { key: string; row: Row };
+      m.set(key, row);
+    } catch {
+      // A half-written final line from a hard kill. Skip it; the question
+      // just gets re-asked.
+    }
+  }
+  return m;
 }
 
 async function main() {
@@ -242,26 +343,67 @@ async function main() {
   let selected = gold.filter((g) => STRATA.includes(g.answerClass));
   if (LIMIT > 0) selected = selected.slice(0, LIMIT);
 
-  console.log(
-    `${selected.length} questions · model ${ANSWER_MODEL} · judge ${JUDGE_MODEL} · concurrency ${CONCURRENCY}\n`
-  );
+  const indexSha =
+    ((getRetriever().info as { docSha: string | null }).docSha ?? "none").slice(0, 16);
 
-  const client = new Anthropic();
+  if (FRESH && fs.existsSync(CACHE)) fs.rmSync(CACHE);
+  const cache = loadCache();
+  const cached = selected.filter((g) => cache.has(cacheKey(g, indexSha)));
+  const todo = selected.filter((g) => !cache.has(cacheKey(g, indexSha)));
+
+  console.log(
+    `${selected.length} questions · model ${ANSWER_MODEL} · judge ${JUDGE_MODEL} · concurrency ${CONCURRENCY}`
+  );
+  if (cached.length) {
+    console.log(`${cached.length} replayed from checkpoint, ${todo.length} to ask\n`);
+  } else {
+    console.log("");
+  }
+
+  // maxRetries covers the transient 429/529 that killed an earlier run outright.
+  // The SDK's default of 2 was not enough to ride out a sustained overload.
+  const client = new Anthropic({ maxRetries: 6 });
   let done = 0;
   const t0 = Date.now();
 
-  const rows = await pool(selected, CONCURRENCY, async (g) => {
+  const fresh = await pool(todo, CONCURRENCY, async (g) => {
     const row = await answerOne(client, g);
     done++;
+
+    // Append before anything else can fail. This is the line that makes a
+    // crashed run cost one question instead of all of them.
+    fs.appendFileSync(
+      CACHE,
+      JSON.stringify({ key: cacheKey(g, indexSha), row }) + "\n"
+    );
+
     const flag =
       (g.answerClass === "forbidden" || g.answerClass === "unstated") && row.stance === "PERMITTED"
         ? "  <-- FALSE PERMISSION"
         : "";
     console.log(
-      `  ${String(done).padStart(3)}/${selected.length}  ${g.id}  ${g.answerClass.padEnd(9)} -> ${row.stance.padEnd(9)}${flag}`
+      `  ${String(done).padStart(3)}/${todo.length}  ${g.id}  ${g.answerClass.padEnd(9)} -> ${row.stance.padEnd(9)}${flag}`
     );
     return row;
   });
+
+  const byId = new Map<string, Row>();
+  for (const g of cached) byId.set(g.id, cache.get(cacheKey(g, indexSha))!);
+  for (const r of fresh) if (r) byId.set(r.gold.id, r);
+
+  const failed = selected.filter((g) => !byId.has(g.id));
+  const rows = selected.map((g) => byId.get(g.id)).filter((r): r is Row => !!r);
+
+  if (failed.length) {
+    console.log(
+      `\n${failed.length} question(s) failed and are EXCLUDED from the report: ${failed.map((g) => g.id).join(", ")}`
+    );
+    console.log("Re-run to retry just those — completed answers replay from the checkpoint.");
+  }
+  if (!rows.length) {
+    console.error("\nNo answers survived. Not overwriting the existing report.");
+    process.exit(1);
+  }
 
   const fp = falsePermissions(rows);
   const [fpLo, fpHi] = wilson(fp.bad, fp.eligible);
@@ -273,10 +415,7 @@ async function main() {
     return { n: sub.length, ok, pct: sub.length ? ok / sub.length : 0 };
   };
 
-  const permitted = byClass("permitted");
-  const overRefused = rows.filter(
-    (r) => r.gold.answerClass === "permitted" && r.stance === "UNSTATED"
-  );
+  const refused = refusalCounterweight(rows);
 
   // ---------------------------------------------------------------- report
   const L: string[] = [];
@@ -316,9 +455,29 @@ async function main() {
   L.push(
     `A system that answered "the rules don't say" to everything would post a 0% false-permission ` +
       `rate and be worthless. The guard against buying a clean headline with refusals is the ` +
-      `permitted stratum: **${permitted.ok}/${permitted.n}** correctly answered as allowed, with ` +
-      `**${overRefused.length}** wrongly reported as unsettled. Read the two numbers together or neither means anything.`
+      `permitted stratum: **${refused.ok}/${refused.eligible}** correctly treated as settled by the ` +
+      `rules, with **${refused.rows.length}** left unsettled — ${refused.declined.length} that ` +
+      `declined to commit, ${refused.ungradeable.length} that refused outright or took no position. ` +
+      `Read the two numbers together or neither means anything.`
   );
+  L.push("");
+  L.push(
+    `The stratum is scored on settled-vs-unsettled rather than on yes-vs-no, because a question ` +
+      `the rulebook plainly answers "no" to (\"Is there a maximum hand size?\") is still a question ` +
+      `it settles. So the misses below are exactly the answers that committed to nothing.`
+  );
+
+  // Both flagged sets get quoted the same way. A bare count of either is not
+  // triageable: the question is always whether the model failed or the label
+  // did, and that is only answerable by reading the answer next to the span.
+  const quote = (r: Row) => {
+    L.push(`**${r.gold.id}** (${r.gold.answerClass}) — ${r.gold.question}`);
+    L.push("");
+    L.push(`> ${r.answer.replace(/\n+/g, " ").slice(0, 400) || "_(no answer text — refused)_"}`);
+    L.push("");
+    if (r.gold.span) L.push(`Governing text: \`${r.gold.span.slice(0, 160)}\``);
+    L.push("");
+  };
 
   if (fp.rows.length) {
     L.push("");
@@ -331,14 +490,22 @@ async function main() {
         "rather than model failures. The rate is an upper bound until these are triaged."
     );
     L.push("");
-    for (const r of fp.rows) {
-      L.push(`**${r.gold.id}** (${r.gold.answerClass}) — ${r.gold.question}`);
-      L.push("");
-      L.push(`> ${r.answer.replace(/\n+/g, " ").slice(0, 400)}`);
-      L.push("");
-      if (r.gold.span) L.push(`Governing text: \`${r.gold.span.slice(0, 160)}\``);
-      L.push("");
-    }
+    for (const r of fp.rows) quote(r);
+  }
+
+  if (refused.rows.length) {
+    L.push("");
+    L.push("## Every over-refusal, verbatim");
+    L.push("");
+    L.push(
+      "The same courtesy the false permissions get, for the same reason: these are the rows that " +
+        "keep the headline honest, so they have to be as readable as the rows that threaten it. " +
+        "Some of these are the authority ladder working as designed — the system declining to " +
+        "state a card's text flatly because it comes from the fan-transcribed compendium, which " +
+        "the prompt ranks below the rulebook — and those are a deliberate trade, not a defect."
+    );
+    L.push("");
+    for (const r of refused.rows) quote(r);
   }
 
   const unclear = rows.filter((r) => r.stance === "UNCLEAR");
@@ -356,7 +523,14 @@ async function main() {
   L.push("");
   L.push("## Run");
   L.push("");
-  L.push(`- ${rows.length} questions in ${Math.floor(secs / 60)}m ${secs % 60}s at concurrency ${CONCURRENCY}`);
+  L.push(
+    `- ${rows.length} questions` +
+      (cached.length ? ` (${fresh.filter(Boolean).length} asked this run, ${cached.length} replayed from checkpoint)` : "") +
+      ` in ${Math.floor(secs / 60)}m ${secs % 60}s at concurrency ${CONCURRENCY}`
+  );
+  if (failed.length) {
+    L.push(`- **${failed.length} question(s) failed and are excluded**: ${failed.map((g) => g.id).join(", ")}`);
+  }
   L.push(`- web search attached on ${searched} (${((searched / rows.length) * 100).toFixed(0)}%)`);
   L.push(
     `- answer tokens: ${usage.input.toLocaleString()} in / ${usage.output.toLocaleString()} out · ` +
@@ -368,7 +542,10 @@ async function main() {
   fs.writeFileSync(OUT, L.join("\n") + "\n");
 
   console.log(`\nfalse-permission rate  ${(rate * 100).toFixed(1)}%  (${fp.bad}/${fp.eligible})`);
-  console.log(`permitted stratum      ${permitted.ok}/${permitted.n} correct, ${overRefused.length} over-refused`);
+  console.log(
+    `permitted stratum      ${refused.ok}/${refused.eligible} settled, ` +
+      `${refused.rows.length} over-refused (${refused.declined.length} declined, ${refused.ungradeable.length} ungradeable)`
+  );
   console.log(`\nWrote ${path.relative(ROOT, OUT)}`);
 }
 

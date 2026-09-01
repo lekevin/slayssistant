@@ -1,5 +1,17 @@
 # Answer-level evaluation
 
+> **⚠️ STALE — measured against a 119-question golden set. The set is now 192.**
+>
+> The numbers below are a valid measurement of the answering path, but of an older
+> question set: they predate 73 added questions (40 `unstated`, 26 `forbidden`,
+> 7 `permitted`) and three label fixes (`g017`, `g050`, `g094` — see their `notes`
+> in `golden.jsonl`). The false-permission denominator here is 71; on the current
+> set it would be 136.
+>
+> Regenerate with `npm run eval:answers`. It costs real money — roughly $14 at
+> current sizes — so it is deliberately not run on every change. `eval/results.md`
+> (retrieval) *is* current, and is free to regenerate.
+
 Ran the production answering path — same system prompt, retrieval options, effort and web-search gating as `app/api/chat/route.ts`, all imported from `lib/answer.ts` — over **119 questions**. A separate judge classifies only the STANCE of each answer (permitted / forbidden / factual / unstated / unclear) and is never shown the expected label.
 
 ## False-permission rate

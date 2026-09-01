@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # Everything here is keyless and offline: the unit tests run against
+  # eval/fixtures/mini-rulebook.md, and the build's two API routes are dynamic,
+  # so nothing reaches for ANTHROPIC_API_KEY at build time. That is what makes
+  # this job safe to require on every PR.
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  # The retrieval ablation needs VOYAGE_API_KEY to embed the 119 golden
+  # questions, so it cannot be a required check on a fork's PR. It runs when the
+  # secret is available and is skipped cleanly when it is not.
+  #
+  # It is worth running at all because it is the only check that exercises the
+  # real index: `npm test` proves the chunker's arithmetic, while this proves the
+  # shipped embeddings.bin still answers the questions it used to. g090 exists
+  # specifically to catch the definition-list regression from f398da1.
+  #
+  # `npm run eval:answers` is deliberately NOT here. It calls Opus twice per
+  # question and costs real money — that one stays manual.
+  eval:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - id: secret
+        run: echo "present=${{ secrets.VOYAGE_API_KEY != '' }}" >> "$GITHUB_OUTPUT"
+      - if: steps.secret.outputs.present == 'false'
+        run: echo "::notice::VOYAGE_API_KEY not set — skipping the retrieval ablation."
+      - if: steps.secret.outputs.present == 'true'
+        env:
+          VOYAGE_API_KEY: ${{ secrets.VOYAGE_API_KEY }}
+        # The npm script wraps this in `--env-file=.env.local`, which does not
+        # exist in CI; call the runner directly and let the job env carry the key.
+        run: npx tsx eval/run.ts
+      - if: steps.secret.outputs.present == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: eval/results.md

@@ -6,6 +6,11 @@ often than a rules bot usually admits.
 
 Built on *Slay the Spire: The Board Game*: the official rulebook plus a 382-entry card compendium.
 
+**[How the thing actually works](https://claude.ai/code/artifact/810afed8-4dd8-49f4-b4d7-3e3d459aba31)** —
+the illustrated architecture write-up, with the retrieval ladder drawn out and the ablation charted at both
+sample sizes. Its source is `architecture.html` in this repo; edit that file and redeploy to the same URL
+rather than publishing a second copy.
+
 ---
 
 ## Why there is no vector database
@@ -152,6 +157,12 @@ npm run eval:answers  # false-permission rate -> eval/answers.md   (runs the rea
 money and takes minutes — `--limit N`, `--strata forbidden,unstated` and `--concurrency N` all
 narrow it. `npm run eval` is the cheap one and is safe to run on every change.
 
+CI (`.github/workflows/ci.yml`) runs `typecheck`, `test` and `build` on every push — all keyless, since the
+unit tests use `eval/fixtures/mini-rulebook.md` and both API routes are dynamic. The retrieval ablation runs
+as a second job when `VOYAGE_API_KEY` is present and skips cleanly when it is not; it is the only check that
+exercises the shipped `embeddings.bin` rather than a fixture. `eval:answers` stays manual because it spends
+money.
+
 ## Embedding it elsewhere
 
 `components/RulesChatWidget.tsx` is self-contained — no CSS framework, no state library. Copy it, plus
@@ -194,22 +205,32 @@ panel is what made it visible.
 **The question set decided the conclusion.** The first golden set was seeded largely from the rulebook's
 own FAQ, whose distinctive vocabulary is exactly what keyword search is good at. On it, four of five arms
 scored 95–100% and the keyword baseline looked competitive with the full pipeline. Rewriting the set
-harder — 114 questions phrased the way players actually ask, weighted toward `forbidden` and `unstated`
-traps — separated them:
+harder — questions phrased the way players actually ask, weighted toward `forbidden` and `unstated`
+traps — separated them, and growing it to 187 scorable questions finally resolved the top of the ladder:
 
-| arm | recall@8 | MRR |
-|---|---|---|
-| 0 · stuffed prompt | 100.0% | — |
-| 0.5 · keyword + IDF | 87.7% | 0.606 |
-| 1 · dense only | 92.1% | 0.675 |
-| 2 · + BM25 & RRF | 93.9% | 0.728 |
-| 3 · + rerank | **98.2%** | **0.865** |
+| arm | recall@8 | MRR | win/loss | Holm p |
+|---|---|---|---|---|
+| 0 · stuffed prompt | 100.0% | — | — | — |
+| 0.5 · keyword + IDF | 85.0% | 0.560 | — | — |
+| 1 · dense only | 89.3% | 0.664 | +23 / −15 | 0.512 |
+| 2 · + BM25 & RRF | 90.4% | 0.724 | +8 / −6 | 0.791 |
+| 3 · + rerank | **96.3%** | **0.836** | +15 / −4 | **0.058** |
 
-The full stack leads the naive baseline by 10.5 points rather than the 0.3 it appeared to lead by. Nothing
-in the pipeline changed between those two tables — only the measurement got honest. It is still not
-*resolved*: at n=114 the minimum detectable effect is 13.1 points and the best Holm-adjusted p is 0.539,
-so the right summary remains *directional, not established*. Reaching 10-point resolution needs about 190
-questions.
+The full stack leads the naive baseline by 11.3 points rather than the 0.3 it appeared to lead by. Nothing
+in the pipeline changed between any of these tables — only the measurement got honest, and then got bigger.
+
+**Sample size was the whole story.** At n=114 the minimum detectable effect was 13.1 points and the best
+Holm-adjusted p was 0.539, so the honest summary was *directional, not established*. At n=187 the MDE is
+10.2 points and the rerank step wins 15 and loses 4 against hybrid retrieval — McNemar p = **0.019**,
+Holm-adjusted **0.058**. That is a real result: reranking is doing something, and it is the only arm in the
+ladder that clears its own noise floor. The Holm adjustment leaves it a hair outside the conventional
+threshold, which is the correct amount of hedging for four comparisons on one dataset, not a reason to
+round it down to nothing. The two middle rungs — dense over keyword, and BM25 fusion over dense — remain
+unresolved, and 5-point resolution would need about 470 questions.
+
+Note the recall numbers *fell* when the set grew (rerank 98.2% → 96.3%). Nothing regressed; the new
+questions are harder, weighted 40 `unstated` and 26 `forbidden`. A recall number is a property of the
+question set as much as the pipeline, which is the same lesson the FAQ-seeded set taught the first time.
 
 **The eval caught a bug that retrieval scores alone could not.** One question missed on every arm —
 including the stuffed-prompt baseline, which receives the entire corpus by construction. That signature
@@ -256,3 +277,10 @@ system prompt ranks below the rulebook.
 The one structural gap left is sample size, unchanged from the retrieval table: 71 questions puts the
 false-permission confidence interval at 2–14%, wide enough that a real regression would need to be large
 before the number moved convincingly.
+
+## License
+
+MIT, for the code and the evaluation harness — see `LICENSE`. It does not extend to the game content the
+pipeline reads: the rulebook transcription and the card compendium are the publisher's, included to
+demonstrate and measure the retrieval pipeline and not licensed onward. Point a fork at a rulebook you have
+the right to use; nothing here is specific to this game.

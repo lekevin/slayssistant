@@ -10,7 +10,7 @@
  * Run: npx tsx eval/test-answers.ts
  */
 import assert from "node:assert/strict";
-import { stanceMatches, isSettled, falsePermissions } from "./answers";
+import { stanceMatches, isSettled, falsePermissions, refusalCounterweight } from "./answers";
 import type { GoldRow } from "./score";
 
 let passed = 0;
@@ -124,6 +124,58 @@ test("the offending rows come back for the report to quote", () => {
     { stance: "FORBIDDEN", gold: row("good", "forbidden") },
   ]);
   assert.deepEqual(fp.rows.map((r) => r.gold.id), ["bad"]);
+});
+
+console.log("\nrefusal counterweight");
+
+test("a hard refusal on a permitted question is an over-refusal, not a rounding error", () => {
+  // The bug this pins: filtering the counterweight on `stance === "UNSTATED"`
+  // counted the polite decline and dropped the outright refusal, while the
+  // sentence printed beside the number still claimed to explain the whole gap
+  // between correct and n. The two stances are the same miss.
+  const cw = refusalCounterweight([
+    { stance: "UNSTATED", gold: row("declined", "permitted") },
+    { stance: "UNCLEAR", gold: row("refused", "permitted") },
+    { stance: "PERMITTED", gold: row("fine", "permitted") },
+  ]);
+  assert.equal(cw.eligible, 3);
+  assert.equal(cw.ok, 1);
+  assert.equal(cw.rows.length, 2);
+  assert.deepEqual(cw.declined.map((r) => r.gold.id), ["declined"]);
+  assert.deepEqual(cw.ungradeable.map((r) => r.gold.id), ["refused"]);
+});
+
+test("the counterweight accounts for every permitted miss", () => {
+  // The report prints `ok`/`eligible` and then claims the listed rows are the
+  // difference. If any miss can escape both buckets that sentence is a lie, so
+  // assert the identity directly across all five stances.
+  const rows = (["PERMITTED", "FORBIDDEN", "FACTUAL", "UNSTATED", "UNCLEAR"] as const).map((s) => ({
+    stance: s,
+    gold: row(s.toLowerCase(), "permitted" as const),
+  }));
+  const cw = refusalCounterweight(rows);
+  assert.equal(cw.ok + cw.rows.length, cw.eligible);
+  assert.equal(cw.declined.length + cw.ungradeable.length, cw.rows.length);
+});
+
+test("other strata never enter the counterweight", () => {
+  // An `unstated` question answered UNSTATED is the system working. Counting
+  // it as a refusal would make the counterweight grow every time the headline
+  // improved, which is backwards.
+  const cw = refusalCounterweight([
+    { stance: "UNSTATED", gold: row("a", "unstated") },
+    { stance: "UNCLEAR", gold: row("b", "forbidden") },
+  ]);
+  assert.equal(cw.eligible, 0);
+  assert.equal(cw.rows.length, 0);
+});
+
+test("a negatively-phrased permitted question is not an over-refusal", () => {
+  // FORBIDDEN on a permitted-stratum question means the book settled it with a
+  // "no". That is a correct answer and must stay out of the refusal count.
+  const cw = refusalCounterweight([{ stance: "FORBIDDEN", gold: row("a", "permitted") }]);
+  assert.equal(cw.ok, 1);
+  assert.equal(cw.rows.length, 0);
 });
 
 console.log(`\n${passed} passed, ${failed} failed\n`);
