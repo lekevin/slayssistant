@@ -1,4 +1,4 @@
-# Rules Lawyer
+# Slayssistant
 
 A board game rules assistant. Ask whether you can actually do that, and get an answer grounded in the
 game's own rulebook with the page attached — or an honest "the rules don't say," which is the answer more
