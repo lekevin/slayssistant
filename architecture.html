@@ -365,7 +365,7 @@
     <div class="stat"><span class="n">23K</span><span class="k">corpus tokens</span></div>
     <div class="stat"><span class="n">472</span><span class="k">chunks indexed</span></div>
     <div class="stat"><span class="n">1.84<span style="font-size:0.6em"> MB</span></span><span class="k">vector file</span></div>
-    <div class="stat"><span class="n">114</span><span class="k">graded questions</span></div>
+    <div class="stat"><span class="n">187</span><span class="k">graded questions</span></div>
     <div class="stat"><span class="n">5.6<span style="font-size:0.6em">%</span></span><span class="k">false permissions</span></div>
   </div>
 </header>
@@ -759,8 +759,8 @@
       </p>
       <p>
         That cost is why it runs last, over roughly 20 surviving candidates rather than all 472. Its
-        effect shows up most in <strong>ordering</strong> — in the results below it barely moves
-        recall but lifts MRR from 0.728 to 0.865, meaning the right passage moves toward the top of
+        effect shows up most in <strong>ordering</strong> — in the results below it adds 5.9 points of
+        recall but lifts MRR from 0.726 to 0.836, meaning the right passage moves toward the top of
         the list rather than merely being somewhere in it.
       </p>
       <p class="cost">cost · one API call, ~16s across the full eval — the slowest stage by far</p>
@@ -899,7 +899,7 @@
       <h3>Wilson confidence interval</h3>
       <span class="role">how firm is this number?</span>
       <p>
-        87.7% on 114 questions isn't 87.7% — it's "somewhere in 80–93%, probably." The interval says
+        85.0% on 187 questions isn't 85.0% — it's "somewhere in 79–89%, probably." The interval says
         how much the number would wobble if you drew a different sample of questions. Publish the
         interval or the number means nothing.
       </p>
@@ -927,8 +927,8 @@
       <h3>Minimum detectable effect</h3>
       <span class="role">what could this set even prove?</span>
       <p>
-        The most useful number here, and the reason you're expanding the question set. At n=114 the
-        MDE is <strong>13.1 points</strong>: any gap smaller than that is indistinguishable from luck,
+        The most useful number here, and the reason you're expanding the question set. At n=187 the
+        MDE is <strong>10.2 points</strong>: any gap smaller than that is indistinguishable from luck,
         no matter what the table says. It states the experiment's resolution up front instead of
         letting a reader over-read a small difference.
       </p>
@@ -1004,7 +1004,7 @@
   </div>
   <div class="col">
     <p>
-      The set grew from 34 to 114 graded questions in two passes, deliberately moving away from the
+      The set grew from 34 to 187 scorable questions in three passes, deliberately moving away from the
       rulebook's own FAQ wording toward how people actually ask. The effect on the table was
       dramatic — and it's the clearest possible argument for why sample size and question quality
       matter more than any tuning.
@@ -1014,9 +1014,9 @@
   <div class="wide chartwrap">
     <div class="legend">
       <span><i style="background:var(--s1)"></i> n=64 · FAQ-derived set</span>
-      <span><i style="background:var(--s2)"></i> n=114 · harder set</span>
+      <span><i style="background:var(--s2)"></i> n=187 · harder set</span>
     </div>
-    <svg viewBox="0 0 760 254" role="img" aria-label="Dumbbell chart of recall at 8 for five arms on both question sets. On the easier 64-question set the arms cluster between 95 and 100 percent. On the harder 114-question set they spread apart: keyword falls to 87.7, dense to 92.1, hybrid to 93.9, and rerank to 98.2, while the stuffed prompt holds at 100.">
+    <svg viewBox="0 0 760 254" role="img" aria-label="Dumbbell chart of recall at 8 for five arms on both question sets. On the easier 64-question set the arms cluster between 95 and 100 percent. On the harder 187-question set they spread apart: keyword falls to 85.0, dense to 89.3, hybrid to 90.4, and rerank to 96.3, while the stuffed prompt holds at 100.">
       <line class="c-grid" x1="195" y1="40" x2="195" y2="228"></line>
       <line class="c-grid" x1="363" y1="40" x2="363" y2="228"></line>
       <line class="c-grid" x1="532" y1="40" x2="532" y2="228"></line>
@@ -1029,36 +1029,36 @@
       <g>
         <text class="c-lab" x="14" y="63">0 · stuffed</text>
         <circle cx="700" cy="58" r="6" fill="var(--s1)"><title>stuffed prompt, n=64: 100.0%</title></circle>
-        <circle cx="700" cy="58" r="6" fill="var(--s2)"><title>stuffed prompt, n=114: 100.0%</title></circle>
+        <circle cx="700" cy="58" r="6" fill="var(--s2)"><title>stuffed prompt, n=187: 100.0%</title></circle>
         <text class="c-val" x="686" y="62" text-anchor="end">100</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="101">0.5 · keyword</text>
-        <line class="c-conn" x1="286" y1="96" x2="586" y2="96"></line>
+        <line class="c-conn" x1="195" y1="96" x2="586" y2="96"></line>
         <circle cx="586" cy="96" r="6" fill="var(--s1)"><title>keyword + IDF, n=64: 97.1%</title></circle>
-        <circle cx="286" cy="96" r="6" fill="var(--s2)"><title>keyword + IDF, n=114: 87.7%</title></circle>
-        <text class="c-val" x="272" y="100" text-anchor="end">87.7</text>
+        <circle cx="195" cy="96" r="6" fill="var(--s2)"><title>keyword + IDF, n=187: 85.0%</title></circle>
+        <text class="c-val" x="181" y="100" text-anchor="end">85.0</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="139">1 · dense</text>
-        <line class="c-conn" x1="434" y1="134" x2="586" y2="134"></line>
+        <line class="c-conn" x1="340" y1="134" x2="586" y2="134"></line>
         <circle cx="586" cy="134" r="6" fill="var(--s1)"><title>dense only, n=64: 97.1%</title></circle>
-        <circle cx="434" cy="134" r="6" fill="var(--s2)"><title>dense only, n=114: 92.1%</title></circle>
-        <text class="c-val" x="420" y="138" text-anchor="end">92.1</text>
+        <circle cx="340" cy="134" r="6" fill="var(--s2)"><title>dense only, n=187: 89.3%</title></circle>
+        <text class="c-val" x="326" y="138" text-anchor="end">89.3</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="177">2 · + BM25/RRF</text>
-        <line class="c-conn" x1="495" y1="172" x2="700" y2="172"></line>
+        <line class="c-conn" x1="377" y1="172" x2="700" y2="172"></line>
         <circle cx="700" cy="172" r="6" fill="var(--s1)"><title>hybrid, n=64: 100.0%</title></circle>
-        <circle cx="495" cy="172" r="6" fill="var(--s2)"><title>hybrid, n=114: 93.9%</title></circle>
-        <text class="c-val" x="481" y="176" text-anchor="end">93.9</text>
+        <circle cx="377" cy="172" r="6" fill="var(--s2)"><title>hybrid, n=187: 90.4%</title></circle>
+        <text class="c-val" x="363" y="176" text-anchor="end">90.4</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="215">3 · + rerank</text>
-        <line class="c-conn" x1="640" y1="210" x2="700" y2="210"></line>
+        <line class="c-conn" x1="576" y1="210" x2="700" y2="210"></line>
         <circle cx="700" cy="210" r="6" fill="var(--s1)"><title>rerank, n=64: 100.0%</title></circle>
-        <circle cx="640" cy="210" r="6" fill="var(--s2)"><title>rerank, n=114: 98.2%</title></circle>
-        <text class="c-val" x="626" y="214" text-anchor="end">98.2</text>
+        <circle cx="576" cy="210" r="6" fill="var(--s2)"><title>rerank, n=187: 96.3%</title></circle>
+        <text class="c-val" x="562" y="214" text-anchor="end">96.3</text>
       </g>
 
       <text class="c-lab-s" x="14" y="248">recall@8 · higher is better</text>
@@ -1067,7 +1067,7 @@
 
   <div class="wide tablewrap" style="margin-top:34px">
     <table>
-      <caption>Current ablation · n = 114 scorable questions, k = 8</caption>
+      <caption>Current ablation · n = 187 scorable questions, k = 8</caption>
       <thead>
         <tr>
           <th scope="col">Arm</th>
@@ -1083,16 +1083,16 @@
           <td>0 · stuffed prompt</td><td>100.0%</td><td>—</td><td>—</td><td>—</td><td>—</td>
         </tr>
         <tr>
-          <td>0.5 · keyword + IDF</td><td>87.7%</td><td>80–93%</td><td>0.606</td><td>—</td><td>—</td>
+          <td>0.5 · keyword + IDF</td><td>85.0%</td><td>79–89%</td><td>0.560</td><td>—</td><td>—</td>
         </tr>
         <tr>
-          <td>1 · dense only</td><td>92.1%</td><td>86–96%</td><td>0.675</td><td>+12 / −7</td><td>0.719</td>
+          <td>1 · dense only</td><td>89.3%</td><td>84–93%</td><td>0.664</td><td>+23 / −15</td><td>0.512</td>
         </tr>
         <tr>
-          <td>2 · + BM25 &amp; RRF</td><td>93.9%</td><td>88–97%</td><td>0.728</td><td>+5 / −3</td><td>0.727</td>
+          <td>2 · + BM25 &amp; RRF</td><td>90.4%</td><td>85–94%</td><td>0.726</td><td>+8 / −6</td><td>0.791</td>
         </tr>
         <tr class="best">
-          <td>3 · + rerank</td><td>98.2%</td><td>94–100%</td><td>0.865</td><td>+7 / −2</td><td>0.539</td>
+          <td>3 · + rerank</td><td>96.3%</td><td>92–98%</td><td>0.836</td><td>+15 / −4</td><td>0.058</td>
         </tr>
       </tbody>
     </table>
@@ -1103,29 +1103,31 @@
     <p>
       <strong>The arms separated.</strong> On the FAQ-derived set, four of five arms scored between
       95% and 100% — the test wasn't hard enough to distinguish them, so it flattered everything. The
-      full stack now leads the keyword baseline by <strong>10.5 points</strong> rather than the 0.3
+      full stack now leads the keyword baseline by <strong>11.3 points</strong> rather than the 0.3
       it appeared to lead by before. Nothing about the pipeline changed; the measurement got honest.
     </p>
     <p>
       <strong>The naive baseline stopped looking competitive.</strong> The old set was seeded largely
       from the rulebook's own FAQ, whose distinctive vocabulary is exactly what keyword search is
       best at — a selection bias that flattered the simplest method. Phrase questions the way players
-      actually phrase them and keyword scoring drops nearly 10 points, while the reranked stack loses 1.8.
+      actually phrase them and keyword scoring drops over 12 points, while the reranked stack loses 3.7.
     </p>
     <p>
-      <strong>Reranking earns its latency in ordering, not coverage.</strong> It adds 4.3 points of
-      recall but lifts MRR from 0.728 to 0.865 — the answer moves to the top of the list rather than
+      <strong>Reranking earns its latency in ordering, not coverage.</strong> It adds 5.9 points of
+      recall but lifts MRR from 0.726 to 0.836 — the answer moves to the top of the list rather than
       merely being somewhere in the top 8. The chunker fix showed this precisely: the recovered
       passage sat in the fused candidate pool but outside the top 8, and only the reranker pulled it
       up into view. Hybrid alone did not move at all.
     </p>
     <div class="note">
-      <span class="tag">Still not proven</span>
+      <span class="tag">One rung resolved, two not</span>
       <p>
-        The best Holm-adjusted p-value is 0.539. The gaps are visible but <em>not yet statistically
-        established</em>: at n=114 the resolution is 13.1 points and the biggest step is 10.5. About
-        190 questions gets that to 10 points; 470 gets it to 5. The direction is now consistent and
-        plausible — it is not yet evidence, and the table says so rather than hiding it.
+        At n=187 the resolution is 10.2 points. The rerank step is the one arm that clears its own
+        noise floor: it wins 15 and loses 4 against hybrid retrieval, McNemar p = <strong>0.019</strong>,
+        Holm-adjusted <strong>0.058</strong> — a hair outside the conventional threshold, which is the
+        correct amount of hedging for four comparisons on one dataset, not a reason to round it down to
+        nothing. The two middle rungs — dense over keyword, and BM25 fusion over dense — remain
+        unresolved. 5-point resolution would need about 470 questions.
       </p>
     </div>
   </div>
@@ -1159,7 +1161,8 @@
       bugs in its own answer key is working; leaving them in place is not.
     </p>
     <p>
-      <strong>The set should keep growing.</strong> 114 → 190 is the next meaningful threshold. The
+      <strong>The set should keep growing.</strong> 187 → 470 is the next meaningful threshold, the point
+      at which 5-point gaps become resolvable. The
       highest-value additions are more <code>unstated</code> questions, since those are both the
       hardest to retrieve for and the ones where a confident wrong answer does real damage.
     </p>
@@ -1168,5 +1171,5 @@
 
 <footer>
   <span>Rules Lawyer · retrieval architecture</span>
-  <span>index 50bfb512dc1ac982 · 114 scorable · MDE 13.1 pts</span>
+  <span>index 50bfb512dc1ac982 · 187 scorable · MDE 10.2 pts</span>
 </footer>

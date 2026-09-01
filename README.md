@@ -232,7 +232,7 @@ traps — separated them, and growing it to 187 scorable questions finally resol
 | 0 · stuffed prompt | 100.0% | — | — | — |
 | 0.5 · keyword + IDF | 85.0% | 0.560 | — | — |
 | 1 · dense only | 89.3% | 0.664 | +23 / −15 | 0.512 |
-| 2 · + BM25 & RRF | 90.4% | 0.724 | +8 / −6 | 0.791 |
+| 2 · + BM25 & RRF | 90.4% | 0.726 | +8 / −6 | 0.791 |
 | 3 · + rerank | **96.3%** | **0.836** | +15 / −4 | **0.058** |
 
 The full stack leads the naive baseline by 11.3 points rather than the 0.3 it appeared to lead by. Nothing
