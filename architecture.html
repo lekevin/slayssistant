@@ -366,7 +366,7 @@
     <div class="stat"><span class="n">472</span><span class="k">chunks indexed</span></div>
     <div class="stat"><span class="n">1.84<span style="font-size:0.6em"> MB</span></span><span class="k">vector file</span></div>
     <div class="stat"><span class="n">114</span><span class="k">graded questions</span></div>
-    <div class="stat"><span class="n">5</span><span class="k">ablation arms</span></div>
+    <div class="stat"><span class="n">5.6<span style="font-size:0.6em">%</span></span><span class="k">false permissions</span></div>
   </div>
 </header>
 
@@ -936,6 +936,66 @@
   </div>
 </section>
 
+<!-- ============================================================ 8b -->
+<section>
+  <div class="sectionhead">
+    <p class="eyebrow">The metric that matters</p>
+    <h2>Recall cannot see the failure this system was built to avoid</h2>
+  </div>
+  <div class="col">
+    <p class="lede">
+      Everything above measures whether the right passage was <em>found</em>. None of it measures what the
+      system then told the player — and that gap is where the whole risk lives.
+    </p>
+    <p>
+      A pipeline can post 98% recall and still be untrustworthy. Retrieve the Traps section, then invent a
+      permission the section does not contain, and the retrieval scorer records a hit. So a second harness
+      (<code>npm run eval:answers</code>) runs the real answering path over all 119 questions and has a
+      separate judge classify each answer's <em>stance</em> — never showing it the expected label.
+    </p>
+    <p>
+      The production prompt, retrieval options, effort settings and search gating all live in
+      <code>lib/answer.ts</code> and are imported by both the route and the eval. A second copy would drift
+      within a week, and the metric would quietly start describing a system nobody ships.
+    </p>
+
+    <div class="note">
+      <span class="tag">False-permission rate</span>
+      <p>
+        <strong>5.6%</strong> — 4 of 71 questions where the rulebook does not grant permission were
+        answered as though it does. 95% CI 2–14%.
+      </p>
+    </div>
+
+    <h3>Why one number is never enough</h3>
+    <p>
+      A system that answered "the rules don't say" to everything would score a perfect 0% and be
+      worthless. The guard is the <code>permitted</code> stratum, reported beside it: 43 of 48 correct,
+      with 5 over-refusals. Two of those five are the authority ladder working as designed — asked what a
+      specific card does, the model declined to state it flatly, because that text comes from the
+      fan-transcribed compendium the prompt ranks below the rulebook.
+    </p>
+
+    <h3>The headline is an upper bound</h3>
+    <p>
+      A flag means the judge saw a "yes." It does not yet mean the system fabricated one, and reading the
+      four is what separates the two. Only <strong>one is a clear fabrication</strong>: asked whether a
+      card-reward pick can be swapped after the fact — genuinely unsettled by the rules — the model
+      answered yes and cited the Full Knowledge rule, which governs looking <em>before</em> you finalize
+      and says nothing about undoing a finalized choice. That is exactly the failure the metric exists to
+      catch.
+    </p>
+    <p>
+      Of the remaining three, one is a badly-formed question of mine (asking whether the Watcher can sit
+      in Wrath "without any downside" — the answer says yes-you-can-stay, then names the downside), and two
+      look like label bugs rather than model failures. On the Scry question the model's reading of "you
+      can't Scry more cards than are in your draw pile" as <em>scry fewer</em> is arguably better than the
+      label it was graded against. The metric's job is to surface the rows worth reading; the triage stays
+      manual, and saying so is part of reporting it honestly.
+    </p>
+  </div>
+</section>
+
 <!-- ============================================================ 9 -->
 <section>
   <div class="sectionhead">
@@ -1088,11 +1148,15 @@
       the same label, but the guard cannot currently detect the drift it exists to catch.
     </p>
     <p>
-      <strong>False-permission rate is defined but not yet measured.</strong> The 71
-      <code>forbidden</code> and <code>unstated</code> questions exist to catch the worst failure —
-      telling a player a move is legal when the rules don't permit it. The strata are in place; the
-      answer-level scorer that reports the rate isn't written yet. It is the metric that actually
-      reflects trustworthiness, and right now the table doesn't carry it.
+      <strong>The false-permission set is too small to catch a regression.</strong> The metric now exists,
+      but 71 questions puts its confidence interval at 2–14% — a real regression would have to be large
+      before the number moved convincingly. The same sample-size problem as the retrieval table, on the
+      measurement that matters most.
+    </p>
+    <p>
+      <strong>Two golden rows need re-labeling.</strong> Triaging the flagged answers turned up labels that
+      are arguably wrong rather than answers that are — the Scry row in particular. A metric that surfaces
+      bugs in its own answer key is working; leaving them in place is not.
     </p>
     <p>
       <strong>The set should keep growing.</strong> 114 → 190 is the next meaningful threshold. The

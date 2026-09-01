@@ -12,9 +12,10 @@
     "embed": "node --env-file=.env.local scripts/embed.mjs",
     "ingest": "npm run parse && npm run verify:parse && npm run chunk && npm run embed",
     "eval": "node --env-file=.env.local --import tsx eval/run.ts",
-    "test": "tsx eval/test-retrieval.ts && tsx eval/test-score.ts",
+    "test": "tsx eval/test-retrieval.ts && tsx eval/test-score.ts && tsx eval/test-answers.ts",
     "typecheck": "tsc --noEmit",
-    "verify:parse": "node scripts/verify-parse.mjs"
+    "verify:parse": "node scripts/verify-parse.mjs",
+    "eval:answers": "node --env-file=.env.local --import tsx eval/answers.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.122.0",
