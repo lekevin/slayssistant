@@ -23,7 +23,7 @@ jobs:
       - run: npm test
       - run: npm run build
 
-  # The retrieval ablation needs VOYAGE_API_KEY to embed the 119 golden
+  # The retrieval ablation needs VOYAGE_API_KEY to embed the 192 golden
   # questions, so it cannot be a required check on a fork's PR. It runs when the
   # secret is available and is skipped cleanly when it is not.
   #

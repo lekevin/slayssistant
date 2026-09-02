@@ -282,24 +282,24 @@ export default function RulesChatWidget({
   return (
     <div
       style={{
-        border: "1px solid #D3DEDE",
+        border: "1px solid var(--border)",
         borderRadius: 10,
-        background: "#fff",
+        background: "var(--surface)",
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        color: "#101819",
+        color: "var(--text)",
       }}
     >
       <div
         style={{
           padding: ".6rem .9rem",
-          borderBottom: "1px solid #E4EBEB",
-          background: "#F3F6F6",
+          borderBottom: "1px solid var(--border-subtle)",
+          background: "var(--surface-alt)",
           fontFamily: mono,
           fontSize: ".7rem",
           letterSpacing: ".06em",
-          color: "#5D6E71",
+          color: "var(--text-muted)",
           display: "flex",
           justifyContent: "space-between",
           gap: ".75rem",
@@ -317,7 +317,7 @@ export default function RulesChatWidget({
 
       <div ref={listRef} style={{ maxHeight: "30rem", overflowY: "auto", padding: "1rem" }}>
         {messages.length === 0 && (
-          <div style={{ color: "#5D6E71", lineHeight: 1.6 }}>
+          <div style={{ color: "var(--text-muted)", lineHeight: 1.6 }}>
             <p style={{ marginTop: 0 }}>
               Ask a rules question. Answers are grounded in the rulebook and cite the page; when the
               rules are silent, it says so instead of guessing.
@@ -329,13 +329,13 @@ export default function RulesChatWidget({
                     key={q}
                     onClick={() => send(q)}
                     style={{
-                      border: "1px solid #D3DEDE",
-                      background: "#fff",
+                      border: "1px solid var(--border)",
+                      background: "var(--surface)",
                       borderRadius: 999,
                       padding: ".3rem .7rem",
                       fontSize: ".8125rem",
                       cursor: "pointer",
-                      color: "#0B6B70",
+                      color: "var(--accent)",
                     }}
                   >
                     {q}
@@ -361,18 +361,18 @@ export default function RulesChatWidget({
                         fontSize: ".7rem",
                         letterSpacing: ".08em",
                         textTransform: "uppercase",
-                        color: "#5D6E71",
+                        color: "var(--text-muted)",
                       }}
                     >
                       reasoning
                     </summary>
                     <div
                       style={{
-                        color: "#5D6E71",
+                        color: "var(--text-muted)",
                         fontSize: ".8125rem",
                         lineHeight: 1.55,
                         whiteSpace: "pre-wrap",
-                        borderLeft: "2px solid #E4EBEB",
+                        borderLeft: "2px solid var(--border-subtle)",
                         paddingLeft: ".7rem",
                         marginTop: ".4rem",
                       }}
@@ -385,7 +385,7 @@ export default function RulesChatWidget({
                 <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.65 }}>{m.content}</div>
 
                 {m.error && (
-                  <div style={{ color: "#A33232", fontSize: ".875rem", marginTop: ".4rem" }}>
+                  <div style={{ color: "var(--danger)", fontSize: ".875rem", marginTop: ".4rem" }}>
                     {m.error}
                   </div>
                 )}
@@ -401,9 +401,9 @@ export default function RulesChatWidget({
                           fontSize: ".68rem",
                           padding: ".18rem .5rem",
                           borderRadius: 4,
-                          background: c.source === "web" ? "#F8EEDC" : "#E2F0F0",
-                          color: c.source === "web" ? "#A85C00" : "#0B6B70",
-                          border: `1px solid ${c.source === "web" ? "#E8C98A" : "#BEDCDC"}`,
+                          background: c.source === "web" ? "var(--citation-web-bg)" : "var(--citation-corpus-bg)",
+                          color: c.source === "web" ? "var(--warning)" : "var(--accent)",
+                          border: `1px solid ${c.source === "web" ? "var(--citation-web-border)" : "var(--citation-corpus-border)"}`,
                         }}
                       >
                         {c.source === "web" && c.url ? (
@@ -425,19 +425,19 @@ export default function RulesChatWidget({
         ))}
 
         {busy && stage && (
-          <div style={{ fontFamily: mono, fontSize: ".72rem", color: "#5D6E71" }}>
+          <div style={{ fontFamily: mono, fontSize: ".72rem", color: "var(--text-muted)" }}>
             {STAGE_LABELS[stage] ?? stage}
             <span style={{ opacity: 0.5 }}>…</span>
           </div>
         )}
       </div>
 
-      <div style={{ borderTop: "1px solid #E4EBEB", padding: ".7rem .9rem" }}>
+      <div style={{ borderTop: "1px solid var(--border-subtle)", padding: ".7rem .9rem" }}>
         {attachment && (
           <div
             style={{
               fontSize: ".75rem",
-              color: "#5D6E71",
+              color: "var(--text-muted)",
               marginBottom: ".45rem",
               display: "flex",
               alignItems: "center",
@@ -449,14 +449,14 @@ export default function RulesChatWidget({
             </span>
             <button
               onClick={() => setAttachment(null)}
-              style={{ border: "none", background: "none", cursor: "pointer", color: "#A33232" }}
+              style={{ border: "none", background: "none", cursor: "pointer", color: "var(--danger)" }}
             >
               remove
             </button>
           </div>
         )}
         {attachError && (
-          <div style={{ fontSize: ".75rem", color: "#A33232", marginBottom: ".45rem" }}>{attachError}</div>
+          <div style={{ fontSize: ".75rem", color: "var(--danger)", marginBottom: ".45rem" }}>{attachError}</div>
         )}
 
         <div style={{ display: "flex", gap: ".5rem" }}>
@@ -471,8 +471,8 @@ export default function RulesChatWidget({
             onClick={() => fileRef.current?.click()}
             title="Attach a rulebook or errata for this conversation only"
             style={{
-              border: "1px solid #D3DEDE",
-              background: "#fff",
+              border: "1px solid var(--border)",
+              background: "var(--surface)",
               borderRadius: 6,
               padding: "0 .6rem",
               cursor: "pointer",
@@ -494,7 +494,7 @@ export default function RulesChatWidget({
             disabled={busy}
             style={{
               flex: 1,
-              border: "1px solid #D3DEDE",
+              border: "1px solid var(--border)",
               borderRadius: 6,
               padding: ".5rem .7rem",
               fontSize: ".9375rem",
@@ -509,8 +509,8 @@ export default function RulesChatWidget({
               border: "none",
               borderRadius: 6,
               padding: ".5rem 1rem",
-              background: busy || !input.trim() ? "#C7D4D4" : "#0B6B70",
-              color: "#fff",
+              background: busy || !input.trim() ? "var(--disabled-bg)" : "var(--accent)",
+              color: "var(--surface)",
               cursor: busy || !input.trim() ? "default" : "pointer",
               fontSize: ".9375rem",
             }}

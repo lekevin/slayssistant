@@ -1,4 +1,4 @@
-# Rules Lawyer
+# Slayssistant
 
 A board game rules assistant. Ask whether you can actually do that, and get an answer grounded in the
 game's own rulebook with the page attached — or an honest "the rules don't say," which is the answer more
@@ -263,8 +263,13 @@ the set as a regression guard.
 ## What the answers actually do
 
 `npm run eval:answers` runs the real answering path — same prompt, retrieval, effort and search gating,
-imported from `lib/answer.ts` rather than restated — over all 119 questions, then has a separate judge
-classify each answer's stance without ever seeing the expected label. Numbers in `eval/answers.md`.
+imported from `lib/answer.ts` rather than restated — then has a separate judge classify each answer's
+stance without ever seeing the expected label. Numbers in `eval/answers.md`.
+
+**The numbers below are stale.** They were measured against a 119-question golden set; the set has since
+grown to 192 (73 added questions, three label fixes). `eval/answers.md` carries the full caveat and the
+corrected false-permission denominator. Re-run `npm run eval:answers` to refresh — it costs real money
+(~$14 at current sizes), which is why it isn't run on every change.
 
 **False-permission rate: 5.6%** (4 of 71, 95% CI 2–14%). That is the fraction of questions where the
 rulebook does not grant permission and the system answered as though it does. It is the number that

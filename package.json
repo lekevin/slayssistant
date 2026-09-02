@@ -1,5 +1,5 @@
 {
-  "name": "rules-lawyer",
+  "name": "slayssistant",
   "version": "0.1.0",
   "private": true,
   "description": "Board game rules assistant \u2014 retrieval over a game's own rulebook and card data, with page-accurate citations and a web-search fallback.",
