@@ -5,7 +5,7 @@ const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const red = "var(--accent)";
 
 const ARCHITECTURE_URL = "https://claude.ai/code/artifact/810afed8-4dd8-49f4-b4d7-3e3d459aba31";
-const SOURCE_URL = "https://github.com/lekevin/rules-lawyer";
+const SOURCE_URL = "https://github.com/lekevin/slayssistant";
 const GAME_URL = "https://a.co/d/03i8obZF";
 
 function ArrowIcon() {
