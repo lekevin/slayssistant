@@ -49,9 +49,12 @@ function Delta({ from, to }: { from?: number; to: number }) {
   }
   const d = from - to;
   if (d === 0) return <span style={{ color: "var(--text-faint)", fontFamily: mono, fontSize: ".7rem" }}>—</span>;
+  // Accent and danger are both red in this palette, so a rank that moved down
+  // recedes to faint instead — the arrow carries the direction, and the color
+  // only needs to say "this one moved up".
   return (
     <span
-      style={{ color: d > 0 ? "var(--accent)" : "var(--danger)", fontFamily: mono, fontSize: ".7rem" }}
+      style={{ color: d > 0 ? "var(--accent-soft)" : "var(--text-faint)", fontFamily: mono, fontSize: ".7rem" }}
       title={`dense rank ${from} → fused rank ${to}`}
     >
       {d > 0 ? `▲${d}` : `▼${-d}`}
@@ -70,6 +73,7 @@ export default function TracePanel({ trace }: { trace: Trace }) {
   return (
     <div style={{ marginTop: ".6rem", borderTop: "1px solid var(--border-subtle)", paddingTop: ".5rem" }}>
       <button
+        className="rcw-press"
         onClick={() => setOpen((o) => !o)}
         style={{
           background: "none",
@@ -89,7 +93,7 @@ export default function TracePanel({ trace }: { trace: Trace }) {
       {open && (
         <div style={{ marginTop: ".75rem", fontSize: ".8125rem" }}>
           <div style={{ marginBottom: ".6rem", color: "var(--text-muted)", fontFamily: mono, fontSize: ".72rem" }}>
-            shape=<strong style={{ color: "var(--accent)" }}>{trace.shape}</strong>
+            shape=<strong style={{ color: "var(--accent-soft)" }}>{trace.shape}</strong>
             {trace.entities.length > 0 && <> · entities: {trace.entities.join(", ")}</>}
             {trace.expandedFrom && (
               <>

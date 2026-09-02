@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import TracePanel, { type Trace } from "./TracePanel";
 
 /**
@@ -83,6 +83,59 @@ interface IndexInfo {
 }
 
 const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
+
+/**
+ * The system prompt asks for "a short structured breakdown" when a question has
+ * parts, so the model writes markdown lead-ins — "**Play phase:** Players can
+ * play cards...". Rendered raw, those asterisks are visible in the bubble and
+ * read as a bug.
+ *
+ * This handles the two inline marks the model actually emits, and returns React
+ * nodes rather than HTML: model output never reaches dangerouslySetInnerHTML,
+ * so a rulebook quote containing angle brackets stays inert.
+ *
+ * Unmatched markers deliberately stay literal. Mid-stream, "**Play pha" is not
+ * yet bold and reads as text until its closing marker arrives — the same way
+ * every streaming markdown chat behaves.
+ */
+function renderInline(text: string): ReactNode[] {
+  const pattern = /\*\*([^\n]+?)\*\*|`([^`\n]+?)`/g;
+  const out: ReactNode[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+
+  while ((m = pattern.exec(text)) !== null) {
+    if (m.index > last) out.push(text.slice(last, m.index));
+    if (m[1] !== undefined) {
+      out.push(<strong key={m.index}>{m[1]}</strong>);
+    } else {
+      out.push(
+        <code
+          key={m.index}
+          style={{ fontFamily: mono, fontSize: ".875em", color: "var(--accent-soft)" }}
+        >
+          {m[2]}
+        </code>,
+      );
+    }
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
+
+// Shrink-and-dull on press, matching the host site's link idiom. Inlined here
+// rather than pulled from a stylesheet so the widget still drops into any page
+// as one component plus the API route.
+const RCW_STYLES = `
+.rcw-press { transition: transform .5s ease, opacity .5s ease, border-color .5s ease; }
+.rcw-press:hover:not(:disabled) { transform: scale(.95); opacity: .7; }
+.rcw-press:active:not(:disabled) { transform: scale(.92); opacity: .55; }
+@media (prefers-reduced-motion: reduce) {
+  .rcw-press { transition: opacity .2s ease; }
+  .rcw-press:hover:not(:disabled), .rcw-press:active:not(:disabled) { transform: none; }
+}
+`;
 
 const STAGE_LABELS: Record<string, string> = {
   routing: "reading the question",
@@ -236,6 +289,8 @@ export default function RulesChatWidget({
         color: "var(--text)",
       }}
     >
+      <style>{RCW_STYLES}</style>
+
       <div
         style={{
           padding: ".6rem .9rem",
@@ -272,6 +327,7 @@ export default function RulesChatWidget({
                 {suggestedQuestions.map((q) => (
                   <button
                     key={q}
+                    className="rcw-press"
                     onClick={() => send(q)}
                     style={{
                       border: "1px solid var(--border)",
@@ -280,7 +336,7 @@ export default function RulesChatWidget({
                       padding: ".3rem .7rem",
                       fontSize: ".8125rem",
                       cursor: "pointer",
-                      color: "var(--accent)",
+                      color: "var(--accent-soft)",
                     }}
                   >
                     {q}
@@ -322,12 +378,12 @@ export default function RulesChatWidget({
                         marginTop: ".4rem",
                       }}
                     >
-                      {m.thinking}
+                      {renderInline(m.thinking)}
                     </div>
                   </details>
                 )}
 
-                <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.65 }}>{m.content}</div>
+                <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.65 }}>{renderInline(m.content)}</div>
 
                 {m.error && (
                   <div style={{ color: "var(--danger)", fontSize: ".875rem", marginTop: ".4rem" }}>
@@ -347,7 +403,7 @@ export default function RulesChatWidget({
                           padding: ".18rem .5rem",
                           borderRadius: 4,
                           background: c.source === "web" ? "var(--citation-web-bg)" : "var(--citation-corpus-bg)",
-                          color: c.source === "web" ? "var(--warning)" : "var(--accent)",
+                          color: c.source === "web" ? "var(--warning)" : "var(--citation-corpus-text)",
                           border: `1px solid ${c.source === "web" ? "var(--citation-web-border)" : "var(--citation-corpus-border)"}`,
                         }}
                       >
@@ -401,6 +457,7 @@ export default function RulesChatWidget({
             }}
           />
           <button
+            className="rcw-press"
             onClick={() => send()}
             disabled={busy || !input.trim()}
             style={{
@@ -408,7 +465,7 @@ export default function RulesChatWidget({
               borderRadius: 6,
               padding: ".5rem 1rem",
               background: busy || !input.trim() ? "var(--disabled-bg)" : "var(--accent)",
-              color: "var(--surface)",
+              color: busy || !input.trim() ? "var(--text-faint)" : "var(--accent-contrast)",
               cursor: busy || !input.trim() ? "default" : "pointer",
               fontSize: ".9375rem",
             }}

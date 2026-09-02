@@ -159,6 +159,36 @@ money.
 `app/api/chat/route.ts`, `lib/`, and `data/index/`, into any Next.js App Router project. The widget needs
 only `/api/chat` to exist on the same origin.
 
+Color comes from CSS custom properties the host defines — `--bg`, `--surface`, `--surface-alt`, `--border`,
+`--border-subtle`, `--text`, `--text-muted`, `--text-faint`, `--accent`, `--accent-soft`,
+`--accent-contrast`, `--danger`, `--warning`, `--disabled-bg`, and the four `--citation-*` tokens.
+`app/globals.css` is a working set to copy. Hover and press styles ride along in a `<style>` tag the
+component renders itself, so embedding it still costs one component plus the route.
+
+## Look and feel
+
+The page is styled to sit inside the portfolio at [lekevin.com](https://lekevin.com) rather than read as a
+separate product: Montserrat, the site's `#020c0b` ground, red-600 accents, zinc rules, and its interaction
+idiom — anything clickable shrinks to 95% and dulls on hover, inline text links warm to red-500.
+
+**One theme, not two.** The light palette and its toggle are gone. A theme switch is a standing maintenance
+surface — every token needs two values that both have to stay legible, and every new color has to be chosen
+twice — which is a poor trade for a page with one job and one context. Removing it also retired the
+pre-paint theme script in `layout.tsx`, so there is no flash-of-wrong-theme left to solve.
+
+**Two reds, deliberately.** `--accent` (red-600) is the brand red, used for fills, the title and the small
+mono labels, matching how the portfolio uses it. `--accent-soft` (red-400) exists because red-600 only
+manages about 3.4:1 against `--surface`, which is not enough for 13px interactive text; citation chips carry
+`--citation-corpus-text` for the same reason. Web-source chips stay amber: distinguishing a rulebook
+citation from a web one at a glance is the product's whole claim, and that is worth keeping one non-red hue.
+
+**Answers render inline markdown.** The system prompt asks for a structured breakdown when a question has
+parts, so the model writes `**Play phase:**` lead-ins, and raw asterisks in a chat bubble read as a bug.
+`renderInline()` converts `**bold**` and `` `code` `` into React nodes rather than going through
+`dangerouslySetInnerHTML` — the text quotes rulebook content, so it never becomes markup. Unmatched markers
+stay literal, which is the right behavior mid-stream: a half-arrived `**Play pha` reads as text until its
+closing marker lands.
+
 ## Limits worth knowing
 
 - Rate limiting is per-instance and approximate. It is a speed bump against a script, not a quota; swap in
