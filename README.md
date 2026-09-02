@@ -78,7 +78,7 @@ question ──▶ shape ──▶ dense ┐
 
 ---
 
-## Three decisions worth explaining
+## Two decisions worth explaining
 
 ### 1. Citations resolve to pages we compute, not pages the API returns
 
@@ -111,16 +111,6 @@ over a whole unit — and web search attached unconditionally.
 The classifier is a regex, deliberately tuned to over-trigger. A false positive costs one extra section of
 context and an unused tool; a false negative is a confidently fabricated permission that changes how
 someone plays their game. Those are not symmetric.
-
-### 3. Uploads are never ingested
-
-Visitors can attach a rulebook, but it is read in the browser and sent inline with the question. Nothing is
-written server-side. This is cheaper than ingesting (a cached PDF costs ~$0.10 a turn against ~$10 to
-ingest), and at portfolio traffic the break-even is a number of questions no single upload will ever see.
-
-It also produces *better* citations than our own pipeline: a PDF sent whole comes back with real
-`page_location`. And it deletes four whole categories of problem — cross-visitor data leakage, ingestion
-cost abuse, a purge cron, and hosting strangers' PDFs — rather than mitigating them.
 
 ---
 
@@ -171,9 +161,6 @@ only `/api/chat` to exist on the same origin.
 
 ## Limits worth knowing
 
-- Uploads cap at 3 MB. Vercel rejects request bodies over 4.5 MB at the platform level before the handler
-  runs, and base64 inflates by 4/3 — so a higher limit would produce an opaque 413 rather than a useful
-  error.
 - Rate limiting is per-instance and approximate. It is a speed bump against a script, not a quota; swap in
   Upstash or Vercel KV to enforce it properly.
 - Effort is `low` for lookups and `medium` for legality questions. The API default is `high`, which

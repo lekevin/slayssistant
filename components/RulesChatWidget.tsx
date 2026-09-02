@@ -67,13 +67,6 @@ interface Message {
   usage?: { input_tokens?: number; output_tokens?: number };
 }
 
-interface Attachment {
-  filename: string;
-  mediaType: string;
-  data: string;
-  sizeBytes: number;
-}
-
 interface Props {
   gameName?: string;
   suggestedQuestions?: string[];
@@ -90,11 +83,6 @@ interface IndexInfo {
 }
 
 const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
-
-// Vercel rejects request bodies over 4.5 MB at the platform level, before the
-// route handler runs — so a limit above that produces an opaque 413 instead of
-// a useful message. Base64 inflates by 4/3, so the real file ceiling is ~3 MB.
-const MAX_FILE_BYTES = 3 * 1024 * 1024;
 
 const STAGE_LABELS: Record<string, string> = {
   routing: "reading the question",
@@ -114,11 +102,8 @@ export default function RulesChatWidget({
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [stage, setStage] = useState<string | null>(null);
-  const [attachment, setAttachment] = useState<Attachment | null>(null);
-  const [attachError, setAttachError] = useState<string | null>(null);
   const [info, setInfo] = useState<IndexInfo | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let live = true;
@@ -161,9 +146,6 @@ export default function RulesChatWidget({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: history.map((m) => ({ role: m.role, content: m.content })),
-          attachment: attachment
-            ? { filename: attachment.filename, mediaType: attachment.mediaType, data: attachment.data }
-            : null,
         }),
       });
 
@@ -240,43 +222,6 @@ export default function RulesChatWidget({
       setBusy(false);
       setStage(null);
     }
-  }
-
-  async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    e.target.value = "";
-    if (!file) return;
-    setAttachError(null);
-
-    if (file.size > MAX_FILE_BYTES) {
-      setAttachError(
-        `${(file.size / 1024 / 1024).toFixed(1)} MB is too large — the limit is 3 MB.`
-      );
-      return;
-    }
-    const ext = (file.name.split(".").pop() ?? "").toLowerCase();
-    const isPdf = ext === "pdf" || file.type === "application/pdf";
-    const isText = ["txt", "md", "markdown"].includes(ext) || file.type.startsWith("text/");
-    if (!isPdf && !isText) {
-      setAttachError(`Unsupported file type ".${ext}". Use a .pdf, .txt or .md.`);
-      return;
-    }
-
-    // Read in the browser and send inline. Nothing is written to a server, so
-    // one visitor's upload can never reach another's — and a PDF sent whole
-    // yields real page-number citations, which our own corpus cannot.
-    const buf = await file.arrayBuffer();
-    let binary = "";
-    const bytes = new Uint8Array(buf);
-    for (let i = 0; i < bytes.length; i += 0x8000) {
-      binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-    }
-    setAttachment({
-      filename: file.name,
-      mediaType: isPdf ? "application/pdf" : "text/plain",
-      data: btoa(binary),
-      sizeBytes: file.size,
-    });
   }
 
   return (
@@ -433,54 +378,7 @@ export default function RulesChatWidget({
       </div>
 
       <div style={{ borderTop: "1px solid var(--border-subtle)", padding: ".7rem .9rem" }}>
-        {attachment && (
-          <div
-            style={{
-              fontSize: ".75rem",
-              color: "var(--text-muted)",
-              marginBottom: ".45rem",
-              display: "flex",
-              alignItems: "center",
-              gap: ".5rem",
-            }}
-          >
-            <span style={{ fontFamily: mono }}>
-              {attachment.filename} ({(attachment.sizeBytes / 1024).toFixed(0)} KB) — this session only
-            </span>
-            <button
-              onClick={() => setAttachment(null)}
-              style={{ border: "none", background: "none", cursor: "pointer", color: "var(--danger)" }}
-            >
-              remove
-            </button>
-          </div>
-        )}
-        {attachError && (
-          <div style={{ fontSize: ".75rem", color: "var(--danger)", marginBottom: ".45rem" }}>{attachError}</div>
-        )}
-
         <div style={{ display: "flex", gap: ".5rem" }}>
-          <input
-            ref={fileRef}
-            type="file"
-            accept=".pdf,.txt,.md,text/plain,application/pdf"
-            onChange={onFile}
-            style={{ display: "none" }}
-          />
-          <button
-            onClick={() => fileRef.current?.click()}
-            title="Attach a rulebook or errata for this conversation only"
-            style={{
-              border: "1px solid var(--border)",
-              background: "var(--surface)",
-              borderRadius: 6,
-              padding: "0 .6rem",
-              cursor: "pointer",
-              fontSize: "1rem",
-            }}
-          >
-            📎
-          </button>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}

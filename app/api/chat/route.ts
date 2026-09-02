@@ -36,7 +36,6 @@ function rateLimited(ip: string): boolean {
 }
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
-type Attachment = { filename: string; mediaType: string; data: string };
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -54,14 +53,14 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: { messages: ChatMessage[]; attachment?: Attachment | null };
+  let body: { messages: ChatMessage[] };
   try {
     body = await req.json();
   } catch {
     return Response.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const { messages, attachment } = body;
+  const { messages } = body;
   if (!messages?.length) return Response.json({ error: "No messages provided." }, { status: 400 });
 
   const question = [...messages].reverse().find((m) => m.role === "user")?.content ?? "";
@@ -89,13 +88,6 @@ export async function POST(req: Request) {
         const { results, trace } = await retriever.search(question, retrievalOptions(shape));
 
         const docs = assembleDocuments(results);
-
-        // `document_index` on a citation counts document blocks in the order
-        // they appear in the request. The uploaded file is ALSO a document
-        // block, so it occupies the index right after the corpus documents -
-        // resolving citations against the corpus array alone would silently
-        // drop every citation the model makes into the user's own upload.
-        // `citable` mirrors the real block order.
         const citable = [...docs];
 
         send("trace", {
@@ -126,43 +118,6 @@ export async function POST(req: Request) {
           (d) => d.block as Anthropic.DocumentBlockParam
         );
 
-        if (attachment?.data) {
-          const uploadSource: Anthropic.DocumentBlockParam["source"] =
-            attachment.mediaType === "application/pdf"
-              ? { type: "base64", media_type: "application/pdf", data: attachment.data }
-              : {
-                  type: "text",
-                  media_type: "text/plain",
-                  data: Buffer.from(attachment.data, "base64").toString("utf-8"),
-                };
-
-          content.push({
-            type: "document",
-            source: uploadSource,
-            title: `Player upload: ${attachment.filename}`,
-            context: "Uploaded by the player for this conversation. Not part of the official corpus.",
-            citations: { enabled: true },
-            // The upload is resent on every turn of the conversation, so cache it:
-            // a cache read is a tenth the price of re-reading a 100-page PDF.
-            cache_control: { type: "ephemeral" },
-          });
-
-          // A PDF upload yields real page_location citations - better provenance
-          // than our own pipeline can produce - but only if the resolver can
-          // find the document. It has no span map because we did not assemble
-          // its text.
-          citable.push({
-            block: {
-              type: "document",
-              source: { type: "text", media_type: "text/plain", data: "" },
-              title: `Your upload: ${attachment.filename}`,
-              context: "",
-              citations: { enabled: true },
-            },
-            spans: [],
-          });
-        }
-
         content.push({ type: "text", text: question });
 
         const history = messages.slice(0, -1).map((m) => ({
@@ -176,7 +131,7 @@ export async function POST(req: Request) {
         const modelStream = anthropic.messages.stream({
           model: ANSWER_MODEL,
           max_tokens: 8000,
-          system: systemPrompt(shape, !!attachment?.data),
+          system: systemPrompt(shape),
           // display:"summarized" is not cosmetic. The default is "omitted",
           // which streams thinking blocks whose text is empty — so the user
           // watches a spinner for the entire reasoning phase with no signal the

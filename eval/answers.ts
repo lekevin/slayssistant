@@ -123,7 +123,7 @@ async function answerOne(client: Anthropic, gold: GoldRow): Promise<Row> {
   const stream = client.messages.stream({
     model: ANSWER_MODEL,
     max_tokens: 8000,
-    system: systemPrompt(shape, false),
+    system: systemPrompt(shape),
     thinking: { type: "adaptive", display: "summarized" },
     output_config: { effort: EFFORT_BY_SHAPE[shape as keyof typeof EFFORT_BY_SHAPE] },
     ...(attachSearch ? { tools: [WEB_SEARCH_TOOL] } : {}),
@@ -304,7 +304,7 @@ function cacheKey(g: GoldRow, indexSha: string): string {
         model: ANSWER_MODEL,
         judge: JUDGE_MODEL,
         index: indexSha,
-        system: systemPrompt(shape, false),
+        system: systemPrompt(shape),
         retrieval: retrievalOptions(shape),
       })
     )
