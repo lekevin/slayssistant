@@ -1,16 +1,16 @@
 # Ablation
 
-Golden set: **187 scorable questions** on *Slay the Spire: The Board Game* (192 total; 5 unanswerable-by-corpus, scored at the answer level only). Labels are verbatim answer-bearing spans, not chunk ids, so they survive re-chunking and re-parsing.
+Golden set: **188 scorable questions** on *Slay the Spire: The Board Game* (193 total; 5 unanswerable-by-corpus, scored at the answer level only). Labels are verbatim answer-bearing spans, not chunk ids, so they survive re-chunking and re-parsing.
 
 | arm | recall@8 | 95% CI | MRR | vs. previous (win/loss) | McNemar p | Holm p |
 |---|---|---|---|---|---|---|
 | 0 · stuffed prompt | 100.0% *(by construction)* | — | — | — | — | — |
-| 0.5 · keyword + IDF | 85.0% | 79–89% | 0.560 | — | — | — |
-| 1 · dense only | 89.3% | 84–93% | 0.664 | +23 / −15 | 0.256 | 0.512 |
-| 2 · + BM25 & RRF | 90.4% | 85–94% | 0.726 | +8 / −6 | 0.791 | 0.791 |
-| 3 · + rerank | 96.3% | 92–98% | 0.836 | +15 / −4 | 0.019 | 0.058 |
+| 0.5 · keyword + IDF | 84.6% | 79–89% | 0.557 | — | — | — |
+| 1 · dense only | 88.8% | 84–93% | 0.660 | +23 / −15 | 0.256 | 0.512 |
+| 2 · + BM25 & RRF | 89.9% | 85–93% | 0.720 | +8 / −6 | 0.791 | 0.791 |
+| 3 · + rerank | 95.7% | 92–98% | 0.831 | +15 / −4 | 0.019 | 0.058 |
 
-**n = 187. Differences below roughly 10 points are not resolvable at this sample size** (paired binary outcome, α = .05, 80% power). Reaching a 10-point resolution needs about 190 questions; 5 points needs about 470. Treat every row here as directional until the set grows.
+**n = 188. Differences below roughly 10 points are not resolvable at this sample size** (paired binary outcome, α = .05, 80% power). Reaching a 10-point resolution needs about 190 questions; 5 points needs about 470. Treat every row here as directional until the set grows.
 
 ### Why the stuffed-prompt row is here
 
@@ -19,7 +19,7 @@ The whole corpus is ~23K tokens, so it fits in a prompt-cached prefix at about a
 ### Strata
 
 - **permitted**: 56
-- **forbidden**: 76
+- **forbidden**: 77
 - **unstated**: 60
 
 `forbidden` and `unstated` together are the questions where the rulebook does not grant permission. They exist because the architecture's stated worst failure — telling a player a move is legal when the rules do not permit it — is invisible to a golden set where every question has a supporting passage by construction. The answer-level metric that matters is **false-permission rate**: the fraction of these where the system asserted the action was allowed.

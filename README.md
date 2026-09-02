@@ -212,21 +212,21 @@ panel is what made it visible.
 own FAQ, whose distinctive vocabulary is exactly what keyword search is good at. On it, four of five arms
 scored 95–100% and the keyword baseline looked competitive with the full pipeline. Rewriting the set
 harder — questions phrased the way players actually ask, weighted toward `forbidden` and `unstated`
-traps — separated them, and growing it to 187 scorable questions finally resolved the top of the ladder:
+traps — separated them, and growing it to 188 scorable questions finally resolved the top of the ladder:
 
 | arm | recall@8 | MRR | win/loss | Holm p |
 |---|---|---|---|---|
 | 0 · stuffed prompt | 100.0% | — | — | — |
-| 0.5 · keyword + IDF | 85.0% | 0.560 | — | — |
-| 1 · dense only | 89.3% | 0.664 | +23 / −15 | 0.512 |
-| 2 · + BM25 & RRF | 90.4% | 0.726 | +8 / −6 | 0.791 |
-| 3 · + rerank | **96.3%** | **0.836** | +15 / −4 | **0.058** |
+| 0.5 · keyword + IDF | 84.6% | 0.557 | — | — |
+| 1 · dense only | 88.8% | 0.660 | +23 / −15 | 0.512 |
+| 2 · + BM25 & RRF | 89.9% | 0.720 | +8 / −6 | 0.791 |
+| 3 · + rerank | **95.7%** | **0.831** | +15 / −4 | **0.058** |
 
 The full stack leads the naive baseline by 11.3 points rather than the 0.3 it appeared to lead by. Nothing
 in the pipeline changed between any of these tables — only the measurement got honest, and then got bigger.
 
 **Sample size was the whole story.** At n=114 the minimum detectable effect was 13.1 points and the best
-Holm-adjusted p was 0.539, so the honest summary was *directional, not established*. At n=187 the MDE is
+Holm-adjusted p was 0.539, so the honest summary was *directional, not established*. At n=188 the MDE is
 10.2 points and the rerank step wins 15 and loses 4 against hybrid retrieval — McNemar p = **0.019**,
 Holm-adjusted **0.058**. That is a real result: reranking is doing something, and it is the only arm in the
 ladder that clears its own noise floor. The Holm adjustment leaves it a hair outside the conventional
@@ -234,9 +234,10 @@ threshold, which is the correct amount of hedging for four comparisons on one da
 round it down to nothing. The two middle rungs — dense over keyword, and BM25 fusion over dense — remain
 unresolved, and 5-point resolution would need about 470 questions.
 
-Note the recall numbers *fell* when the set grew (rerank 98.2% → 96.3%). Nothing regressed; the new
-questions are harder, weighted 40 `unstated` and 26 `forbidden`. A recall number is a property of the
-question set as much as the pipeline, which is the same lesson the FAQ-seeded set taught the first time.
+Note the recall numbers *fell* when the set grew (rerank 98.2% → 96.3% → 95.7%). Nothing regressed; the
+187 → 188 step added `g188`, a deliberate regression probe (see below), and the earlier 114 → 187 growth
+was weighted 40 `unstated` and 26 `forbidden`. A recall number is a property of the question set as much
+as the pipeline, which is the same lesson the FAQ-seeded set taught the first time.
 
 **The eval caught a bug that retrieval scores alone could not.** One question missed on every arm —
 including the stuffed-prompt baseline, which receives the entire corpus by construction. That signature
@@ -247,6 +248,14 @@ chunk per `**Term** —` line and silently discarded everything else in the sect
 luck; the Weak/Vulnerable interaction appears nowhere else and was simply unanswerable. `g090` stays in
 the set as a regression guard.
 
+**Not every miss is a chunking bug.** `g188` ("Do Defect Orbs stack with Vulnerable?") was reported live
+in production and is not fixed. The rulebook never states the answer (no) in one place — it requires
+chaining three separate spans: Vulnerable only doubles damage from a "hit" (page 24), the Defect's Orb
+text never uses the word "hit" (page 16), and the one FAQ that touches Orb math calls it "a Dark Orb's
+damage" rather than a hit (page 18). Top-k chunk retrieval was never built to chain facts across sections
+like that, and neither is the answering prompt. Kept in the set as an honest regression probe rather than
+quietly dropped.
+
 ## What the answers actually do
 
 `npm run eval:answers` runs the real answering path — same prompt, retrieval, effort and search gating,
@@ -254,7 +263,7 @@ imported from `lib/answer.ts` rather than restated — then has a separate judge
 stance without ever seeing the expected label. Numbers in `eval/answers.md`.
 
 **The numbers below are stale.** They were measured against a 119-question golden set; the set has since
-grown to 192 (73 added questions, three label fixes). `eval/answers.md` carries the full caveat and the
+grown to 193 (73 added earlier, plus one regression probe, and three label fixes). `eval/answers.md` carries the full caveat and the
 corrected false-permission denominator. Re-run `npm run eval:answers` to refresh — it costs real money
 (~$14 at current sizes), which is why it isn't run on every change.
 

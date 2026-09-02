@@ -365,7 +365,7 @@
     <div class="stat"><span class="n">23K</span><span class="k">corpus tokens</span></div>
     <div class="stat"><span class="n">472</span><span class="k">chunks indexed</span></div>
     <div class="stat"><span class="n">1.84<span style="font-size:0.6em"> MB</span></span><span class="k">vector file</span></div>
-    <div class="stat"><span class="n">187</span><span class="k">graded questions</span></div>
+    <div class="stat"><span class="n">188</span><span class="k">graded questions</span></div>
     <div class="stat"><span class="n">5.6<span style="font-size:0.6em">%</span></span><span class="k">false permissions</span></div>
   </div>
 </header>
@@ -899,7 +899,7 @@
       <h3>Wilson confidence interval</h3>
       <span class="role">how firm is this number?</span>
       <p>
-        85.0% on 187 questions isn't 85.0% — it's "somewhere in 79–89%, probably." The interval says
+        84.6% on 188 questions isn't 84.6% — it's "somewhere in 79–89%, probably." The interval says
         how much the number would wobble if you drew a different sample of questions. Publish the
         interval or the number means nothing.
       </p>
@@ -927,7 +927,7 @@
       <h3>Minimum detectable effect</h3>
       <span class="role">what could this set even prove?</span>
       <p>
-        The most useful number here, and the reason you're expanding the question set. At n=187 the
+        The most useful number here, and the reason you're expanding the question set. At n=188 the
         MDE is <strong>10.2 points</strong>: any gap smaller than that is indistinguishable from luck,
         no matter what the table says. It states the experiment's resolution up front instead of
         letting a reader over-read a small difference.
@@ -967,7 +967,7 @@
       </p>
       <p>
         <strong>Stale as of writing:</strong> this run measured 119 questions; the golden set has since
-        grown to 192 (73 added, three label fixes). The retrieval numbers above are current — this
+        grown to 193 (74 added, three label fixes). The retrieval numbers above are current — this
         answer-level run costs real money (~$14) and is re-run manually, not on every change. See
         <code>eval/answers.md</code> for the full caveat.
       </p>
@@ -1020,9 +1020,9 @@
   <div class="wide chartwrap">
     <div class="legend">
       <span><i style="background:var(--s1)"></i> n=64 · FAQ-derived set</span>
-      <span><i style="background:var(--s2)"></i> n=187 · harder set</span>
+      <span><i style="background:var(--s2)"></i> n=188 · harder set</span>
     </div>
-    <svg viewBox="0 0 760 254" role="img" aria-label="Dumbbell chart of recall at 8 for five arms on both question sets. On the easier 64-question set the arms cluster between 95 and 100 percent. On the harder 187-question set they spread apart: keyword falls to 85.0, dense to 89.3, hybrid to 90.4, and rerank to 96.3, while the stuffed prompt holds at 100.">
+    <svg viewBox="0 0 760 254" role="img" aria-label="Dumbbell chart of recall at 8 for five arms on both question sets. On the easier 64-question set the arms cluster between 95 and 100 percent. On the harder 188-question set they spread apart: keyword falls to 84.6, dense to 88.8, hybrid to 89.9, and rerank to 95.7, while the stuffed prompt holds at 100.">
       <line class="c-grid" x1="195" y1="40" x2="195" y2="228"></line>
       <line class="c-grid" x1="363" y1="40" x2="363" y2="228"></line>
       <line class="c-grid" x1="532" y1="40" x2="532" y2="228"></line>
@@ -1035,36 +1035,36 @@
       <g>
         <text class="c-lab" x="14" y="63">0 · stuffed</text>
         <circle cx="700" cy="58" r="6" fill="var(--s1)"><title>stuffed prompt, n=64: 100.0%</title></circle>
-        <circle cx="700" cy="58" r="6" fill="var(--s2)"><title>stuffed prompt, n=187: 100.0%</title></circle>
+        <circle cx="700" cy="58" r="6" fill="var(--s2)"><title>stuffed prompt, n=188: 100.0%</title></circle>
         <text class="c-val" x="686" y="62" text-anchor="end">100</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="101">0.5 · keyword</text>
         <line class="c-conn" x1="195" y1="96" x2="586" y2="96"></line>
         <circle cx="586" cy="96" r="6" fill="var(--s1)"><title>keyword + IDF, n=64: 97.1%</title></circle>
-        <circle cx="195" cy="96" r="6" fill="var(--s2)"><title>keyword + IDF, n=187: 85.0%</title></circle>
-        <text class="c-val" x="181" y="100" text-anchor="end">85.0</text>
+        <circle cx="195" cy="96" r="6" fill="var(--s2)"><title>keyword + IDF, n=188: 84.6%</title></circle>
+        <text class="c-val" x="181" y="100" text-anchor="end">84.6</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="139">1 · dense</text>
         <line class="c-conn" x1="340" y1="134" x2="586" y2="134"></line>
         <circle cx="586" cy="134" r="6" fill="var(--s1)"><title>dense only, n=64: 97.1%</title></circle>
-        <circle cx="340" cy="134" r="6" fill="var(--s2)"><title>dense only, n=187: 89.3%</title></circle>
-        <text class="c-val" x="326" y="138" text-anchor="end">89.3</text>
+        <circle cx="340" cy="134" r="6" fill="var(--s2)"><title>dense only, n=188: 88.8%</title></circle>
+        <text class="c-val" x="326" y="138" text-anchor="end">88.8</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="177">2 · + BM25/RRF</text>
         <line class="c-conn" x1="377" y1="172" x2="700" y2="172"></line>
         <circle cx="700" cy="172" r="6" fill="var(--s1)"><title>hybrid, n=64: 100.0%</title></circle>
-        <circle cx="377" cy="172" r="6" fill="var(--s2)"><title>hybrid, n=187: 90.4%</title></circle>
-        <text class="c-val" x="363" y="176" text-anchor="end">90.4</text>
+        <circle cx="377" cy="172" r="6" fill="var(--s2)"><title>hybrid, n=188: 89.9%</title></circle>
+        <text class="c-val" x="363" y="176" text-anchor="end">89.9</text>
       </g>
       <g>
         <text class="c-lab" x="14" y="215">3 · + rerank</text>
         <line class="c-conn" x1="576" y1="210" x2="700" y2="210"></line>
         <circle cx="700" cy="210" r="6" fill="var(--s1)"><title>rerank, n=64: 100.0%</title></circle>
-        <circle cx="576" cy="210" r="6" fill="var(--s2)"><title>rerank, n=187: 96.3%</title></circle>
-        <text class="c-val" x="562" y="214" text-anchor="end">96.3</text>
+        <circle cx="576" cy="210" r="6" fill="var(--s2)"><title>rerank, n=188: 95.7%</title></circle>
+        <text class="c-val" x="562" y="214" text-anchor="end">95.7</text>
       </g>
 
       <text class="c-lab-s" x="14" y="248">recall@8 · higher is better</text>
@@ -1073,7 +1073,7 @@
 
   <div class="wide tablewrap" style="margin-top:34px">
     <table>
-      <caption>Current ablation · n = 187 scorable questions, k = 8</caption>
+      <caption>Current ablation · n = 188 scorable questions, k = 8</caption>
       <thead>
         <tr>
           <th scope="col">Arm</th>
@@ -1089,16 +1089,16 @@
           <td>0 · stuffed prompt</td><td>100.0%</td><td>—</td><td>—</td><td>—</td><td>—</td>
         </tr>
         <tr>
-          <td>0.5 · keyword + IDF</td><td>85.0%</td><td>79–89%</td><td>0.560</td><td>—</td><td>—</td>
+          <td>0.5 · keyword + IDF</td><td>84.6%</td><td>79–89%</td><td>0.557</td><td>—</td><td>—</td>
         </tr>
         <tr>
-          <td>1 · dense only</td><td>89.3%</td><td>84–93%</td><td>0.664</td><td>+23 / −15</td><td>0.512</td>
+          <td>1 · dense only</td><td>88.8%</td><td>84–93%</td><td>0.660</td><td>+23 / −15</td><td>0.512</td>
         </tr>
         <tr>
-          <td>2 · + BM25 &amp; RRF</td><td>90.4%</td><td>85–94%</td><td>0.726</td><td>+8 / −6</td><td>0.791</td>
+          <td>2 · + BM25 &amp; RRF</td><td>89.9%</td><td>85–93%</td><td>0.720</td><td>+8 / −6</td><td>0.791</td>
         </tr>
         <tr class="best">
-          <td>3 · + rerank</td><td>96.3%</td><td>92–98%</td><td>0.836</td><td>+15 / −4</td><td>0.058</td>
+          <td>3 · + rerank</td><td>95.7%</td><td>92–98%</td><td>0.831</td><td>+15 / −4</td><td>0.058</td>
         </tr>
       </tbody>
     </table>
@@ -1128,7 +1128,7 @@
     <div class="note">
       <span class="tag">One rung resolved, two not</span>
       <p>
-        At n=187 the resolution is 10.2 points. The rerank step is the one arm that clears its own
+        At n=188 the resolution is 10.2 points. The rerank step is the one arm that clears its own
         noise floor: it wins 15 and loses 4 against hybrid retrieval, McNemar p = <strong>0.019</strong>,
         Holm-adjusted <strong>0.058</strong> — a hair outside the conventional threshold, which is the
         correct amount of hedging for four comparisons on one dataset, not a reason to round it down to
@@ -1167,15 +1167,24 @@
       bugs in its own answer key is working; leaving them in place is not.
     </p>
     <p>
-      <strong>The set should keep growing.</strong> 187 → 470 is the next meaningful threshold, the point
+      <strong>The set should keep growing.</strong> 188 → 470 is the next meaningful threshold, the point
       at which 5-point gaps become resolvable. The
       highest-value additions are more <code>unstated</code> questions, since those are both the
       hardest to retrieve for and the ones where a confident wrong answer does real damage.
+    </p>
+    <p>
+      <strong>Multi-hop questions aren't handled.</strong> <code>g188</code> ("Do Defect Orbs stack with
+      Vulnerable?") was reported as a live production miss. The rulebook never states the answer in one
+      place — it requires chaining three spans across three pages (Vulnerable only doubles a "hit"; the
+      Defect's Orb text never uses that word; the one FAQ that touches Orb math calls it "damage"
+      instead). Top-k chunk retrieval, and the prompt built on top of it, were never designed to chain
+      facts across sections like that. Kept in the golden set as an honest regression probe rather than
+      quietly dropped.
     </p>
   </div>
 </section>
 
 <footer>
   <span>Slayssistant · retrieval architecture</span>
-  <span>index 50bfb512dc1ac982 · 187 scorable · MDE 10.2 pts</span>
+  <span>index 50bfb512dc1ac982 · 188 scorable · MDE 10.2 pts</span>
 </footer>
