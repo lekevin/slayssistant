@@ -1,12 +1,13 @@
 # Answer-level evaluation
 
-> **⚠️ STALE — measured against a 119-question golden set. The set is now 192.**
+> **⚠️ STALE — measured against a 119-question golden set. The set is now 193.**
 >
 > The numbers below are a valid measurement of the answering path, but of an older
-> question set: they predate 73 added questions (40 `unstated`, 26 `forbidden`,
-> 7 `permitted`) and three label fixes (`g017`, `g050`, `g094` — see their `notes`
-> in `golden.jsonl`). The false-permission denominator here is 71; on the current
-> set it would be 136.
+> question set: they predate 74 added questions (40 `unstated`, 27 `forbidden`,
+> 7 `permitted` — 73 from an earlier harder-question pass, plus `g188`, a
+> regression probe reported live in production) and three label fixes (`g017`,
+> `g050`, `g094` — see their `notes` in `golden.jsonl`). The false-permission
+> denominator here is 71; on the current set it would be 137.
 >
 > Regenerate with `npm run eval:answers`. It costs real money — roughly $14 at
 > current sizes — so it is deliberately not run on every change. `eval/results.md`

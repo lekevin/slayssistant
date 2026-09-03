@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import TracePanel, { type Trace } from "./TracePanel";
 
 /**
@@ -67,13 +67,6 @@ interface Message {
   usage?: { input_tokens?: number; output_tokens?: number };
 }
 
-interface Attachment {
-  filename: string;
-  mediaType: string;
-  data: string;
-  sizeBytes: number;
-}
-
 interface Props {
   gameName?: string;
   suggestedQuestions?: string[];
@@ -91,10 +84,58 @@ interface IndexInfo {
 
 const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
-// Vercel rejects request bodies over 4.5 MB at the platform level, before the
-// route handler runs — so a limit above that produces an opaque 413 instead of
-// a useful message. Base64 inflates by 4/3, so the real file ceiling is ~3 MB.
-const MAX_FILE_BYTES = 3 * 1024 * 1024;
+/**
+ * The system prompt asks for "a short structured breakdown" when a question has
+ * parts, so the model writes markdown lead-ins — "**Play phase:** Players can
+ * play cards...". Rendered raw, those asterisks are visible in the bubble and
+ * read as a bug.
+ *
+ * This handles the two inline marks the model actually emits, and returns React
+ * nodes rather than HTML: model output never reaches dangerouslySetInnerHTML,
+ * so a rulebook quote containing angle brackets stays inert.
+ *
+ * Unmatched markers deliberately stay literal. Mid-stream, "**Play pha" is not
+ * yet bold and reads as text until its closing marker arrives — the same way
+ * every streaming markdown chat behaves.
+ */
+function renderInline(text: string): ReactNode[] {
+  const pattern = /\*\*([^\n]+?)\*\*|`([^`\n]+?)`/g;
+  const out: ReactNode[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+
+  while ((m = pattern.exec(text)) !== null) {
+    if (m.index > last) out.push(text.slice(last, m.index));
+    if (m[1] !== undefined) {
+      out.push(<strong key={m.index}>{m[1]}</strong>);
+    } else {
+      out.push(
+        <code
+          key={m.index}
+          style={{ fontFamily: mono, fontSize: ".875em", color: "var(--accent-soft)" }}
+        >
+          {m[2]}
+        </code>,
+      );
+    }
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
+
+// Shrink-and-dull on press, matching the host site's link idiom. Inlined here
+// rather than pulled from a stylesheet so the widget still drops into any page
+// as one component plus the API route.
+const RCW_STYLES = `
+.rcw-press { transition: transform .5s ease, opacity .5s ease, border-color .5s ease; }
+.rcw-press:hover:not(:disabled) { transform: scale(.95); opacity: .7; }
+.rcw-press:active:not(:disabled) { transform: scale(.92); opacity: .55; }
+@media (prefers-reduced-motion: reduce) {
+  .rcw-press { transition: opacity .2s ease; }
+  .rcw-press:hover:not(:disabled), .rcw-press:active:not(:disabled) { transform: none; }
+}
+`;
 
 const STAGE_LABELS: Record<string, string> = {
   routing: "reading the question",
@@ -114,11 +155,8 @@ export default function RulesChatWidget({
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [stage, setStage] = useState<string | null>(null);
-  const [attachment, setAttachment] = useState<Attachment | null>(null);
-  const [attachError, setAttachError] = useState<string | null>(null);
   const [info, setInfo] = useState<IndexInfo | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let live = true;
@@ -161,9 +199,6 @@ export default function RulesChatWidget({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: history.map((m) => ({ role: m.role, content: m.content })),
-          attachment: attachment
-            ? { filename: attachment.filename, mediaType: attachment.mediaType, data: attachment.data }
-            : null,
         }),
       });
 
@@ -242,64 +277,29 @@ export default function RulesChatWidget({
     }
   }
 
-  async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    e.target.value = "";
-    if (!file) return;
-    setAttachError(null);
-
-    if (file.size > MAX_FILE_BYTES) {
-      setAttachError(
-        `${(file.size / 1024 / 1024).toFixed(1)} MB is too large — the limit is 3 MB.`
-      );
-      return;
-    }
-    const ext = (file.name.split(".").pop() ?? "").toLowerCase();
-    const isPdf = ext === "pdf" || file.type === "application/pdf";
-    const isText = ["txt", "md", "markdown"].includes(ext) || file.type.startsWith("text/");
-    if (!isPdf && !isText) {
-      setAttachError(`Unsupported file type ".${ext}". Use a .pdf, .txt or .md.`);
-      return;
-    }
-
-    // Read in the browser and send inline. Nothing is written to a server, so
-    // one visitor's upload can never reach another's — and a PDF sent whole
-    // yields real page-number citations, which our own corpus cannot.
-    const buf = await file.arrayBuffer();
-    let binary = "";
-    const bytes = new Uint8Array(buf);
-    for (let i = 0; i < bytes.length; i += 0x8000) {
-      binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-    }
-    setAttachment({
-      filename: file.name,
-      mediaType: isPdf ? "application/pdf" : "text/plain",
-      data: btoa(binary),
-      sizeBytes: file.size,
-    });
-  }
-
   return (
     <div
       style={{
-        border: "1px solid #D3DEDE",
+        border: "1px solid var(--border)",
         borderRadius: 10,
-        background: "#fff",
+        background: "var(--surface)",
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        color: "#101819",
+        color: "var(--text)",
       }}
     >
+      <style>{RCW_STYLES}</style>
+
       <div
         style={{
           padding: ".6rem .9rem",
-          borderBottom: "1px solid #E4EBEB",
-          background: "#F3F6F6",
+          borderBottom: "1px solid var(--border-subtle)",
+          background: "var(--surface-alt)",
           fontFamily: mono,
           fontSize: ".7rem",
           letterSpacing: ".06em",
-          color: "#5D6E71",
+          color: "var(--text-muted)",
           display: "flex",
           justifyContent: "space-between",
           gap: ".75rem",
@@ -317,7 +317,7 @@ export default function RulesChatWidget({
 
       <div ref={listRef} style={{ maxHeight: "30rem", overflowY: "auto", padding: "1rem" }}>
         {messages.length === 0 && (
-          <div style={{ color: "#5D6E71", lineHeight: 1.6 }}>
+          <div style={{ color: "var(--text-muted)", lineHeight: 1.6 }}>
             <p style={{ marginTop: 0 }}>
               Ask a rules question. Answers are grounded in the rulebook and cite the page; when the
               rules are silent, it says so instead of guessing.
@@ -327,15 +327,16 @@ export default function RulesChatWidget({
                 {suggestedQuestions.map((q) => (
                   <button
                     key={q}
+                    className="rcw-press"
                     onClick={() => send(q)}
                     style={{
-                      border: "1px solid #D3DEDE",
-                      background: "#fff",
+                      border: "1px solid var(--border)",
+                      background: "var(--surface)",
                       borderRadius: 999,
                       padding: ".3rem .7rem",
                       fontSize: ".8125rem",
                       cursor: "pointer",
-                      color: "#0B6B70",
+                      color: "var(--accent-soft)",
                     }}
                   >
                     {q}
@@ -361,31 +362,31 @@ export default function RulesChatWidget({
                         fontSize: ".7rem",
                         letterSpacing: ".08em",
                         textTransform: "uppercase",
-                        color: "#5D6E71",
+                        color: "var(--text-muted)",
                       }}
                     >
                       reasoning
                     </summary>
                     <div
                       style={{
-                        color: "#5D6E71",
+                        color: "var(--text-muted)",
                         fontSize: ".8125rem",
                         lineHeight: 1.55,
                         whiteSpace: "pre-wrap",
-                        borderLeft: "2px solid #E4EBEB",
+                        borderLeft: "2px solid var(--border-subtle)",
                         paddingLeft: ".7rem",
                         marginTop: ".4rem",
                       }}
                     >
-                      {m.thinking}
+                      {renderInline(m.thinking)}
                     </div>
                   </details>
                 )}
 
-                <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.65 }}>{m.content}</div>
+                <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.65 }}>{renderInline(m.content)}</div>
 
                 {m.error && (
-                  <div style={{ color: "#A33232", fontSize: ".875rem", marginTop: ".4rem" }}>
+                  <div style={{ color: "var(--danger)", fontSize: ".875rem", marginTop: ".4rem" }}>
                     {m.error}
                   </div>
                 )}
@@ -401,9 +402,9 @@ export default function RulesChatWidget({
                           fontSize: ".68rem",
                           padding: ".18rem .5rem",
                           borderRadius: 4,
-                          background: c.source === "web" ? "#F8EEDC" : "#E2F0F0",
-                          color: c.source === "web" ? "#A85C00" : "#0B6B70",
-                          border: `1px solid ${c.source === "web" ? "#E8C98A" : "#BEDCDC"}`,
+                          background: c.source === "web" ? "var(--citation-web-bg)" : "var(--citation-corpus-bg)",
+                          color: c.source === "web" ? "var(--warning)" : "var(--citation-corpus-text)",
+                          border: `1px solid ${c.source === "web" ? "var(--citation-web-border)" : "var(--citation-corpus-border)"}`,
                         }}
                       >
                         {c.source === "web" && c.url ? (
@@ -425,62 +426,15 @@ export default function RulesChatWidget({
         ))}
 
         {busy && stage && (
-          <div style={{ fontFamily: mono, fontSize: ".72rem", color: "#5D6E71" }}>
+          <div style={{ fontFamily: mono, fontSize: ".72rem", color: "var(--text-muted)" }}>
             {STAGE_LABELS[stage] ?? stage}
             <span style={{ opacity: 0.5 }}>…</span>
           </div>
         )}
       </div>
 
-      <div style={{ borderTop: "1px solid #E4EBEB", padding: ".7rem .9rem" }}>
-        {attachment && (
-          <div
-            style={{
-              fontSize: ".75rem",
-              color: "#5D6E71",
-              marginBottom: ".45rem",
-              display: "flex",
-              alignItems: "center",
-              gap: ".5rem",
-            }}
-          >
-            <span style={{ fontFamily: mono }}>
-              {attachment.filename} ({(attachment.sizeBytes / 1024).toFixed(0)} KB) — this session only
-            </span>
-            <button
-              onClick={() => setAttachment(null)}
-              style={{ border: "none", background: "none", cursor: "pointer", color: "#A33232" }}
-            >
-              remove
-            </button>
-          </div>
-        )}
-        {attachError && (
-          <div style={{ fontSize: ".75rem", color: "#A33232", marginBottom: ".45rem" }}>{attachError}</div>
-        )}
-
+      <div style={{ borderTop: "1px solid var(--border-subtle)", padding: ".7rem .9rem" }}>
         <div style={{ display: "flex", gap: ".5rem" }}>
-          <input
-            ref={fileRef}
-            type="file"
-            accept=".pdf,.txt,.md,text/plain,application/pdf"
-            onChange={onFile}
-            style={{ display: "none" }}
-          />
-          <button
-            onClick={() => fileRef.current?.click()}
-            title="Attach a rulebook or errata for this conversation only"
-            style={{
-              border: "1px solid #D3DEDE",
-              background: "#fff",
-              borderRadius: 6,
-              padding: "0 .6rem",
-              cursor: "pointer",
-              fontSize: "1rem",
-            }}
-          >
-            📎
-          </button>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -494,7 +448,7 @@ export default function RulesChatWidget({
             disabled={busy}
             style={{
               flex: 1,
-              border: "1px solid #D3DEDE",
+              border: "1px solid var(--border)",
               borderRadius: 6,
               padding: ".5rem .7rem",
               fontSize: ".9375rem",
@@ -503,14 +457,15 @@ export default function RulesChatWidget({
             }}
           />
           <button
+            className="rcw-press"
             onClick={() => send()}
             disabled={busy || !input.trim()}
             style={{
               border: "none",
               borderRadius: 6,
               padding: ".5rem 1rem",
-              background: busy || !input.trim() ? "#C7D4D4" : "#0B6B70",
-              color: "#fff",
+              background: busy || !input.trim() ? "var(--disabled-bg)" : "var(--accent)",
+              color: busy || !input.trim() ? "var(--text-faint)" : "var(--accent-contrast)",
               cursor: busy || !input.trim() ? "default" : "pointer",
               fontSize: ".9375rem",
             }}
